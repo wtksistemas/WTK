@@ -34,7 +34,9 @@ if($num_rows="1") {
 	  session_start();
 
 	$_SESSION['id']='888';
-	 header("Location: https://clientes.whitakermexico.com/1/menu.php");
+	/* header("Location: https://clientes.whitakermexico.com/1/menu.php"); */
+
+	header("Location: ../1/menu.php");
 
 }
 else
