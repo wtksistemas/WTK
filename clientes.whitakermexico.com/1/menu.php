@@ -41,7 +41,7 @@
 	
     <!-- Menú lateral izquierdo -->
     <div class="menu-lateral">
-        <a href="https://clientes.whitakermexico.com/1/menu.php"><img src="img/logo.svg" alt="Imagen superior"></a>
+        <a href="/menu.php"><img src="img/logo.svg" alt="Imagen superior"></a>
 	
 		
 		
