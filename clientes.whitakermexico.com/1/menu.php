@@ -60,7 +60,7 @@
 	 <!-- Menú superior -->
 	<div class="menu-superior">
 		<div class="opciones">
-			<a href="https://clientes.whitakermexico.com/1/nomina.php">Nómina</a>
+			<a href="/nomina.php">Nómina</a>
 			<a href="/legal.php">Legal</a>
 			<a href="/rh.php">RH</a>
 		</div>
