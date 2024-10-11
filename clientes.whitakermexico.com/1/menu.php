@@ -62,7 +62,7 @@
 		<div class="opciones">
 			<a href="https://clientes.whitakermexico.com/1/nomina.php">Nómina</a>
 			<a href="https://clientes.whitakermexico.com/1/legal.php">Legal</a>
-			<a href="https://clientes.whitakermexico.com/1/rh.php">RH</a>
+			<a href="/rh.php">RH</a>
 		</div>
         
 		<div class="perfil">
