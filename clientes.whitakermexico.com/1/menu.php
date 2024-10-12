@@ -21,7 +21,7 @@
 			
 		}
 		else{
-			header("Location: https://clientes.whitakermexico.com");
+			header("Location:../index.html");
 		}
 			
 	?>
