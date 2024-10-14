@@ -33,10 +33,12 @@ try {
     // Destinatarios
     $mail->addAddress($user, 'Usuario');  									 // Email y nombre del destinatario
 
-	$tkn= token();
+	/*$tkn= token();
 	$tkn2= token_2();
 	
-	insertar_tkn($user,$tkn,$tkn2);
+	insertar_tkn($user,$tkn,$tkn2); */
+
+    verifica_usuario($user);
 	
     // Contenido del correo
     $mail->isHTML(true);
