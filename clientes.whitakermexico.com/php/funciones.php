@@ -59,27 +59,24 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 	$tipo_token2="AUTH";
 
 	$r9=NULL;
-
-	// Generamos token
-	$t1=token();
-	$t2=token_2();
-
-
-
+	$tkn=NULL;
+	$tkn2=NULL;
 	// Seccion de consultas 
 	$sql = "select ID,c_usuario from tb_usuarios where c_usuario='".$persona."';";
 
 	// buscamos al usuario que solicita la accion 
 	$result = mysqli_query($conn,$sql);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	$id_obtenido=$row["ID"];
-	$user_msql=$row["c_usuario"];
 	$num_rows = mysqli_num_rows($result);
 
+	if($num_rows>0)
+	{
+	$id_obtenido=$row["ID"];
+	$user_msql=$row["c_usuario"];
 
-	// secccion de inserciones 
-	$query="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','".$id_obtenido."','".$t1."','".$tipo_token1."','".$estado_tkn."')";
-	$query2="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','".$id_obtenido."','".$t2."','".$tipo_token2."','".$estado_tkn."')";
+	
+	}
+
 	
  	if($row == false) 
 		{
@@ -87,6 +84,16 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 		}
 	if($num_rows>0 && $persona==$user_msql) // si el numero de filas recibidas por la consulta es mayor a 0 y el usuario es igual al solicitante
 		{
+
+			// Generamos token
+				$t1=token();
+				$t2=token_2();
+
+
+				// secccion de inserciones 
+				$query="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','".$id_obtenido."','".$t1."','".$tipo_token1."','".$estado_tkn."')";
+				$query2="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','".$id_obtenido."','".$t2."','".$tipo_token2."','".$estado_tkn."')";
+
 
 			// insertamos tokens
 			$result_t1=mysqli_query($conn,$query);
@@ -98,7 +105,7 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 			$r9="Usuario no existente";
 		}	
 	mysqli_close($conn);
-return $t1;
+return [$t1,$t2];
 }
 
 ?>
