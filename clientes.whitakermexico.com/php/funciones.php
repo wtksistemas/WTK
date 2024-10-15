@@ -17,38 +17,6 @@ function token_2(){
     return $token2;
 }
 
-/*Insercion de token a BD 
-function insertar_tkn($solicitante,$t1,$t2)
-{
-
-	require_once (__DIR__ . "/dbconnect.php");
-	$r5=0;
-
-
-	// estatus de token
-	$estado_tkn="Activo";
-	$espacio=" ";
-	$tipo_token1="URL";
-	$tipo_token2="AUTH";
-
-
-	// consultas de insersion 
-	$query="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','12','".$t1."','".$tipo_token1."','".$estado_tkn."')";
-	$query2="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','12','".$t2."','".$tipo_token2."','".$estado_tkn."')";
-	
-	if ($conn->ping()) // si la conexion a bd es exitosa se instertan los tokens
-		{
-			$r5=1;
-			$result=mysqli_query($connn,$query);
-			$result2=mysqli_query($connn,$query2);
-			//$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-		}
-		mysqli_close($conn);
-
-return $r5;
-
-}
-*/
 function verifica_usuario($persona) // funcion para determinar si el usuario que solicita cambio de contraseña esta dentro de la bd 
 {
 	include_once("dbconnect.php");	
@@ -57,7 +25,7 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 	$espacio=" ";
 	$tipo_token1="URL";
 	$tipo_token2="AUTH";
-
+	//Definicion de variables de validacion
 	$r9=NULL;
 	$tkn=NULL;
 	$tkn2=NULL;
@@ -69,6 +37,7 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	$num_rows = mysqli_num_rows($result);
 
+	// Si el numero de filas obtenidas de la consulta es mayor a 0 guardamos el id y usuario obtenido 
 	if($num_rows>0)
 	{
 	$id_obtenido=$row["ID"];
@@ -77,7 +46,7 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 	
 	}
 
-	
+	// Si la consulta no arroja ningun resultado..
  	if($row == false) 
 		{
 			$r9="consulta no valida";
@@ -111,18 +80,19 @@ return [$t1,$t2];
 
 
 
-function login_user($user1,$password1)
+function login_user($user1,$password1) // Funcion para inicio de sesion 
 {
-    //require_once("php/dbconnect.php"); // Usamos la conexión global a la base de datos
-
-	require(__DIR__ . '/dbconnect.php');
+	require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
 
 
+	// Variables de validacion
+	$w=$user1;
+	// Seccion de consutlas
+	$sql = "select c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$user1."';";
 
-$w=$user1;
-$sql = "select c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$user1."';";
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_array($result, MYSQLI_NUM);
+	
+	$result = mysqli_query($conn,$sql);
+	$row = mysqli_fetch_array($result, MYSQLI_NUM);
 
 
 
