@@ -1,43 +1,51 @@
 <?php
-require_once("php/dbconect.php");
-require_once("php/funciones.php");
-function verifica_usuario($persona)
+
+//$user=$_POST['username'];
+//$password=$_POST['password'];
+
+function login_user($user1, $password1)
 {
-	//include("php/dbconnect.php");
-	//include("php/funciones.php"); 
-	$r9=NULL;
-	$sql = "select ID,c_usuario from tb_usuarios where c_usuario='".$persona."';";
-	$result = mysqli_query($conn,$sql);
-	
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	$id=$row["ID"];
-	$user_msql=$row["c_usuario"];
- 	if($row == false) 
+    require_once("php/dbconnect.php"); // Usamos la conexión global a la base de datos
+
+$w=$user1;
+$sql = "select c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$w."';";
+$result = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+$user_msql=$row["c_usuario"]; //verifica usuario 
+$pass_msql=$row["cast(aes_decrypt(c_password,'".$llave."') as char)"]; //verifica contraseña
+
+
+
+
+$num_rows = mysqli_num_rows($result);
+
+
+echo $num_rows."\n";
+
+if($user_msql==$user1)
+{
+	if($pass_msql==$password1)
 		{
-			$r9="consulta_no valida";
+			session_start();
+			/* header("Location: https://clientes.whitakermexico.com/1/menu.php"); */
+			header("Location: 1/menu.php");
 		}
-	$num_rows = mysqli_num_rows($result);
-	if($num_rows>0 && $persona==$user_msql)
+		else
 		{
-  			//$r9="valido";
-			$a1=token();
-			$a2=token_2();
-			$r9="Tokens Generados".$a1." - ".$a2;
-			//insertar_tkn($persona,$a1,$a2);
+	    	/*    session_destroy();
+			header("Location: https://clientes.whitakermexico.com/"); */
+	 		echo "hola ".$pass_msql." n ".$password1;
 		}
-	else
-		{
-			$r9="no";
-		}	
-	mysqli_close($conn);
-return $r9;
+}
+else
+{
+	echo "USUARIO NO EXISTE";	
+}
 }
 
-$aa=verifica_usuario('sistemas@whitakermexico.com');
 
-echo $aa;
-
-
+$a = login_user('sistemas@whitakermexico.com','WTK$cuesta01');
 
 
 ?>
