@@ -26,6 +26,16 @@ if(valores != "" )
 
 
 			}
+			else if(validacion=="10")
+				{
+					window.alert("Token invalido, favor de verificar o realizar el procedimiento nuevamente");
+	
+	
+				}
+
+
+
+
 		else{
 				window.alert("Regitro exitoso !!");
 		
