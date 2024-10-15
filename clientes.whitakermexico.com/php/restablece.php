@@ -16,6 +16,8 @@ require '../PHPMailer/src/PHPMailer.php';
 require '../PHPMailer/src/SMTP.php';
 require 'funciones.php';
 // Inicio
+
+
 $mail = new PHPMailer(true);
 
 try {
@@ -38,18 +40,28 @@ try {
 	
 	insertar_tkn($user,$tkn,$tkn2); */
 
-    verifica_usuario($user);
-	
+	list($tkn,$tkn2)=verifica_usuario($user);
+
     // Contenido del correo
     $mail->isHTML(true);
     $mail->Subject = 'Solicitud de restablecimiento de cuenta';
     $mail->Body  = '<br> Usa el siguiente codigo de verificacion: <br> '.$tkn2.'<p> Para restablecer tu cuenta entra al siguiente <a href="https://www.clientes.whitakermexico.com/generacion.php?tkn='.$tkn.'"> enlace </a> <br>
 	<p>Este codigo tiene validez de 5 minutos.</p>';
     $mail->AltBody = 'Contenido del correo en texto plano para los clientes de correo que no soporten HTML';
-    $mail->send();
-    echo 'El mensaje se ha enviado';
+    
+
+    if($tkn && $tkn2 <> NULL)
+    {
+        echo 'El mensaje se ha enviado';
+        $mail->send();
+
+    }
+
+
+
+
 } catch (Exception $e) {
     echo "El mensaje no se ha enviado. Mailer Error: ".$mail->ErrorInfo."";
 }
-header("Location: https://clientes.whitakermexico.com?v=4");
+header("Location: ../index.html");
 ?>
