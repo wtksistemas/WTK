@@ -141,25 +141,28 @@ $num_rows = mysqli_num_rows($result);
 
 
 echo $num_rows."\n";
-
-if($user_msql==$user1)
+if($user1<>'' || $pass_msql <>'')
 {
-	if($pass_msql==$password1)
+
+	if($user_msql==$user1)
 		{
-			session_start();
-			$_SESSION['id']='888';
-			/* header("Location: https://clientes.whitakermexico.com/1/menu.php"); */
-			header("Location: ../1/menu.php");
+			if($pass_msql==$password1)
+				{
+					session_start();
+					$_SESSION['id']='888';
+					/* header("Location: https://clientes.whitakermexico.com/1/menu.php"); */
+				header("Location: ../1/menu.php");
+				}
+			else
+				{
+	    			/*    session_destroy(); */
+					header("Location: ../index.html?v=3"); 
+				}
 		}
 		else
-		{
-	    	/*    session_destroy(); */
-			header("Location: ../index.html?v=3"); 
-		}
-}
-else
-{
-	header("Location: ../index.html?v=9"); 
+			{
+				header("Location: ../index.html?v=9"); 
+			}
 }
 }
 
