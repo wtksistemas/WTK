@@ -108,4 +108,60 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 return [$t1,$t2];
 }
 
+
+
+
+function login_user($user1,$password1)
+{
+    //require_once("php/dbconnect.php"); // Usamos la conexión global a la base de datos
+
+	require(__DIR__ . '/dbconnect.php');
+
+
+
+$w=$user1;
+$sql = "select c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$user1."';";
+$result = mysqli_query($conn,$sql);
+$row = mysqli_fetch_array($result, MYSQLI_NUM);
+
+
+
+if($row == false)
+{
+
+	header("Location: ../index.html?v=9"); 
+
+}
+
+$user_msql=$row[0]; //Guardamos usuario obtenido por consulta
+$pass_msql=$row[1]; //Guardamos contraseña obtenida por consulta
+
+
+$num_rows = mysqli_num_rows($result);
+
+
+echo $num_rows."\n";
+
+if($user_msql==$user1)
+{
+	if($pass_msql==$password1)
+		{
+			session_start();
+			$_SESSION['id']='888';
+			/* header("Location: https://clientes.whitakermexico.com/1/menu.php"); */
+			header("Location: ../1/menu.php");
+		}
+		else
+		{
+	    	/*    session_destroy(); */
+			header("Location: ../index.html?v=3"); 
+		}
+}
+else
+{
+	header("Location: ../index.html?v=9"); 
+}
+}
+
+
 ?>

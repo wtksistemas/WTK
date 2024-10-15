@@ -11,7 +11,7 @@ if(valores != "" )
 			}
 		else if (validacion == "3")
 			{
-			window.alert("Contraseña y/0 Usuario incorrecto, verefique sus datos ! ");
+			window.alert("Contraseña y/o Usuario incorrecto, verefique sus datos ! ");
 
 			}
 		
@@ -19,6 +19,12 @@ if(valores != "" )
 			{
 				
 				window.alert("Revisa tu bandeja de correo ! :3");
+			}
+			else if(validacion=="9")
+			{
+				window.alert("Usuario no registrado, favor de verificar");
+
+
 			}
 		else{
 				window.alert("Regitro exitoso !!");

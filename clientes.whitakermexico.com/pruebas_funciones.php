@@ -3,19 +3,17 @@
 //$user=$_POST['username'];
 //$password=$_POST['password'];
 
-function login_user($user1, $password1)
+function login_user($user1,$password1)
 {
-    require_once("php/dbconnect.php"); // Usamos la conexión global a la base de datos
+    include_once("php/dbconnect.php"); // Usamos la conexión global a la base de datos
 
 $w=$user1;
-$sql = "select c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$w."';";
+$sql = "select c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$user1."';";
 $result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+$row = mysqli_fetch_array($result, MYSQLI_NUM);
 
-$user_msql=$row["c_usuario"]; //verifica usuario 
-$pass_msql=$row["cast(aes_decrypt(c_password,'".$llave."') as char)"]; //verifica contraseña
-
-
+$user_msql=$row[0]; //Guardamos usuario obtenido por consulta
+$pass_msql=$row[1]; //Guardamos contraseña obtenida por consulta
 
 
 $num_rows = mysqli_num_rows($result);
@@ -35,7 +33,7 @@ if($user_msql==$user1)
 		{
 	    	/*    session_destroy();
 			header("Location: https://clientes.whitakermexico.com/"); */
-	 		echo "hola ".$pass_msql." n ".$password1;
+	 		echo "contraseña obtenida: ".$pass_msql." <br> Contraseña enviada por usuario: ".$password1." <br> Usuario obtenido: ".$user_msql;
 		}
 }
 else
