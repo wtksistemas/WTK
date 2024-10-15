@@ -45,7 +45,7 @@ try {
     // Contenido del correo
     $mail->isHTML(true);
     $mail->Subject = 'Solicitud de restablecimiento de cuenta';
-    $mail->Body  = '<br> Usa el siguiente codigo de verificacion: <br> '.$tkn2.'<p> Para restablecer tu cuenta entra al siguiente <a href="https://www.clientes.whitakermexico.com/generacion.php?tkn='.$tkn.'"> enlace </a> <br>
+    $mail->Body  = '<br> Usa el siguiente codigo de verificacion: <br> '.$tkn2.'<p> Para restablecer tu cuenta entra al siguiente <a href="http://localhost:3000/clientes.whitakermexico.com/generacion.php?tkn='.$tkn.'"> enlace </a> <br>
 	<p>Este codigo tiene validez de 5 minutos.</p>';
     $mail->AltBody = 'Contenido del correo en texto plano para los clientes de correo que no soporten HTML';
     
