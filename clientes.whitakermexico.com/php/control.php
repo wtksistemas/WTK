@@ -14,24 +14,3 @@ if (!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK")) {
 //session_status() === PHP_SESSION_NONE Condicional asegura que session_start() solo se llame 
 //si no se ha iniciado ya una sesión.   
 ?>
-
-
-
-
-
-
-<?php
-  /*session_start();
-
-  if(!(isset($_SESSION["login"]) && $_SESSION["login"] == "OK"))
- {
-	  
-  }
-else
-{
-	
-header("Location: https://clientes.whitakermexico.com");
-
-}*/
-
-?>
