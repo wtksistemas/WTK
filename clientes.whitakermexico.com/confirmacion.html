@@ -9,22 +9,21 @@
 
 </head>
 
-<body>
+<body onload="no_atras();">
 	<div class="container-1">
 		<h1>Portal de Seguimiento para Clientes</h1>
        		<div class="login-container">
 				<img class="logo" src="img/salario.png" alt="Logo">
 					<h2>Contraseña</h2>
-                <form action="php/sesion.php" method="post">
-					<input type="password" name="username" placeholder="Nueva contraseña">
-					<input type="password" name="username" placeholder="Confirmacion tu nueva contraseña">
-
-					
-                    <button type="submit" onclick="window.location.href='index.html';">Cambiar contraseña</button>
+                <form action="php/cambio_pass.php" method="post">
+					<script src="js/script.js"></script>
+					<input type="password" name="pass1" id="contrasena1" placeholder="Nueva contraseña" oninput="validarCampos()">
+					<input type="password" name="pass2" id="contrasena2" placeholder="Confirmacion tu nueva contraseña" oninput="validarCampos()">
+					<label id="mensaje">Ingresa tu contraseña</label>
+                    <button id="btn" type="submit" disabled>Cambiar contraseña</button>
                 </form>
             </div>
         </div>
 	
-<script src="js/script.js"></script>
 </body>
 </html>

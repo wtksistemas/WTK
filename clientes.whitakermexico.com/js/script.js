@@ -48,4 +48,29 @@ if(valores != "" )
 		}
 	}
 
+	function no_atras()
+{
+   window.location.hash="no-back-button";
+   window.location.hash="Again-No-back-button"
+   window.onhashchange=function(){window.location.hash="no-back-button";}   
+}
+
+
+function validarCampos() {
+	const campo1 = document.getElementById('contrasena1').value;
+	const campo2 = document.getElementById('contrasena2').value;
+	const submit = document.getElementById('btn');
+	submit.disabled=true;
+  
+	if (campo1 === campo2) {
+	  // Los campos son iguales, puedes mostrar un mensaje, habilitar un botón, etc.
+	  document.getElementById("mensaje").textContent = "Las contraseñas coinciden";
+	  submit.disabled=false;
+	  
+	} else {
+	  // Los campos son diferentes, puedes mostrar un mensaje de error.
+	  document.getElementById("mensaje").textContent = "Las contraseñas no coinciden";
+	  submit.disabled=true;
+	}
+  }
 

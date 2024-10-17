@@ -160,6 +160,9 @@ function com_tkn($tk1,$tk2)	//funcion para comprobar token ingresado para cambia
 		{
 			if($num_rows2>0 && $num_rows2<> NULL && $tk2==$token_obtenido2)
 			{
+
+				session_start();	//inicia sesion
+				$_SESSION['token_url']=$token_obtenido2;	//asigna un valor de id a la sesion
 				header("Location: ../confirmacion.html");
 				return $z;
 			}
