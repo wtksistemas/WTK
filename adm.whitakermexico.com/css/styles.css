@@ -1,0 +1,174 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FF7C39;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+a {
+	text-decoration: none;
+	color: #777777;
+	font-size: small;
+}
+.container-1 {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #fff;
+}
+h2{
+	color: #666666;
+}
+label {
+	color: #666666;
+	display:block;
+	margin-bottom: 10px;
+}
+/*
+.inner-container {
+    position: relative;
+}*/
+
+.login-container {
+    position: relative;
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.8); /* Hace el formulario un poco invisible */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+	margin-left: 50px;
+}
+
+.login-container .logo {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    width: 50px;
+    height: auto;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"],
+.login-container input[type="tel"],
+.login-container input[type="email"]
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+	margin-top: 10px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #F65608;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+	margin-top: 20px;
+}
+
+.login-container button:hover {
+    background-color: #fff;
+	color:#F65608;
+}
+
+.login-container .logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: auto;
+}
+
+.links{
+	margin-top: 2px;
+	margin-bottom: 15px;
+}
+
+
+
+/* Para teléfonos (320px - 480px) */
+@media (max-width: 480px) {
+    body {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .login-container {
+        width: 300px;    
+		height: auto;
+        margin: 0;
+        padding: 10px;
+		margin: 50px;
+	}
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .login-container {
+        width: 300px;    
+		height: auto;
+        margin: 0;
+        padding: 10px;
+		margin: 50px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 20px;
+    }
+}
+
+/* Para tabletas (481px - 768px) 
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .login-container {
+        width: 80%;
+        margin-left: 0;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+}
+
+*/
+
+
+
