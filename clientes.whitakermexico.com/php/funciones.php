@@ -130,30 +130,51 @@ function login_user($user1,$password1) // Funcion para inicio de sesion
 }
 
 
-function com_tkn($tk1)	//funcion para comprobar token ingresado para cambiar contraseña
+function com_tkn($tk1,$tk2)	//funcion para comprobar token ingresado para cambiar contraseña
 {	
 	require(__DIR__ . '/dbconnect.php');	//carga al archivo para conectarse a la bd
 
-	$z=null;	//Definicion de variables de validacion
-
+	$z=null;
+	$token_obtenido2=0;	//Definicion de variables de validacion
+	$token_obtenido1=0;
+	$row2='0';
 	// Seccion de consultas 
-	$sql = "select c_token, c_estado from tb_token where c_token='".$tk1."'and c_estado = 'activo' ;";
+	$sql = "select c_token, c_tipotoken, c_estado from tb_token where c_token='".$tk1."'and c_estado = 'activo' and c_tipotoken='AUTH' ;";
+	$sql2 = "select c_token, c_tipotoken, c_estado from tb_token where c_token='".$tk2."'and c_estado = 'activo' and c_tipotoken='URL' ;";
+
 	// buscamos el token de 4 digitos y que este activo 
 	$result = mysqli_query($conn,$sql);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	$num_rows = mysqli_num_rows($result); //numero de fila donde el token existe y esta en  activo
+	$token_obtenido1=$row["c_token"];
 
-	//Si en la consulta hay una fila es valido para cambiar contraseña
-	if ($num_rows>0)
+	// buscamos el token de url y que este activo 
+	$result2 = mysqli_query($conn,$sql2);
+	$row2 = mysqli_fetch_array($result2, MYSQLI_NUM);
+	$num_rows2 = mysqli_num_rows($result2); //numero de fila donde el token existe y esta en  activo
+	$token_obtenido2=$row2[0];
+
+	
+		//Si en la consulta hay una fila es valido para cambiar contraseña
+		if ($num_rows>0 && $num_rows<> NULL && $tk1==$token_obtenido1)
 		{
-			header("Location: ../confirmacion.html");
-			return $z;
+			if($num_rows2>0 && $num_rows2<> NULL && $tk2==$token_obtenido2)
+			{
+				header("Location: ../confirmacion.html");
+				return $z;
+			}
+			else
+			{
+				header("Location: ../generacion.php?v=11&tkn=".$tk2."");
+				return $z;
+	
+			}
 		}
-	else
-		{ 		//si en la consulta no hay fila te regresa para volver ingresar el token
-			header("Location: ../generacion.php?v=10");
+		else
+		{ 		//si en alguna de las consultas no hay un resultado te regresa para volver ingresar el token
+			header("Location: ../generacion.php?v=10&tkn=".$tk2."");
 			return $z;
-		}
+		}	
 }
 
 

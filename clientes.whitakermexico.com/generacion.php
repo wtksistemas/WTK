@@ -7,7 +7,11 @@
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 </head>
 
-	
+<?php
+
+$t=$_GET["tkn"];
+
+?>
 <body>
 	<div class="container-1">
 		<h1>Portal de Seguimiento para Clientes</h1>
@@ -17,6 +21,7 @@
                 <form action="php/comprueba_token.php" method="post">
 					<label name="correo">Ingresa el codigo que enviamos a tu correo</label>
 					<input type="number" name="token" placeholder="token">
+					<input type="hidden" name="url_token" value="<?php echo $t;?>">
                     <button type="submit">Enviar</button>
 					<button type="button" onclick="window.location.href='index.php';">Página Principal</button>
 

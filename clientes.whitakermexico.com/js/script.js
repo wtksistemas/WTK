@@ -32,6 +32,12 @@ if(valores != "" )
 	
 	
 				}
+				else if(validacion=="11")
+					{
+						window.alert("Token invalido, Recuerda que debes ingresar desde el link que te llego a  tu mail, los mails de recuperacion tienen una vigencia de 5 minutos.");
+		
+		
+					}
 
 
 
