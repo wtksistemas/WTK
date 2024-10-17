@@ -201,7 +201,7 @@ function cmb_pass($token_url,$newpass){
 	if($row){
 		$id_user=$row['id_cusuario'];
 		
-
+		$update_sql = "UPDATE tb_usuarios SET c_password = " . $pass_encri ." WHERE ID = "";
 	}
 
 }
