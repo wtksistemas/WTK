@@ -188,5 +188,22 @@ function com_tkn($tk1,$tk2)	//funcion para comprobar token ingresado para cambia
 		}	
 }
 
+function cmb_pass($token_url,$newpass){
+	
+	require(__DIR__ . '/dbconnect.php');
+
+	$pass_encri="AES_ENCRYPT('" . $nueva_contraseña . "','" . $llave . "')";
+
+	$sql_buscar_user =  "SELECT id_cusuario FROM tb_token WHERE c_token='" . $token_url . "' AND c_tipotoken='URL' AND c_estado='Validado';";
+	$resultado = mysqli_query($conn,$sql_buscar_user);
+	$row= mysqli_fetch_array($resultado,MYSQLI_ASSOC);
+
+	if($row){
+		$id_user=$row['id_cusuario'];
+		
+
+	}
+
+}
 
 ?>
