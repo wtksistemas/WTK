@@ -23,7 +23,7 @@ $t=$_GET["tkn"];
 					<input type="number" name="token" placeholder="token">
 					<input type="hidden" name="url_token" value="<?php echo $t;?>">
                     <button type="submit">Enviar</button>
-					<button type="button" onclick="window.location.href='index.php';">Página Principal</button>
+					<button type="button" onclick="window.location.href='index.html';">Página Principal</button>
 
                 </form>
             </div>
