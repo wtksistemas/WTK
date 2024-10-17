@@ -160,6 +160,14 @@ function com_tkn($tk1,$tk2)	//funcion para comprobar token ingresado para cambia
 		{
 			if($num_rows2>0 && $num_rows2<> NULL && $tk2==$token_obtenido2)
 			{
+				
+				//actualizar el estado de los tokens a "Validado"
+				$update_sqli = "UPDATE tb_token SET c_estado = 'Validado' WHERE c_token='" . $tk1 . "' AND c_tipotoken='AUTH';";
+				$update_sql2 = "UPDATE tb_token SET c_estado = 'Validado' WHERE c_token='" . $tk2 . "' AND c_tipotoken='URL';";
+
+
+				mysqli_query($conn,$update_sqli);
+				mysqli_query($conn, $update_sql2);
 
 				session_start();	//inicia sesion
 				$_SESSION['token_url']=$token_obtenido2;	//asigna un valor de id a la sesion
