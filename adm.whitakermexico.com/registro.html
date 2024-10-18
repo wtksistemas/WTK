@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-	<title>Portal de seguimiento</title>
+	<title>Portal de administración</title>
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,17 +11,17 @@
 
 <body>
 	<div class="container-1">
-		<h1>Portal de Seguimiento para Clientes</h1>
+		<h1>Portal de administración para colaboradores</h1>
        		<div class="login-container">
 				<img class="logo" src="img/salario.png" alt="Logo">
-					<h2>Registrarte</h2>
+					<h2>Regístrarte</h2>
                 <form action="php/registro.php" method="post">
-					<input type="text" name="username" placeholder="Nombre de empresa">
-					<input type="text" name="email" placeholder="Correo">
+					<input type="text" name="username" placeholder="Nombre de empresa a la que pertecenes">
+					<input type="email" name="email" placeholder="Tu correo empresarial">
 					<input type="password" name="password" placeholder="Contraseña">
-					<input type="tel" name="fon" placeholder="telefono de contacto">
-					<button type="submit">Registrarte</button>
-					<button type="button" onclick="window.location.href='index.html';">Regresar</button>
+					<input type="tel" name="fon" placeholder="Telefono de contacto">
+					<button type="submit">Regístrarte</button>
+					<button type="button" onclick="window.location.href='index.html';">Regresar a menu principal</button>
 
 <!--					<a href="javascript:history.go(-1)">volver atras</a>
 -->					</form>
