@@ -40,13 +40,13 @@ label {
 
 .login-container {
     position: relative;
-    width: 400px;
+    width: 450px;
     background-color: rgba(255, 255, 255, 0.8); /* Hace el formulario un poco invisible */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     box-sizing: border-box;
-	margin-left: 50px;
+	margin:auto;
 }
 
 .login-container .logo {
@@ -123,7 +123,7 @@ label {
 		height: auto;
         margin: 0;
         padding: 10px;
-		margin: 50px;
+		margin: auto;
 	}
     h1 {
         font-size: 24px;
@@ -144,7 +144,7 @@ label {
 		height: auto;
         margin: 0;
         padding: 10px;
-		margin: 50px;
+		margin: auto;
     }
     h1 {
         font-size: 24px;
