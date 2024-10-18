@@ -65,7 +65,7 @@ if ($result!=1)
 			sleep(3);
 		echo "\n no";
 	
-			header("Location:https://clientes.whitakermexico.com?v=1"); 
+			header("Location:../index.html?v=1"); 
 
 		}
 

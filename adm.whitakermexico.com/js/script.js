@@ -74,3 +74,29 @@ function validarCampos() {
 	}
   }
 
+
+  function ValidarRegistro() {
+	const empresa = document.getElementById('empresa').value;
+	const mail = document.getElementById('mail').value;
+	const pass = document.getElementById('pass').value;
+	const tel = document.getElementById('tel').value;
+	const submit = document.getElementById('btn');
+
+  
+	if ( empresa === '' || mail === '' ||  pass=== ''  ||  tel=== '') {
+
+		document.getElementById("a").textContent = "Formulario incompleto";
+		submit.disabled=true;
+	    
+	} 
+	else 
+	{
+	  
+		document.getElementById("a").textContent = "Formulario completo";
+		submit.disabled=false;
+	    
+
+
+	}
+  }
+

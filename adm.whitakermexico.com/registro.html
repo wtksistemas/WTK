@@ -15,19 +15,23 @@
        		<div class="login-container">
 				<img class="logo" src="img/salario.png" alt="Logo">
 					<h2>Regístrarte</h2>
+					<label id="a">Llena todo el siguiente formulario porfavor</label>
                 <form action="php/registro.php" method="post">
-					<input type="text" name="username" placeholder="Nombre de empresa a la que pertecenes">
-					<input type="email" name="email" placeholder="Tu correo empresarial">
-					<input type="password" name="password" placeholder="Contraseña">
-					<input type="tel" name="fon" placeholder="Telefono de contacto">
-					<button type="submit">Regístrarte</button>
+
+					<script src="js/script.js"></script>
+
+					<input id="empresa" type="text" name="username" placeholder="Nombre de empresa a la que pertecenes" oninput="ValidarRegistro()">
+					<input id="mail" type="email" name="email" placeholder="Tu correo empresarial" oninput="ValidarRegistro()">
+					<input id="pass"type="password" name="password" placeholder="Contraseña" oninput="ValidarRegistro()">
+					<input id="tel" type="tel" name="fon" placeholder="Telefono de contacto" oninput="ValidarRegistro()">
+					<button id="btn" type="submit" disabled>Regístrarte</button>
 					<button type="button" onclick="window.location.href='index.html';">Regresar a menu principal</button>
 
 <!--					<a href="javascript:history.go(-1)">volver atras</a>
 -->					</form>
             </div>
         </div>
-<script src="js/script.js"></script>	
+	
 </body>
 </html>
 
