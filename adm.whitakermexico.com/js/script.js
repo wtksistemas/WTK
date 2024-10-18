@@ -38,13 +38,24 @@ if(valores != "" )
 		
 		
 					}
+					else if(validacion=="20")
+						{
+							window.alert("Usuario ya registrado en esta plataforma, favor de verificar");
+			
+			
+						}
+						else if(validacion=="21")
+							{
+								window.alert("Registro Exitoso!");
+				
+				
+							}
 
 
 
 
 		else{
-				window.alert("Regitro exitoso !!");
-		
+				
 		}
 	}
 
@@ -83,7 +94,7 @@ function validarCampos() {
 	const submit = document.getElementById('btn');
 
   
-	if ( empresa === '' || mail === '' ||  pass=== ''  ||  tel=== '') {
+	if ( empresa === '0' || mail === '' ||  pass=== ''  ||  tel=== '') {
 
 		document.getElementById("a").textContent = "Formulario incompleto";
 		submit.disabled=true;

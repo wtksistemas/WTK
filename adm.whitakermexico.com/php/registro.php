@@ -1,80 +1,38 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-	<title>Portal de seguimiento</title>
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-
-</head>
-
-<body>
 <?php
-
 require_once("dbconnect.php");
 
-$conn = mysqli_connect($host, $usr, $psr,$data_base);
-$nombre_cliente=$_POST['username'];
+//Variables de formulario
+$nombre=$_POST['nombre'];
+$pagadadora=$_POST['empresa'];
+$division=$_POST['div'];
 $mail=$_POST['email'];
 $contrasena=$_POST['password'];
 $telefono=$_POST['fon'];
 $espacio=" ";
 
-
-	
-$query="insert into tb_usuarios (ID,c_nombre,c_usuario,c_password,c_telefono) values
-		('".$espacio."','".$nombre_cliente."','".$mail."',aes_encrypt('".$contrasena."','".$llave."'),'".$telefono."')";
+//echo "pagadora: ".$pagadadora."";
 
 
- echo "Pagina php para Registrar usuario: <br><br>".$query.""; 
+// Seccion de consultas e inserciones 	
+$query="insert into tb_usuarios (ID,c_empresa,c_nombre,c_usuario,c_password,c_telefono,c_division) values ('".$espacio."','".$pagadadora."','".$nombre."','".$mail."',aes_encrypt('".$contrasena."','".$llave."'),'".$telefono."','".$division."')";
+$query2=" Select c_usuario from tb_usuarios where c_usuario='".$mail."'";
 
-if ($conn->ping()) {
-	
-    echo ("\n ¡La conexión está bien!\n");
-	echo "la base de datos es".$data_base."";
-	
-	$result=mysqli_query($conn,$query);
+//Realizamos consulta para saber si exite ya el usuario registrado
+$resultado=mysqli_query($conn,$query2);
+$row = mysqli_fetch_array($resultado, MYSQLI_ASSOC);
+$num_rows=mysqli_num_rows($resultado);
 
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+if($num_rows==null || $num_rows='' || $num_rows=0)
+{
 
-	
+	$nuevo_registro=mysqli_query($conn,$query);
+	header("Location:../index.html?v=21"); 
+}
+else
+{
+	header("Location:../index.html?v=20"); 
 
-
-} 
-	else 
-	{
-    printf ("Error: %s\n", $mysqli->error);
-	}
-
-
-
-
-
-
-if ($result!=1)
-		{
-
-			sleep(5);
-			 /* header("Location:https://clientes.whitakermexico.com/registro.html?v=0"); */
-	
-	echo "\n si ".mysqli_error($conn)."";
-	
-		} 
-	else
-		{
-	
-			sleep(3);
-		echo "\n no";
-	
-			header("Location:../index.html?v=1"); 
-
-		}
-
-
-
-
-
+}
+mysqli_close($conn);
 
 ?>
-	
-	</body>
-</html>

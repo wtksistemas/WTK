@@ -17,10 +17,17 @@
 					<h2>Regístrarte</h2>
 					<label id="a">Llena todo el siguiente formulario porfavor</label>
                 <form action="php/registro.php" method="post">
-
 					<script src="js/script.js"></script>
-
-					<input id="empresa" type="text" name="username" placeholder="Nombre de empresa a la que pertecenes" oninput="ValidarRegistro()">
+					<input id="nombre" type="text" name="nombre" placeholder="Escribe tu nombre" oninput="ValidarRegistro()">
+					<select name="empresa" id="empresa" onchange="ValidarRegistro()">
+						<option value="0">Selecciona la empresa a la que pertecenes</option>
+						<option value="Whitaker México Business & Consulting">Whitaker México Business & Consulting</option>
+						<option value="Roga Pagos">Roga Pagos</option>
+						<option value="Gee Idees">Gee Idees</option>
+						<option value="Millemanus">Millemanus</option>
+						<option value="Proyectando tu negocio">Proyectando tu negocio</option>
+					  </select>
+					<input id="division" type="text" name="div" placeholder="¿ A que división pertecenes?" oninput="ValidarRegistro()">
 					<input id="mail" type="email" name="email" placeholder="Tu correo empresarial" oninput="ValidarRegistro()">
 					<input id="pass"type="password" name="password" placeholder="Contraseña" oninput="ValidarRegistro()">
 					<input id="tel" type="tel" name="fon" placeholder="Telefono de contacto" oninput="ValidarRegistro()">
