@@ -18,6 +18,6 @@ if(isset($_SESSION['token_url']))//
     }
     else
     {
-    echo"Sesion invalida";
+        header("Location: ../index.html?v=22");
     }
 ?>

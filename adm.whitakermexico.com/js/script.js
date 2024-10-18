@@ -50,6 +50,13 @@ if(valores != "" )
 				
 				
 							}
+							else if(validacion=="22")
+								{
+									window.alert("Proceso invalido, Repite el proceso.");
+					
+					
+								}
+	
 
 
 
