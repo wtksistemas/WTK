@@ -191,7 +191,7 @@ function com_tkn($tk1,$tk2)	//funcion para comprobar token ingresado para cambia
 //cambio de contraseña
 function cmb_pass($token_url,$newpass)
 {
-	
+	session_start();
 	require(__DIR__ . '/dbconnect.php');//conexión de base de datos
 
 	$pass_encri="AES_ENCRYPT('" . $newpass . "','" . $llave . "')";//incriptacion
@@ -208,8 +208,10 @@ function cmb_pass($token_url,$newpass)
 
 		if(mysqli_query($conn,$update_sql))
 		{
+
 			echo "Contraseña cambiado exitoso";
 			header("Location: ../index.html");
+			session_destroy();
 
 		} else
 			{
