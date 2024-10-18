@@ -188,21 +188,40 @@ function com_tkn($tk1,$tk2)	//funcion para comprobar token ingresado para cambia
 		}	
 }
 
-function cmb_pass($token_url,$newpass){
+//cambio de contraseña
+function cmb_pass($token_url,$newpass)
+{
 	
-	require(__DIR__ . '/dbconnect.php');
+	require(__DIR__ . '/dbconnect.php');//conexión de base de datos
 
-	$pass_encri="AES_ENCRYPT('" . $nueva_contraseña . "','" . $llave . "')";
+	$pass_encri="AES_ENCRYPT('" . $newpass . "','" . $llave . "')";//incriptacion
 
-	$sql_buscar_user =  "SELECT id_cusuario FROM tb_token WHERE c_token='" . $token_url . "' AND c_tipotoken='URL' AND c_estado='Validado';";
-	$resultado = mysqli_query($conn,$sql_buscar_user);
+	$sql_buscar_user =  "SELECT id_cusuario FROM tb_token WHERE c_token='" . $token_url . "' AND c_tipotoken='URL' AND c_estado='Validado';"; //Búsqueda del usuario asociado al token:
+
+	$resultado = mysqli_query($conn,$sql_buscar_user); //consulta
 	$row= mysqli_fetch_array($resultado,MYSQLI_ASSOC);
 
-	if($row){
+	if($row)
+	{	
 		$id_user=$row['id_cusuario'];
-		
-		$update_sql = "UPDATE tb_usuarios SET c_password = " . $pass_encri ." WHERE ID = "";
+		$update_sql = "UPDATE tb_usuarios SET c_password = " . $pass_encri . " WHERE ID = '" . $id_user . "';";
+
+		if(mysqli_query($conn,$update_sql))
+		{
+			echo "Contraseña cambiado exitoso";
+			header("Location: ../index.html");
+
+		} else
+			{
+				echo "Error al cambiar la contraseña" . mysqli_error($conn);			
+			}
 	}
+	else {
+		echo "Token inválidado o usuarios no encontrados";
+	}
+	mysqli_close($conn);	//cierra la conexion de bd 
+
+	
 
 }
 
