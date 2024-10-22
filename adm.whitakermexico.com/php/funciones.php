@@ -114,6 +114,7 @@ function login_user($user1,$password1) // Funcion para inicio de sesion
 						{
 							session_start();	//inicia sesion
 							$_SESSION['id']='888';	//asigna un valor de id a la sesion
+							$_SESSION['username']=$user_msql;
 							header("Location: ../1/menu.php");	//envia al menú
 						}
 					else	//si es contraseña es incorrcto envia al index valor 3

@@ -21,7 +21,7 @@
 			
 		}
 		else{
-			header("Location: https://clientes.whitakermexico.com");
+			header("Location: ../index.html");
 		}
 			
 	?>
@@ -60,8 +60,8 @@
 	 <!-- Menú superior -->
 	<div class="menu-superior">
 		<div class="opciones">
-			<a href="https://nomina.whitakermexico.com/">Nómina</a>
-			<a href="#">Legal</a>
+			<a href="nomina.php">Nómina</a>
+			<a href="legal.php">Legal</a>
 		</div>
         
 		<div class="perfil">

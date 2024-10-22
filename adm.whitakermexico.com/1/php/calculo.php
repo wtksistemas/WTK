@@ -321,6 +321,6 @@ echo number_format($neto,2);
  
 /* retorno a pagina de calculo con paso de variables en url */
 
-header("Location:https://clientes.whitakermexico.com/1/nomina.php?&visr=".number_format($cuota_fija,2)."&sbase=".number_format($salario,2)."&vimss=".number_format($imss,2)."&vsub=".number_format($subsidio1,2)."&vneto=".number_format($neto,2)."&vimssp=".number_format($imssp,2)."&vinfo=".number_format($prop_i_in,2)."&visn=".number_format($isnp,2)."&vcosto=".number_format($costo,2)."&visrr=".number_format($tisr,2)."&vprima=".$riesgo.""); 
+header("Location: ../nomina.php?&visr=".number_format($cuota_fija,2)."&sbase=".number_format($salario,2)."&vimss=".number_format($imss,2)."&vsub=".number_format($subsidio1,2)."&vneto=".number_format($neto,2)."&vimssp=".number_format($imssp,2)."&vinfo=".number_format($prop_i_in,2)."&visn=".number_format($isnp,2)."&vcosto=".number_format($costo,2)."&visrr=".number_format($tisr,2)."&vprima=".$riesgo.""); 
 
  ?>

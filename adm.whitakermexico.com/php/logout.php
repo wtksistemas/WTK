@@ -24,6 +24,6 @@ session_status();
 
 
 
- header("Location: https://clientes.whitakermexico.com");
+ header("Location: ../index.html");
 
 ?>

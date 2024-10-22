@@ -21,7 +21,7 @@
 			
 		}
 		else{
-			header("Location: https://clientes.whitakermexico.com");
+			header("Location: ../index.html");
 		}
 			
 	?>
@@ -41,7 +41,7 @@
 	
     <!-- Menú lateral izquierdo -->
     <div class="menu-lateral">
-        <a href="https://clientes.whitakermexico.com/1/menu.php"><img src="img/logo.svg" alt="Imagen superior"></a>
+        <a href="menu.php"><img src="img/logo.svg" alt="Imagen superior"></a>
 		
 		
 		
@@ -60,9 +60,9 @@
 	 <!-- Menú superior -->
 	<div class="menu-superior">
 		<div class="opciones">
-			<a href="https://clientes.whitakermexico.com/1/nomina.php">Nómina</a>
-			<a href="https://clientes.whitakermexico.com/1/legal.php">Legal</a>
-			<a href="https://clientes.whitakermexico.com/1/rh.php">RH</a>
+			<a href="nomina.php">Nómina</a>
+			<a href="legal.php">Legal</a>
+			<a href="rh.php">RH</a>
 		</div>
         
 		<div class="perfil">
