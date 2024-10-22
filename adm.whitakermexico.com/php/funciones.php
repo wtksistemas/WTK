@@ -84,7 +84,7 @@ function login_user($user1,$password1) // Funcion para inicio de sesion
 	// Variables de validacion
 	$w=$user1;
 	// Seccion de consultas
-	$sql = "select c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$user1."';";
+	$sql = "select c_nombre,c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$user1."';";
 
 	
 	$result = mysqli_query($conn,$sql);
@@ -97,9 +97,9 @@ function login_user($user1,$password1) // Funcion para inicio de sesion
 
 		}
 
-
-	$user_msql=$row[0]; //Guardamos usuario obtenido por consulta
-	$pass_msql=$row[1]; //Guardamos contraseña obtenida por consulta
+	$user_nombre=$row[0];// Guardamos el nombre del usuario obtenido por la consulta
+	$user_msql=$row[1]; //Guardamos usuario obtenido por consulta
+	$pass_msql=$row[2]; //Guardamos contraseña obtenida por consulta
 
 
 	$num_rows = mysqli_num_rows($result); //Comprobacion de la fila del usuario
@@ -114,7 +114,8 @@ function login_user($user1,$password1) // Funcion para inicio de sesion
 						{
 							session_start();	//inicia sesion
 							$_SESSION['id']='888';	//asigna un valor de id a la sesion
-							$_SESSION['username']=$user_msql;
+							$_SESSION['username']=$user_nombre;
+							$_SESSION['mail']=$user_msql;
 							header("Location: ../1/menu.php");	//envia al menú
 						}
 					else	//si es contraseña es incorrcto envia al index valor 3
