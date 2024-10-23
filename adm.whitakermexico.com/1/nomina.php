@@ -55,9 +55,9 @@
 						<label name="piramidacion">Piramidación</label>
 						
 							<select id="piramidacion" name="piramidacion">
-								<option value="qwerty">	--	</option>
-								<option value="qwerty">Bruto objetivo</option>
-								<option value="QWERTY">Neto objetivo</option>
+								<option value="0">	--	</option>
+								<option value="brutoobjetivo">Bruto objetivo</option>
+								<option value="netoobjetivo">Neto objetivo</option>
 							</select>
 				
 						<label name="v_isr">ISR Determinado</label>
