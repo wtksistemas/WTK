@@ -6,6 +6,8 @@
     <title>Panel Principal</title>
     <link rel="stylesheet" href="css/style.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	<script src="../js/script.js"></script>
+
 
 </head>
 <body>

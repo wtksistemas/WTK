@@ -16,6 +16,28 @@ setlocale(LC_MONETARY, 'en_US'); /* establecer formato de pesos */
 $salario=$_POST['salario'];
 $riesgo=$_POST['priesgo'];
 
+
+if(is_numeric($salario))
+{ 
+	if(is_numeric($riesgo))
+	{
+
+	}
+	else
+	{
+
+	header("Location: ../nomina.php?v=23");
+
+	}	
+}
+else
+{
+
+	header("Location: ../nomina.php?v=23");
+
+}
+
+
 /* Variables Globales estaticas  */
 
 $fintegracion=1.0493; /* Factor de integracion para 2024 */

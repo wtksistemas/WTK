@@ -56,6 +56,12 @@ if(valores != "" )
 					
 					
 								}
+								else if(validacion=="23")
+									{
+										window.alert("Proceso invalido, solo se admiten numeros");
+						
+						
+									}
 	
 
 
