@@ -253,6 +253,7 @@ input,select {
     justify-content: space-between;
     max-width: 1200px; /* Ajusta el ancho máximo */
     padding-top:80px;
+    align-items:center;
 }
 
 .formulario-izquierda, .formulario-derecha{
