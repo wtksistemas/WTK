@@ -5,7 +5,6 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 	background-color: #ECF0F5;
-	display: flex;
     min-height: 100vh;
 }
 
@@ -42,19 +41,22 @@ body {
 
        /* Contenedor principal */
 .contenedor-principal {
-	margin-left: 290px; /* Espacio dejado por el menú lateral */
-    width: calc(100% - 290px);
     display: flex;
     flex-direction: column;
 }
 
         /* Menú superior */
 .menu-superior {
-	background-color: #F65100;
+    background-color: #F65100;
 	padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .menu-superior .opciones {
@@ -72,6 +74,7 @@ body {
 	display: flex;
     align-items: center;
     gap: 10px;
+    padding-right: 20px;
 }
 
 .menu-superior .perfil button {
@@ -193,16 +196,6 @@ input,select {
             max-height: 50px;
         }
 
-
-/*enviar {
-            width: 100%;
-            background-color: #F65100;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }*/
 .botones{
             display: flex;
             justify-content: space-between;
@@ -252,8 +245,33 @@ input,select {
     0% { transform: translateX(0%); }
     33% { transform: translateX(-100%); }
     66% { transform: translateX(-200%); }
-    100% { transform: translateX(0%); }
+    100% { transform: translateX(0%); }
 }
 
+.formularios-contenedor{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px; /* Ajusta el ancho máximo */
+    padding-top:80px;
+}
 
+.formulario-izquierda, .formulario-derecha{
+    width: 48%; /* Cada formulario ocupará casi la mitad del contenedor */
+}
+.formulario-izquierda{
+    padding-left: 50px;
+    padding-right: 25px;
+}
 
+.formulario{
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#b1{
+    margin-right: 2px;;
+}
+#b2{
+    margin-left: 2px;
+}

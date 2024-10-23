@@ -134,4 +134,34 @@ $coche_checo= new coches_economicos();
 
 echo " La potencia del coche de checo es: ".$coche_checo->getPotencia();
 
+
+
+
+
+
+
+
+//
+class empleado{
+
+}
+
+class legal extends empleado{
+
+}
+
+class nominas extends empleado{
+
+}
+class contabilidad extends empleado{
+
+}
+
+class adminitracion extends empleado {
+
+}
+
+$whitaker=new empleado();
+$millemanus=new empleado();
+
 ?>
