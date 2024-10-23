@@ -256,11 +256,12 @@ input,select {
 }
 
 .formulario-izquierda, .formulario-derecha{
-    width: 48%; /* Cada formulario ocupará casi la mitad del contenedor */
+    width: 40%; /* Cada formulario ocupará casi la mitad del contenedor */
 }
 .formulario-izquierda{
     padding-left: 50px;
     padding-right: 25px;
+    width: 65%;
 }
 
 .formulario{
