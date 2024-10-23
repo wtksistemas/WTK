@@ -69,7 +69,7 @@
 			<button>Perfil</button>
 			
 	<?php
-	//	echo"".$_SESSION['username']."" ;
+	echo"".$_SESSION['username']."" ;
 	?></P> 
 
 	<a href="../php/logout.php"><button type="button">Cerrar sesion</button></a>
