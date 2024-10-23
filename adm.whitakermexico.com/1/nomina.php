@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
     <link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="php/calculo.php">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
 </head>
