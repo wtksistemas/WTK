@@ -1,4 +1,4 @@
-<?php
+
 // Salary Controller
 var salaryController = (function () {
 
@@ -789,5 +789,3 @@ var salaryController = (function () {
   }
   // end -- Fix for safari and ios browsers
   */
-
-?>
