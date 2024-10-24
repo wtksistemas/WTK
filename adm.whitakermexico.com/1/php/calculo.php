@@ -46,10 +46,17 @@ $sbc=$salario*$fintegracion; /* Calculo de Salario base de Cotizacion mensual */
 $dias=30; /* Dias trabajados para calculo */
 $sdi=$sbc/$dias; /* Calculo de Salario diario integrado */
 $isn=3.00/100; /* Porcentaje de ISN CDMX */ 
+$tope_umas_imss=$uma*25;
+
+if($sdi>$tope_umas_imss)
+{
+$sdi=$tope_umas_imss;
+}
+else
+{
 
 
-
-
+}
 
 
 
@@ -60,6 +67,7 @@ echo "Prima de riesgo capturada: ".$riesgo."<br> <br> <br>";
 
 
 echo "SDI a considerar: ".$sdi."<br> <br> <br>";
+echo "el SBC a considerar".$sbc."<br> <br> <br>";
 
 
 
@@ -74,7 +82,7 @@ $porcentajep_i_pd=0.70/100; /* prestaciones en dinero patron*/
 $porcentajee_i_pd=0.25/100; /* prestaciones en dinero empleado*/
 
 $porcentajep_i_gm=1.05/100; /* gastos medicos para pensionados patron */
-$porcentajee_i_gm=0.38/100; /* gastos medicos para pensionados empleados */
+$porcentajee_i_gm=0.375/100; /* gastos medicos para pensionados empleados */
 
 $porcentajep_i_rt=$riesgo/100; /* riesgo de trabajo */
 
@@ -292,10 +300,22 @@ $result2 = mysqli_query($conn,$query_cv);
 
 $row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 
-$id2=$row2["ID"];
-$liminf2=$row2["climite_inf"];
-$limsup2=$row2["climite_sup"];
-$porccentajep_i_cv=$row2["ccv"]/100;
+if(mysqli_num_rows($result2)==0)
+{
+	$id2=0;
+	$liminf2=0;
+	$limsup2=0;
+	$porccentajep_i_cv=0;
+}
+else
+{
+	$id2=$row2["ID"];
+	$liminf2=$row2["climite_inf"];
+	$limsup2=$row2["climite_sup"];
+	$porccentajep_i_cv=$row2["ccv"]/100;
+
+}
+
 
 
 if($porccentajep_i_cv==NULL)
@@ -307,7 +327,7 @@ if($porccentajep_i_cv==NULL)
 $proe_i_cv=($sdi*$dias)*$porccentajee_i_cv;
 $prop_i_cv=($sdi*$dias)*$porccentajep_i_cv;
 
-
+echo "Porcentaje a aplicar: ".$porccentajep_i_cv;
 echo "Cesentia y vejez patronal : ".$prop_i_cv."<br><br><br>";
 echo "Cesentia y vejez empleado : ".$proe_i_cv."<br><br><br>";
 	
@@ -327,8 +347,12 @@ $imss=$proe_i_ex+$proe_i_pd+$proe_i_gm+$proe_i_iv+$proe_i_cv;
 $tisr=$cuota_fija-$subsidio1; /* Total de isr menos el subsidio al emlpeo*/
 $neto=($salario-$tisr)-$imss;
 
-$imssp=$cuota_fija+$prop_i_ex+$prop_i_pd+$prop_i_gm+$prop_i_rt+$prop_i_iv+$prop_i_gg+$prop_i_cv;
-$costo=$imssp+$isnp+$prop_i_in;
+$imssp=$pro_i_cf+$prop_i_ex+$prop_i_pd+$prop_i_gm+$prop_i_rt+$prop_i_iv+$prop_i_gg+$prop_i_cv+$prop_i_re+$prop_i_in;
+
+echo"Suma de imss patron:".$imssp;
+
+
+$costo=$imssp;
 
 echo $neto. "<br>";
 echo number_format($neto,2);
