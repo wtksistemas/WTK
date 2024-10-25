@@ -25,166 +25,54 @@ var salaryController = (function () {
 	var opciones = {
 	  tipo: "Neto",
 	  periodo: "Mensual",
-	  subsidio: false,
-	  imss: false,
+	  subsidio: true,
+	  imss: true,
 	};
-  
-	// Tabla ISR semanal limite inferior
-	var tablaSemanal = [
-	  0.01, 171.79, 1458.04, 2562.36, 2978.65, 3566.23, 7192.65, 11336.58, 21643.31, 28857.79, 86573.35
-	]
-  
-	// Tabla ISR semanal Cuota fija 
-	var cuotaSemanal = [
-	  0.00, 3.29, 85.61, 205.8, 272.37, 377.65, 1152.27, 2126.95, 5218.92, 7527.59, 27150.83
-	]
-  
-	// Tabla ISR semanal excedente
-	var porcSemanal = [
-	  1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00
-	]
-  
-	// Tabla subsidio semanal  hasta ingresos de
-	var ingSubSemanal = [
-	  407.34, 610.96, 799.68, 814.66, 1023.75, 1086.19, 1228.57, 1433.32, 1638.07, 1699.88
-	]
-  
-	// Tabla de subsidio ISR semanal - Cantidad de subsidio para el empleo
-	var canSubSemanal = [
-	  93.73, 93.66, 93.66, 90.44, 88.06, 81.55, 74.83, 67.83, 58.38, 50.12, 0.00
-	]
-  
-	// Tabla ISR quincenal limite inferior
-	var tablaQuincenal = [
-	  0.01, 368.11, 3124.36, 5490.76, 6382.81, 7641.91, 15412.81, 24292.66, 46378.51, 61838.11, 185514.31
-	]
-  
-	// Tabla ISR quincenal Cuota fija
-	var cuotaQuincenal = [
-	  0.00, 7.05, 183.45, 441, 583.65, 809.25, 2469.15, 4557.75, 11183.40, 16130.55, 58,180.35
-	]
-  
-	// Tabla ISR quincenal excedente
-	var porcQuincenal = [
-	  1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00
-	]
-  
-	// Tabla subsidio quincenal hasta ingresos de
-	var ingSubQuincenal = [
-	  872.85, 1309.20, 1713.60, 1745.70, 2193.75, 2327.55, 2632.65, 3071.40, 3510.15, 3642.60
-	]
-  
-	// Tabla de subsidio ISR quincenal - Cantidad de subsidio para el empleo
-	var canSubQuincenal = [
-	  200.85, 200.70, 200.70, 193.80, 188.70, 174.75, 160.35, 145.35, 125.10, 107.40, 0.00
-	]
   
 	// Tabla ISR mensual limite inferior
-	var tablaMensual = [
-	  0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62
-	]
+	var tablaMensual = [0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62]
   
 	// Tabla ISR mensual Cuota fija
-	var cuotaMensual = [
-	  0.00, 14.32, 371.83, 893.63, 1182.88, 1640.18, 5004.12, 9236.89, 22665.17, 32691.18, 117912.32
-	]
+	var cuotaMensual = [ 0.00, 14.32, 371.83, 893.63, 1182.88, 1640.18, 5004.12, 9236.89, 22665.17, 32691.18, 117912.32]
   
 	// Tabla ISR mensual excedente
-	var porcMensual = [
-	  1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00
-	]
+	var porcMensual = [ 1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00]
   
 	// Tabla subsidio mensual hasta ingresos de
-	var ingSubMensual = [
-	  1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 4717.18, 5335.42, 6224.67, 7113.90, 7382.33
-	]
+	var ingSubMensual = [ 1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 4717.18, 5335.42, 6224.67, 7113.90, 7382.33]
 	
 	// Tabla de subsidio ISR mensual - Cantidad de subsidio para el empleo
-	var canSubMensual = [
-	  407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00
-	]
+	var canSubMensual = [ 407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00]
   
 	var getTable = function(value) {
-  
-	  if (value === "Semanal") {
-		return tablaSemanal;
-	  }
-	  else if (value === "Quincenal") {
-		return tablaQuincenal;
-	  }
-	  else if (value === "Mensual") {
+
 		return tablaMensual;
-	  }
-	};
+	  };
   
 	var getCuota= function(value) {
   
-	  if (value === "Semanal") {
-		return cuotaSemanal;
-	  }
-	  else if (value === "Quincenal") {
-		return cuotaQuincenal;
-	  }
-	  else if (value === "Mensual") {
 		return cuotaMensual;
-	  }
 	};
   
 	var getPorcentaje = function(value) {
   
-	  if (value === "Semanal") {
-		return porcSemanal;
-	  }
-	  else if (value === "Quincenal") {
-		return porcQuincenal;
-	  }
-	  else if (value === "Mensual") {
 		return porcMensual;
-	  }
 	};
   
 	var getIngSub = function(value) {
-  
-	  if (value === "Semanal") {
-		return ingSubSemanal;
-	  }
-	  else if (value === "Quincenal") {
-		return ingSubQuincenal;
-	  }
-	  else if (value === "Mensual") {
+
 		return ingSubMensual;
-	  }
 	};
   
 	var getCanSub = function(value) {
-  
-	  if (value === "Semanal") {
-		return canSubSemanal;
-	  }
-	  else if (value === "Quincenal") {
-		return canSubQuincenal;
-	  }
-	  else if (value === "Mensual") {
 		return canSubMensual;
-	  }
 	};
   
 	var calcSBC = function(value) {
-	  if (value === "Semanal") {
-		data.dias = 7,
-		data.sdi = data.inicial/data.dias;
-		sbc = data.sdi * data.factor;
-	  }
-	  else if (value === "Quincenal") {
-		data.dias = 15,
-		data.sdi = data.inicial/data.dias;
-		sbc = data.sdi * data.factor;
-	  }
-	  else if (value === "Mensual") {
 		data.dias = 30,
 		data.sdi = data.inicial/data.dias;
 		sbc = data.sdi * data.factor;
-	  }
+
 	  if (sbc > 2112.25) {
 		sbc = 2112.25;
 	  }
@@ -213,6 +101,8 @@ var salaryController = (function () {
 	  porcentaje = getPorcentaje(opciones.periodo);
 	  subsidioIng = getIngSub(opciones.periodo);
 	  subsidioCan = getCanSub(opciones.periodo);
+
+
 	  for (i=0; i < tabla.length; i++) {
 		if (data.inicial >= tabla[i] && data.inicial < tabla [i+1]) {
 		  position = i;
@@ -307,6 +197,9 @@ var salaryController = (function () {
 		}
 	  },
   
+
+
+/// CONDICION PARA TOMAR EL NETO Y PASARLO A BRUTO !!! ////////////////
 	  updateSalary: function () {
 		if (opciones.tipo === "Bruto") {
 		  data.temporal = data.inicial;
@@ -324,7 +217,11 @@ var salaryController = (function () {
 	};
   
   })();
-  
+
+// Aqui termina el calulo para burto a neto // 
+
+
+
   // UI Controller
   var UIController = (function() {
   
