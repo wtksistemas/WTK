@@ -8,7 +8,6 @@
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script src="../js/script.js"></script>
 
-
 </head>
 <body>
 	
@@ -49,15 +48,16 @@
 
 			<div class="formulario-izquierda">
 				<form class="formulario" action="php/calculo.php" method="post">
+
 					<h2 class="titulo">Calculo de Nomina<br><small>Del Empleado</small></h2>
 			
 					<div class="fila">
 						<label name="piramidacion">Piramidación</label>
 						
-							<select id="piramidacion" name="piramidacion">
-								<option value="0">	--	</option>
-								<option value="brutoobjetivo">Bruto objetivo</option>
-								<option value="netoobjetivo">Neto objetivo</option>
+							<select id="piramida" name="piramida" onchange="netoaobjetivo()">
+								<option value="Base Mensual">	--	</option>
+								<option value="Bruto Mensual Objetivo">Bruto objetivo</option>
+								<option value="Neto Mensual objetivo">Neto objetivo</option>
 							</select>
 				
 						<label name="v_isr">ISR Determinado</label>
@@ -65,7 +65,7 @@
 					</div>
 			 
 					<div class="fila">
-						<label name="v_mensual">Base Mensual</label>
+						<label name="v_mensual" id="v_mensual">Base Mensual</label>
 						<input type="text" placeholder="Ingrese un número" name="salario" value="<?php echo $_GET["sbase"];?>">
 				 
 						<label name="v_sub">Subsidio al empleo</label>
@@ -91,7 +91,7 @@
 					<div class="fila">
 						<label name="vacio"></label>
 						<label name="vacio"></label>
-						<label name="v_neto">Neto a pagar</label>
+						<label name="v_neto" id="v_neto">Neto a pagar</label>
 						<input disabled type="text" placeholder="0.000" name="v_neto" value= "<?php echo $_GET["vneto"];?>">
 					</div>
 		

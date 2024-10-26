@@ -121,6 +121,22 @@ function validarCampos() {
 	    
 
 
-	}
+	} 
   }
 
+  function netoaobjetivo() {
+	const piramida = document.getElementById("piramida").value;
+	const labelMensual = document.getElementById("v_mensual");
+	const labelNeto = document.getElementById("v_neto");
+
+	if (piramida === "Bruto Mensual Objetivo") {
+		labelMensual.innerText = "Bruto Objetivo Mensual";
+		labelNeto.innerText = "Neto a pagar";
+	} else if (piramida === "Neto Mensual objetivo") {
+		labelMensual.innerText = "Neto Mensual objetivo";
+		labelNeto.innerText = "Bruto objetivo";
+	} else {
+		labelMensual.innerText = "Base Mensual";
+		labelNeto.innerText = "Neto a pagar";
+	}
+}
