@@ -47,7 +47,7 @@
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
-				<form class="formulario">
+				<form class="formulario" onsubmit="return validarform()">
 
 					<h2 class="titulo">Calculo de Nomina<br><small>Del Empleado</small></h2>
 

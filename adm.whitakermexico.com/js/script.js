@@ -144,5 +144,10 @@ function validarCampos() {
 		const seleccion = document.getElementById("piramida").value;
 		const salario = document.querySelector("input[name='salario']").value;
 
-		if(seleccion === "nada" salario)
+		if(seleccion === "nada" || salario === ""){
+			alert("Debe seleccionar una opción valida y llenar todos los campos requeridos.");
+			window.location.reload();//recarga la pagina
+			return false;//evita el envio del formulario
+		}
+		return true;//permite envio exitoso
 	}
