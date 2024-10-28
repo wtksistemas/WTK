@@ -47,7 +47,9 @@
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
-				<form class="formulario" onsubmit="return validarform()">
+				<script src="../../prueba _interpolacion.js"></script>
+
+				<form class="formulario">
 
 					<h2 class="titulo">Calculo de Nomina<br><small>Del Empleado</small></h2>
 
@@ -56,29 +58,29 @@
 						<label name="piramidacion">Piramidación</label>
 						
 							<select id="piramida" name="piramida" onchange="netoaobjetivo()">
-								<option value="nada">	--	</option>
-								<option value="Bruto a Neto">Bruto a Neto</option>
-								<option value="Neto a Bruto">Neto a Bruto</option>
+								<option value="nada" name="nada">	--	</option>
+								<option value="Bruto a Neto" name="Bruto a Neto">Bruto a Neto</option>
+								<option value="Neto a Bruto" name="Neto a Bruto">Neto a Bruto</option>
 							</select>
 				
-						<label name="v_isr">ISR Determinado</label>
-						<input disabled type="text" placeholder="0.000" name="v_isr" value="<?php echo $_GET["visr"];?>">	
+						<label name="v_isr" id="v_isr">ISR Determinado</label>
+						<input disabled type="text" placeholder="0.000" name="v_isr" id="v_isr" value="0.0">	
 					</div>
 			 
 					<div class="fila">
 						<label name="v_mensual" id="v_mensual">Base Mensual</label>
-						<input type="text" placeholder="Ingrese un número" name="salario" value="<?php echo $_GET["sbase"];?>">
+						<input type="text" placeholder="Ingrese un número" name="salario" id="salario" value="0.0">
 				 
 						<label name="v_sub">Subsidio al empleo</label>
-						<input disabled type="text" placeholder="0.000" name="v_sub" value= "<?php echo $_GET["vsub"];?>">	 
+						<input disabled type="text" placeholder="0.000" name="v_sub" id="v_sub" value="0.0">	 
 					</div>		
 	
 					<div class="fila">
 						<label name="v_priesgo">Prima de riesgo</label>
-						<input type="text" placeholder="Ingrese el valor de prima de riesgo a considerar" name="priesgo" value= "<?php echo $_GET["vprima"];?>">
+						<input type="text" placeholder="Ingrese el valor de prima de riesgo a considerar" name="priesgo" id="priesgo" value="0.0">
 					
 						<label name="v_isrr">ISR Retenido</label>
-						<input disabled type="text" placeholder="0.000" name="v_isrr" value= "<?php echo $_GET["visrr"];?>">
+						<input disabled type="text" placeholder="0.000" name="v_isrr" id="v_isrr" value="0.0">
 					</div>
 
 
@@ -86,14 +88,14 @@
 						<label name="vacio"></label>
 						<label name="vacio"></label>
 						<label name="v_imss">Cuota Imss</label>
-						<input disabled type="text" placeholder="0.000" name="v_imss" value= "<?php echo $_GET["vimss"];?>">
+						<input disabled type="text" placeholder="0.000" name="v_imss" id="v_imss" value= "0.0">
 					</div>
 			 
 					<div class="fila">
 						<label name="vacio"></label>
 						<label name="vacio"></label>
 						<label name="v_neto" id="v_neto">Neto a pagar</label>
-						<input disabled type="text" placeholder="0.000" name="v_neto" value= "<?php echo $_GET["vneto"];?>">
+						<input disabled type="text" placeholder="0.000" name="v_neto" id="v_neto" value= "0.0">
 					</div>
 		
 					<div class="botones">
@@ -111,22 +113,22 @@
 			
 					<div class="fila">
 						<label name="v_imssp">IMSS</label>
-						<input disabled type="text" placeholder="0.000" name="v_imssp" value= "<?php echo $_GET["vimssp"];?>">
+						<input disabled type="text" placeholder="0.000" name="v_imssp" id="v_imssp" value= "0.0">
 					</div>
 
 					<div class="fila">
 						<label name="v_infonavit">Infonavit</label>
-						<input disabled type="text" placeholder="0.000" name="v_infonavit" value= "<?php echo $_GET["vinfo"];?>">
+						<input disabled type="text" placeholder="0.000" name="v_infonavit" id="v_infonavit" value= "0.0">
 					</div>
 
 					<div class="fila">
 						<label name="v_infonavit">ISN (CDMX)</label>
-						<input disabled type="text" placeholder="0.000" name="v_isn" value= "<?php echo $_GET["visn"];?>">
+						<input disabled type="text" placeholder="0.000" name="v_isn" id="v_isn"value= "0.0">
 					</div>	
 
 					<div class="fila">
 						<label name="v_netop">Total de aportaciones</label>
-						<input disabled type="text" placeholder="0.000" name="v_netop" value= "<?php echo $_GET["vcosto"];?>">
+						<input disabled type="text" placeholder="0.000" name="v_netop" id="v_netop" value= "0.0">
 					</div>
 
 				</form>

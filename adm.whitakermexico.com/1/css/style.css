@@ -88,6 +88,7 @@ body {
       /* Contenido principal */
 .contenido {
 	padding: 20px;
+    padding-top: 5.5rem;
 }
 
 .barra-busqueda {
@@ -102,6 +103,7 @@ body {
     width: 200px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-right: 18rem;
 }
 
 .expediente {
@@ -251,7 +253,7 @@ input,select {
 
 .formularios-contenedor{
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
     max-width: 1200px; /* Ajusta el ancho máximo */
     padding-top:80px;
     align-items:center;
