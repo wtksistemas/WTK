@@ -56,8 +56,8 @@
 						
 							<select id="piramida" name="piramida" onchange="netoaobjetivo()">
 								<option value="Base Mensual">	--	</option>
-								<option value="Bruto Mensual Objetivo">Bruto objetivo</option>
-								<option value="Neto Mensual objetivo">Neto objetivo</option>
+								<option value="Bruto a Neto">Bruto a Neto</option>
+								<option value="Neto a Bruto">Neto a Bruto</option>
 							</select>
 				
 						<label name="v_isr">ISR Determinado</label>
