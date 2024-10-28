@@ -140,3 +140,9 @@ function validarCampos() {
 		labelNeto.innerText = "Neto a pagar";
 	}
 }
+	function validarform(){
+		const seleccion = document.getElementById("piramida").value;
+		const salario = document.querySelector("input[name='salario']").value;
+
+		if(seleccion === "nada" salario)
+	}

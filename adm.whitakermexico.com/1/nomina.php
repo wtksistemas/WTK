@@ -47,15 +47,16 @@
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
-				<form class="formulario" action="php/calculo.php" method="post">
+				<form class="formulario">
 
 					<h2 class="titulo">Calculo de Nomina<br><small>Del Empleado</small></h2>
+
 			
 					<div class="fila">
 						<label name="piramidacion">Piramidación</label>
 						
 							<select id="piramida" name="piramida" onchange="netoaobjetivo()">
-								<option value="Base Mensual">	--	</option>
+								<option value="nada">	--	</option>
 								<option value="Bruto a Neto">Bruto a Neto</option>
 								<option value="Neto a Bruto">Neto a Bruto</option>
 							</select>
@@ -96,7 +97,7 @@
 					</div>
 		
 					<div class="botones">
-						<button class="boton" id="b1" type="submit">Enviar</button>
+						<button class="boton" id="b1">Enviar</button>
 						<button class="boton" id="b2"type="button" onclick="window.location.href='nomina.php'">Borrar</button>
 					</div>
 			 
