@@ -47,7 +47,7 @@
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
-				<script src="../../prueba_interpolacion.js"></script>
+				<script src="../../prueba _interpolacion.js"></script>
 
 				<form class="formulario">
 
@@ -57,7 +57,7 @@
 					<div class="fila">
 						<label name="piramidacion">Piramidación</label>
 						
-							<select id="piramida" name="piramida" onchange="netoaobjetivo()">
+							<select id="piramida" name="piramida">
 								<option value="nada" name="nada">	--	</option>
 								<option value="Bruto a Neto" name="Bruto a Neto">Bruto a Neto</option>
 								<option value="Neto a Bruto" name="Neto a Bruto">Neto a Bruto</option>

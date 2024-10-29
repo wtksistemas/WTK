@@ -5,19 +5,20 @@ const s_ingresado=document.getElementById("salario").value;
 const pr_ingresado=document.getElementById("priesgo").value;
 const metodo=document.getElementById("piramida").value;
 
-const isr_determinado=document.getElementById("v_isr").value;
-const sub_determindado=document.getElementById("v_sub").value;
-const isrr_determinado=document.getElementById("v_isrr").value;
-const imss_empleado=document.getElementById("v_imss").value;
-const neto_calculado=document.getElementById("v_neto");
 
+var isr_determinado=document.getElementById("v_isr");
+var sub_determindado=document.getElementById("v_sub");
+var isrr_determinado=document.getElementById("v_isrr");
+var imss_empleado=document.getElementById("v_imss");
+var neto_calculado=document.getElementById("v_neto");
+
+var imss_patron=document.getElementById("v_imssp");
+var infoavit_patron=document.getElementById("v_infonavit");
+var isn_patron=document.getElementById("v_isn");
+var neto_patron=document.getElementById("v_netop");
 
 if(metodo=="Neto a Bruto")
 {
-    
-const n=[neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(s_ingresado,pr_ingresado);
-
-neto_calculado.textContent=neto;
 
 
 }
@@ -25,7 +26,18 @@ else
 {
 if(metodo=="Bruto a Neto")
     {
+        const n=[neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(s_ingresado,pr_ingresado);
 
+        isr_determinado.value=Number(cuota_aplicada.toFixed(2));
+        sub_determindado.value=Number(valor_subsidio.toFixed(2));
+        isrr_determinado.value=Number(tisr.toFixed(2));
+        imss_empleado.value=Number(imss.toFixed(2));
+        neto_calculado.value=Number(neto.toFixed(2));
+        
+        imss_patron.value=Number(imssp.toFixed(2));
+        infoavit_patron.value=Number(prop_i_in.toFixed(2));
+        isn_patron.value=Number(isnp.toFixed(2));
+        neto_patron.value=Number(costo.toFixed(2));
 
     }
 }

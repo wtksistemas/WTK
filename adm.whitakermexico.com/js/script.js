@@ -126,8 +126,8 @@ function validarCampos() {
 
   function netoaobjetivo() {
 	const piramida = document.getElementById("piramida").value;
-	const labelMensual = document.getElementById("v_mensual");
-	const labelNeto = document.getElementById("v_neto");
+	const labelMensual = document.getElementById("vmensual");
+	const labelNeto = document.getElementById("v_net");
 
 	if (piramida === "Bruto a Neto") {
 		labelMensual.innerText = "Bruto Mensual";
