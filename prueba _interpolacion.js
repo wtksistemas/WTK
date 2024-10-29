@@ -1,688 +1,306 @@
 
-// Salary Controller
-var salaryController = (function () {
+function valida_metodo()
+{
+const s_ingresado=document.getElementById("salario").value;
+const pr_ingresado=document.getElementById("priesgo").value;
+const metodo=document.getElementById("piramida").value;
 
-	var data = {
-	  inicial: 0,
-	  limite: 0,
-	  excedente: 0,
-	  porcentaje: 0,
-	  marginal: 0,
-	  cuota: 0,
-	  isr: 0,
-	  imss: 0,
-	  subsidio: 0,
-	  final: 0,
-	  temporal: 0,
-	  diario: 0,
-	  uma: 103.74,
-	  factor: 1.0493,
-	  dias: 0,
-	  sbc: 0,
-	  sdi: 0
-	};
-  
-	var opciones = {
-	  tipo: "Neto",
-	  periodo: "Mensual",
-	  subsidio: true,
-	  imss: true,
-	};
-  
-	// Tabla ISR mensual limite inferior
-	var tablaMensual = [0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62]
-  
-	// Tabla ISR mensual Cuota fija
-	var cuotaMensual = [ 0.00, 14.32, 371.83, 893.63, 1182.88, 1640.18, 5004.12, 9236.89, 22665.17, 32691.18, 117912.32]
-  
-	// Tabla ISR mensual excedente
-	var porcMensual = [ 1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00]
-  
-	// Tabla subsidio mensual hasta ingresos de
-	var ingSubMensual = [ 1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 4717.18, 5335.42, 6224.67, 7113.90, 7382.33]
-	
-	// Tabla de subsidio ISR mensual - Cantidad de subsidio para el empleo
-	var canSubMensual = [ 407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00]
-  
-	var getTable = function(value) {
-
-		return tablaMensual;
-	  };
-  
-	var getCuota= function(value) {
-  
-		return cuotaMensual;
-	};
-  
-	var getPorcentaje = function(value) {
-  
-		return porcMensual;
-	};
-  
-	var getIngSub = function(value) {
-
-		return ingSubMensual;
-	};
-  
-	var getCanSub = function(value) {
-		return canSubMensual;
-	};
-  
-	var calcSBC = function(value) {
-		data.dias = 30,
-		data.sdi = data.inicial/data.dias;
-		sbc = data.sdi * data.factor;
-
-	  if (sbc > 2112.25) {
-		sbc = 2112.25;
-	  }
-	  return sbc;
-	};
-  
-	var calcIMSS = function(value){
-	  if (value > (3 * data.uma)) {
-		excedente = (value - (3 * data.uma)) * .004 * data.dias;
-	  }
-	  else {
-		excedente = 0;
-	  }
-	  prestaciones = value * .0025 * data.dias;
-	  pensionados = value * .00375 * data.dias;
-	  invalidez = value * .00625 * data.dias;
-	  cesantia = value * 0.01125 * data.dias;
-	  imss = excedente + prestaciones + pensionados + invalidez + cesantia;
-	  return imss;
-	}
-  
-	var calculateSalary = function() {
-	  var tabla, cuota, porcentaje, position, subsidioIng, subsidioCan, i;
-	  tabla = getTable(opciones.periodo);
-	  cuota = getCuota(opciones.periodo);
-	  porcentaje = getPorcentaje(opciones.periodo);
-	  subsidioIng = getIngSub(opciones.periodo);
-	  subsidioCan = getCanSub(opciones.periodo);
-
-
-	  for (i=0; i < tabla.length; i++) {
-		if (data.inicial >= tabla[i] && data.inicial < tabla [i+1]) {
-		  position = i;
-		}
-		else if (data.inicial >= tabla[tabla.length - 1]) {
-		  position = tabla.length - 1;
-		}
-	  }
-	  data.limite = tabla[position];
-	  data.excedente = data.inicial - data.limite;
-	  data.porcentaje = porcentaje[position];
-	  data.cuota = cuota[position];
-	  data.marginal = data.excedente * (data.porcentaje/100);
-	  data.isr = data.cuota + data.marginal;
-	  if (opciones.imss === true) {
-		data.sbc = calcSBC(opciones.periodo);
-		data.imss = calcIMSS(data.sbc);
-	  }
-	  if (opciones.subsidio === true) {
-		for (i=0; i < subsidioIng.length; i++) {
-		  if (data.inicial < subsidioIng[i]) {
-			position = i;
-			break;
-		  }
-		  else if (data.inicial >= subsidioIng[subsidioIng.length - 1]) {
-			position = subsidioIng.length;
-		  }
-		}
-		data.subsidio = subsidioCan[position];
-		data.final = data.inicial - data.imss - data.isr + data.subsidio;
-	  }
-	  else if (opciones.subsidio === false) {
-		data.final = data.inicial - data.imss - data.isr;
-	  }
-	};
-  
-	return {
-  
-	  updTipo: function (value) {
-		opciones.tipo = value;
-	  },
-  
-	  updPeriodo: function (value) {
-		opciones.periodo = value;
-	  },
-  
-	  updSubsidio: function (value) {
-		opciones.subsidio = value;
-	  },
-  
-	  updIMSS: function (value) {
-		opciones.imss = value;
-	  },
-  
-	  updInitial: function (value) {
-		data.inicial = value;
-	  },
-  
-	  getOptions : function(){
-		return opciones;
-	  },
-  
-	  resetValues: function () {
-		data.inicial = 0;
-		data.limite = 0;
-		data.excedente = 0;
-		data.porcentaje = 0;
-		data.marginal = 0;
-		data.cuota = 0;
-		data.isr = 0;
-		data.imss = 0;
-		data.subsidio = 0;
-		data.final = 0;
-		data.temporal = 0;
-		data.diario = 0;
-		data.dias = 0;
-		data.sbc = 0;
-		data.sdi = 0;
-	  },
-  
-	  getSalary: function() {
-		return {
-		  limite: data.limite,
-		  excedente: data.excedente,
-		  porcentaje: data.porcentaje,
-		  marginal: data.marginal,
-		  cuota: data.cuota,
-		  isr: data.isr,
-		  imss: data.imss,
-		  subsidio: data.subsidio,
-		  final: data.final
-		}
-	  },
-  
-
-
-/// CONDICION PARA TOMAR EL NETO Y PASARLO A BRUTO !!! ////////////////
-	  updateSalary: function () {
-		if (opciones.tipo === "Bruto") {
-		  data.temporal = data.inicial;
-		  while (data.final < data.temporal) {
-			calculateSalary();
-			data.inicial = data.inicial + .01 ;
-		  }
-		  data.final = data.inicial;
-		}
-		else {
-		  calculateSalary();
-		}
-	  }
-  
-	};
-  
-  })();
-
-// Aqui termina el calulo para burto a neto // 
+const isr_determinado=document.getElementById("v_isr").value;
+const sub_determindado=document.getElementById("v_sub").value;
+const isrr_determinado=document.getElementById("v_isrr").value;
+const imss_empleado=document.getElementById("b_imss").value;
+const neto_calculado=document.getElementById("v_neto").value;
 
 
 
-  // UI Controller
-  var UIController = (function() {
+if(metodo=="Neto Mensual objetivo")
+{
+    
+    alert(bruto_neto(s_ingresado,pr_ingresado));
+    isr_determinado.textcontent("ss");
+
+
+
+}
+else
+{
+if(metodo=="Bruto Mensual Objetivo")
+    {
+
+
+    }
+}
+
+
+
+}
+ 
+function piramida(neto,riesgo)
+{ 
+    //Pasamos el neto objetivo y lo metemos en la funcion bruto_neto como un " Bruto "
+    //La funcion bruto_neto me retornara un nuevo neto y el bruto(neto objetivo)
+    list(nuevo_neto,nuevo_bruto)=bruto_neto(neto,riesgo);
+    while( nuevo_neto<=neto)//Mientras el nuevo neto sea menos o igual al neto objetivo
+    {
+        list(nuevo_neto,nuevo_bruto)=bruto_neto(nuevo_bruto,riesgo);
+        nuevo_bruto=nuevo_bruto+.50;
+    }
+    return nuevo_bruto;
+}
+
+function bruto_neto(bruto,riesgo)
+    {
+        // tablas deISR 
+
+        // Tabla ISR mensual limite inferior
+        tablaMensual = [0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62];
+        // Tabla ISR mensual limite superior
+        tablaMensualsup=[746.04,6332.05,11128.00,12935.8,15487.7,31236.5,49233.00,93993.9,125325,375976,10000000000];
+        // Tabla ISR mensual Cuota fija
+        cuotaMensual = [ 0.00, 14.32, 371.83, 893.63, 1182.88, 1640.18, 5004.12, 9236.89, 22665.17, 32691.18, 117912.32];
+        // Tabla ISR mensual excedente
+        porcMensual = [ 1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00];
+        // Tabla subsidio mensual hasta ingresos de
+        ingSubMensual = [ 1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 4717.18, 5335.42, 6224.67, 7113.90, 7382.33];
+        // Tabla de subsidio ISR mensual - Cantidad de subsidio para el empleo
+        canSubMensual = [ 407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00];
+
+        // Tablas subsidio
+
+        tablaSubsidioMensualinf = [0.01,1768.97,2653.39,3472.85,3537.88,44446.46,9081.01];
+        tablaSubsidioMensualsup = [1768.96,2653.38,3472.84,3537.87,4446.15,9081,100000000000];
+        subsidio=[407.02,406.83,406.62,392.77,382.46,390,0];
+    
+        /* Variables de usuario para calculo */
+         
+         salario=bruto; //_POST['salario'];
+         riesgo=riesgo;  //_POST['priesgo'];
+         parseFloat(salario);
+         parseFloat(riesgo);
+        
+        if(isNaN(salario))
+        { 
+            alert("El salario base no es correcto, ingresa numeros unicamente porfavor");
+            window.location.reload();
+                }
+        else 
+        {
+            if(isNaN(riesgo))
+            {
+            alert("La prima de riesgo no es correcta,ingresa unicamente numeros porfavor");
+            window.location.reload();
+            }
+        }
   
-	var DOMstrings = {
-	  txt1: '#texto_1',
-	  txt2: '#texto_2',
-	  txt3: '#texto_3',
-	  txt4: '#texto_4',
-	  txt5: '#texto_5',
-	  txt6: '#texto_6',
-	  txt7: '#texto_7',
-	  txt6Res: '#texto_6',
-	  txt7Res: '#texto_7',
-	  netBtn: '#neto',
-	  bruBtn: '#bruto',
-	  semBtn: '#semanal',
-	  quiBtn: '#quincenal',
-	  menBtn: '#mensual',
-	  semBtnRes: '#semanal',
-	  quiBtnRes: '#quincenal',
-	  menBtnRes: '#mensual',
-	  calcBtn: '#calcular',
-	  calcBtnRes: '#calcular-responsive',
-	  iniValue: "#amount",
-	  subChck: '#subsidio',
-	  subShow: '#subsidio-hid',
-	  imssChck: '#imss',
-	  imssShow: '#imss-hid',
-	  limLabel: '#lim-inferior',
-	  excLabel: '#excedente',
-	  porLabel: '#porc-excendete',
-	  marLabel: '#imp-marginal',
-	  cuoLabel: '#cuota-fija',
-	  isrLabel: '#isr-determinado',
-	  imssLabel: '#imss-empleo',
-	  subLabel: '#subsidio-empleo',
-	  finalLabel: '#sueldo-final',
-	  finalLabelRes: '#sueldo-final',
-	  periodDropwdown: '#s-period'
-	};
-  
-	var formatNumber = function(num) {
-	  var numSplit, int, dec;
-	  num = Math.abs(num);
-	  num = num.toFixed(2);
-	  numSplit = num.split('.');
-	  int = numSplit[0];
-	  if (int.length > 3) {
-		  int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, int.length);
-	  }
-	  dec = numSplit[1];
-	  return int + '.' + dec;
-	};
-  
-	return {
-  
-	  getInput: function() {
-		return {
-		  value: parseFloat(document.querySelector(DOMstrings.iniValue).value),
-		};
-	  },
-  
-	  checkMinValue: function (value) {
-		console.log('checkMinValue', value)
-	  },
-  
-	  changeNet: function() {
-		var name, currentClass;
-		name = document.querySelector(DOMstrings.netBtn);
-		currentClass = name.className;
-		if (currentClass = 'calculation_select') {
-		  name.className="calculation_selected";
-		  name = document.querySelector(DOMstrings.bruBtn);
-		  name.className="calculation_select";
-		  document.querySelector(DOMstrings.txt1).textContent = "Calculadora de sueldo bruto <> neto";
-		  document.querySelector(DOMstrings.txt2).textContent = "Ingresa el sueldo bruto";
-		  document.querySelector(DOMstrings.txt3).textContent = "Sueldo bruto ";
-		  document.querySelector(DOMstrings.txt5).textContent = "Detalle de sueldo neto";
-		  document.querySelector(DOMstrings.txt6).textContent = "Sueldo neto ";
-		  document.querySelector(DOMstrings.txt6Res).textContent = "Sueldo neto ";
-		}
-	  },
-  
-	  changeBru: function() {
-		var name, currentClass;
-		name = document.querySelector(DOMstrings.bruBtn);
-		currentClass = name.className;
-		if (currentClass = 'calculation_select') {
-		  name.className="calculation_selected";
-		  name = document.querySelector(DOMstrings.netBtn);
-		  name.className="calculation_select";
-		  document.querySelector(DOMstrings.txt1).textContent = "Calculadora de sueldo bruto <> neto";
-		  document.querySelector(DOMstrings.txt2).textContent = "Ingresa el sueldo neto";
-		  document.querySelector(DOMstrings.txt3).textContent = "Sueldo neto ";
-		  document.querySelector(DOMstrings.txt5).textContent = "Detalle de sueldo bruto";
-		  document.querySelector(DOMstrings.txt6).textContent = "Sueldo bruto ";
-		  document.querySelector(DOMstrings.txt6Res).textContent = "Sueldo bruto ";
-		}
-	  },
-  
-	  changeSem: function() {
-		var name, currentClass;
-		name = document.querySelector(DOMstrings.semBtn);
-		currentClass = name.className;
-		if (currentClass = 'boton_periodo texto_periodo') {
-		  name.className="boton_periodo_selec texto_periodo_selec";
-		  name = document.querySelector(DOMstrings.quiBtn);
-		  name.className="boton_periodo texto_periodo";
-		  name = document.querySelector(DOMstrings.menBtn);
-		  name.className="boton_periodo texto_periodo";
-		  document.querySelector(DOMstrings.txt4).textContent = "semanal";
-		  document.querySelector(DOMstrings.txt7).textContent = "semanal";
-		  document.querySelector(DOMstrings.txt7Res).textContent = "semanal";
-		}
-		name = document.querySelector(DOMstrings.semBtnRes);
-		currentClass = name.className;
-		if (currentClass = 'boton_periodo texto_periodo selec_btns') {
-		  name.className="boton_periodo_selec texto_periodo_selec selec_btns";
-		  name = document.querySelector(DOMstrings.quiBtnRes);
-		  name.className="boton_periodo texto_periodo selec_btns";
-		  name = document.querySelector(DOMstrings.menBtnRes);
-		  name.className="boton_periodo texto_periodo selec_btns";
-		  document.querySelector(DOMstrings.txt4).textContent = "semanal";
-		  document.querySelector(DOMstrings.txt7).textContent = "semanal";
-		  document.querySelector(DOMstrings.txt7Res).textContent = "semanal";
-		}
-	  },
-  
-	  changeQui: function() {
-		var name, currentClass;
-		name = document.querySelector(DOMstrings.quiBtn);
-		currentClass = name.className;
-		if (currentClass = 'boton_periodo texto_periodo') {
-		  name.className="boton_periodo_selec texto_periodo_selec";
-		  name = document.querySelector(DOMstrings.semBtn);
-		  name.className="boton_periodo texto_periodo";
-		  name = document.querySelector(DOMstrings.menBtn);
-		  name.className="boton_periodo texto_periodo";
-		  document.querySelector(DOMstrings.txt4).textContent = "quincenal";
-		  document.querySelector(DOMstrings.txt7).textContent = "quincenal";
-		  document.querySelector(DOMstrings.txt7Res).textContent = "quincenal";
-		}
-		name = document.querySelector(DOMstrings.quiBtnRes);
-		currentClass = name.className;
-		if (currentClass = 'boton_periodo texto_periodo selec_btns') {
-		  name.className="boton_periodo_selec texto_periodo_selec selec_btns";
-		  name = document.querySelector(DOMstrings.semBtnRes);
-		  name.className="boton_periodo texto_periodo selec_btns";
-		  name = document.querySelector(DOMstrings.menBtnRes);
-		  name.className="boton_periodo texto_periodo selec_btns";
-		  document.querySelector(DOMstrings.txt4).textContent = "quincenal";
-		  document.querySelector(DOMstrings.txt7).textContent = "quincenal";
-		  document.querySelector(DOMstrings.txt7Res).textContent = "quincenal";
-		}
-	  },
-  
-	  changeMen: function() {
-		var name, currentClass;
-		name = document.querySelector(DOMstrings.menBtn);
-		currentClass = name.className;
-		if (currentClass = 'boton_periodo texto_periodo') {
-		  name.className="boton_periodo_selec texto_periodo_selec";
-		  name = document.querySelector(DOMstrings.semBtn);
-		  name.className="boton_periodo texto_periodo";
-		  name = document.querySelector(DOMstrings.quiBtn);
-		  name.className="boton_periodo texto_periodo";
-		  document.querySelector(DOMstrings.txt4).textContent = "mensual";
-		  document.querySelector(DOMstrings.txt7).textContent = "mensual";
-		  document.querySelector(DOMstrings.txt7Res).textContent = "mensual";
-		}
-		name = document.querySelector(DOMstrings.menBtnRes);
-		currentClass = name.className;
-		if (currentClass = 'boton_periodo texto_periodo selec_btns') {
-		  name.className="boton_periodo_selec texto_periodo_selec selec_btns";
-		  name = document.querySelector(DOMstrings.semBtnRes);
-		  name.className="boton_periodo texto_periodo selec_btns";
-		  name = document.querySelector(DOMstrings.quiBtnRes);
-		  name.className="boton_periodo texto_periodo selec_btns";
-		  document.querySelector(DOMstrings.txt4).textContent = "mensual";
-		  document.querySelector(DOMstrings.txt7).textContent = "mensual";
-		  document.querySelector(DOMstrings.txt7Res).textContent = "mensual";
-		}
-	  },
-  
-	  displaySubsidio: function (state) {
-		var currentClass = document.querySelector(DOMstrings.subShow);
-		// if (state === true) {
-		//   currentClass.style.visibility = "visible";
-		//   currentClass.style.display = "";
-		// }
-		// else if (state === false) {
-		//   currentClass.style.visibility = "hidden";
-		//   currentClass.style.display = "none";
-		// }
-	  },
-  
-	  displayIMSS: function (state) {
-		var currentClass = document.querySelector(DOMstrings.imssShow);
-		// if (state === true) {
-		//   currentClass.style.visibility = "visible";
-		//   currentClass.style.display = "";
-		// }
-		// else if (state === false) {
-		//   currentClass.style.visibility = "hidden";
-		//   currentClass.style.display = "none";
-		// }
-	  },
-  
-	  displaySalary: function(obj) {
-		document.querySelector(DOMstrings.limLabel).textContent = "$ " + formatNumber(obj.limite);
-		document.querySelector(DOMstrings.excLabel).textContent = "$ " + formatNumber(obj.excedente);
-		document.querySelector(DOMstrings.porLabel).textContent = obj.porcentaje + ' %';
-		document.querySelector(DOMstrings.marLabel).textContent = "$ " + formatNumber(obj.marginal);
-		document.querySelector(DOMstrings.cuoLabel).textContent = "$ " + formatNumber(obj.cuota);
-		document.querySelector(DOMstrings.isrLabel).textContent = "$ " + formatNumber(obj.isr);
-		document.querySelector(DOMstrings.imssLabel).textContent = "$ " + formatNumber(obj.imss);
-		document.querySelector(DOMstrings.subLabel).textContent = "$ " + formatNumber(obj.subsidio);
-		document.querySelector(DOMstrings.finalLabel).textContent = "$ " + formatNumber(obj.final) + " MXN";
-		document.querySelector(DOMstrings.finalLabelRes).textContent = "$ " + formatNumber(obj.final) + " MXN";
-	  },
-  
-	  getDOMstrings: function() {
-		return DOMstrings;
-	  }
-  
-	};
-  
-  })();
-  
-  // Global App Controller
-  var controller = (function(salaryCtrl, UICtrl) {
-  
-	var checkboxes = [false, false]
-	var someChecked = function (collection) {
-	  return collection.some(function (node) {
-		return node === true
-	  })
-	}
-  
-	var setupEventListeners = function() {
-  
-	  var DOM = UIController.getDOMstrings();
-  
-	  document.querySelector(DOM.calcBtn).addEventListener('click', ctrlNewSalary);
-	  document.querySelector(DOM.calcBtnRes).addEventListener('click', ctrlNewSalary);
-	  document.addEventListener('keypress', function(event) {
-		if (event.keyCode === 13 || event.which === 13) {
-			ctrlNewSalary();
-		}
-	  });
-	  document.querySelector(DOM.netBtn).addEventListener('click', function() { ctrlTipo("Neto") });
-	  document.querySelector(DOM.bruBtn).addEventListener('click', function() { ctrlTipo("Bruto") });
-  
-	  // botones seleccion periodo
-	  document.querySelector(DOM.semBtn).addEventListener('click', function() { ctrlPeriodo("Semanal") });
-	  document.querySelector(DOM.quiBtn).addEventListener('click', function() { ctrlPeriodo("Quincenal") });
-	  document.querySelector(DOM.menBtn).addEventListener('click', function() { ctrlPeriodo("Mensual") });
-  
-	  // use selector on mobile
-  
-	  document.querySelector(DOM.periodDropwdown).addEventListener('change', function (event) {
-		ctrlPeriodo(event.target.value);
-	  }, false);
-  
-	  document.querySelector(DOM.semBtnRes).addEventListener('click', function() { ctrlPeriodo("Semanal") });
-	  document.querySelector(DOM.quiBtnRes).addEventListener('click', function() { ctrlPeriodo("Quincenal") });
-	  document.querySelector(DOM.menBtnRes).addEventListener('click', function() { ctrlPeriodo("Mensual") });
-	  document.querySelector(DOM.subChck).addEventListener('change', function() {
-		checkboxes[1] = !checkboxes[1]
-		if(this.checked) {
-		  ctrlSubsidio(true);
-		} else {
-		  ctrlSubsidio(false);
-		}
-	  });
-	  document.querySelector(DOM.imssChck).addEventListener('change', function() {
-		checkboxes[0] = !checkboxes[0]
-		if(this.checked) {
-		  ctrlIMSS(true);
-		} else {
-		  ctrlIMSS(false);
-		}
-	  });
-  
-	};
-  
-	var updateSalary = function() {
-	  var salary;
-	  salaryCtrl.updateSalary();
-	  salary = salaryCtrl.getSalary();
-	  UICtrl.displaySalary(salary);
-	};
-  
-	var ctrlNewSalary = function () {
-	  console.log("calcular...");
-	  var input;
-	  salaryCtrl.resetValues();
-	  input = UICtrl.getInput();
-  
-  
-	  var opts = salaryCtrl.getOptions()
-	  var minValuesByPeriod = { 'SEMANAL': 1555.80, 'QUINCENAL': 3111.60, 'MENSUAL': 6223.20 }
-	  var period = opts.periodo.toUpperCase()
-	  var minValue = minValuesByPeriod[period]
-  
-	  if(opts.subsidio || opts.imss){
-		// Fix for safari and ios browsers
-		console.log("input.value" + input.value + "input--amount-for-safari" + $("#input--amount-for-safari").val());
-		input.value = parseFloat($("#input--amount-for-safari").val());
-		// end -- Fix for safari and ios browsers
-  
-		if(parseFloat(input.value || 0) < minValue) {
-		  //console.log('error your value', input.value, 'minValue>', minValue, 'perido', period )
-		  document.getElementById('alert-calculate').innerHTML = 'El sueldo bruto no puede ser inferior a $' + minValue;
-		  return;
-		}else {
-		  document.getElementById('alert-calculate').innerHTML = '';
-		}
-	  }
-  
-	  // Fix for safari and ios browsers
-	  console.log("input.value" + input.value + "input--amount-for-safari" + $("#input--amount-for-safari").val());
-	  input.value = parseFloat($("#input--amount-for-safari").val());
-	  // end -- Fix for safari and ios browsers
-	  
-	  if (input.value > 0) {
-		salaryCtrl.updInitial(input.value);
-		updateSalary();
-	  }
-	};
-  
-	var ctrlTipo = function (value){
-	  if (value === "Neto") {
-		UICtrl.changeNet();
-		salaryCtrl.updTipo(value);
-		UICtrl.displaySalary({
-		  limite: 0,
-		  excedente: 0,
-		  porcentaje: 0,
-		  marginal: 0,
-		  cuota: 0,
-		  isr: 0,
-		  imss: 0,
-		  subsidio: 0,
-		  final: 0,
-		  diario: 0,
-		  dias: 0,
-		  sbc: 0,
-		  sdi: 0
-		});
-	  }
-	  else if (value === "Bruto") {
-		UICtrl.changeBru();
-		salaryCtrl.updTipo(value);
-		UICtrl.displaySalary({
-		  limite: 0,
-		  excedente: 0,
-		  porcentaje: 0,
-		  marginal: 0,
-		  cuota: 0,
-		  imss: 0,
-		  isr: 0,
-		  subsidio: 0,
-		  final: 0,
-		  diario: 0,
-		  dias: 0,
-		  sbc: 0,
-		  sdi: 0
-		});
-	  }
-	}
-  
-	var ctrlPeriodo = function (value){
-	  if (value === "Semanal") {
-		UICtrl.changeSem();
-		salaryCtrl.updPeriodo(value);
-		salaryCtrl.resetValues();
-		ctrlNewSalary();
-	  }
-	  else if (value === "Quincenal") {
-		UICtrl.changeQui();
-		salaryCtrl.updPeriodo(value);
-		salaryCtrl.resetValues();
-		ctrlNewSalary();
-	  }
-	  else if (value === "Mensual") {
-		UICtrl.changeMen();
-		salaryCtrl.updPeriodo(value);
-		salaryCtrl.resetValues();
-		ctrlNewSalary();
-	  }
-	};
-  
-	var ctrlSubsidio = function (value){
-	  UICtrl.displaySubsidio(value);
-	  salaryCtrl.updSubsidio(value);
-	  salaryCtrl.resetValues();
-	  ctrlNewSalary();
-	};
-  
-	var ctrlIMSS = function (value){
-	  UICtrl.displayIMSS(value);
-	  salaryCtrl.updIMSS(value);
-	  salaryCtrl.resetValues();
-	  ctrlNewSalary();
-	};
-  
-	// var enablePopover = function () {
-	//   $(function () {
-	//     $('[data-toggle="popover"]').popover({
-  
-	//     })
-	//     console.log('lkjkl')
-	//   });
-	// }
-  
-	return {
-	  init: function() {
-  
-		UICtrl.displaySalary({
-		  limite: 0,
-		  excedente: 0,
-		  porcentaje: 0,
-		  marginal: 0,
-		  cuota: 0,
-		  isr: 0,
-		  imss: 0,
-		  subsidio: 0,
-		  final: 0,
-		  diario: 0,
-		  sbc: 0,
-		  sdi: 0
-		});
-  
-		setupEventListeners();
-  
-		//enablePopover()
-  
-	  }
-  };
-  
-  })(salaryController, UIController);
-  
-  controller.init();
-  
-  
-  /*
-  // Fix for safari and ios browsers
-  function isSafari(){
-	var isSafariBrowser = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
-	var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-	if (isSafariBrowser && iOS) {
-		console.log("Safari on iOS!");
-		return true;
-	} else if(isSafariBrowser) {
-		console.log("Safari.");
-		return true;
-	}else{
-		console.log("is not Safari");
-		return false;
-	}
-  }
-  // end -- Fix for safari and ios browsers
-  */
+        /* Variables Globales estaticas  */
+ 
+        fintegracion=1.0493; /* Factor de integracion para 2024 */
+        uma=108.57; /* Valor de UMA 2024 */
+        sbc=salario*fintegracion; /* Calculo de Salario Base de Cotizacion mensual */
+        dias=30; /* Dias trabajados para calculo */
+        sdi=sbc/dias; /* Calculo de Salario diario integrado */
+        isn=3.00/100; /* Porcentaje de ISN CDMX */ 
+        tope_umas_imss=uma*25;
+        
+        if(sdi>tope_umas_imss)
+        {
+            sdi=tope_umas_imss;
+        }
+        else
+        {
+        }
+        /*porcentajes a aplicar cuotas imss*/
+        
+        pocentaje_cuotafija=20.4/100;  /* cuota fija */ 
+        porcentajep_i_ex=1.10/100; /* excedente cuota fija patron */
+        porcentajee_i_ex=0.40/100; /* excedente cuota fija empleado */
+        porcentajep_i_pd=0.70/100; /* prestaciones en dinero patron*/
+        porcentajee_i_pd=0.25/100; /* prestaciones en dinero empleado*/
+        porcentajep_i_gm=1.05/100; /* gastos medicos para pensionados patron */
+        porcentajee_i_gm=0.375/100; /* gastos medicos para pensionados empleados */
+        porcentajep_i_rt=riesgo/100; /* riesgo de trabajo */
+        porcentajep_i_iv=1.75/100; /* invalidez y vida patron */
+        porcentajee_i_iv=0.625/100; /* invalidez y vida empleado */
+        porcentajep_i_gg=1.00/100; /* guarderia */
+        porcentajep_i_re=2.00/100; /* retiro */
+        porcentajep_i_in=5.00/100; /* infonavit */         
+        porccentajee_i_cv=1.125/100; /* cesentia y vejez */
+        porccentajep_i_cv=0;
+         
+        /* Calculo de ISR */
+        
+        // buscamos el salario ingresado en las tablas de isr dentro de los rangos de lim inf y lim sup
+        i=0;
+        limite_inferior=0;
+        limite_superior=0;
+        cuota_fija=0;
+        porcentaje_sobreex=0;
+        for(i=0;i<=10;i++)
+        {
+            if(salario>=tablaMensual[i] && salario<= tablaMensualsup[i])
+            {
+                limite_inferior=tablaMensual[i];
+                limite_superior=tablaMensualsup[i];
+                cuota_fija=cuotaMensual[i];
+                porcentaje_sobreex=porcMensual[i];
+                break;
+            }
+
+        }
+        // Buscamos el salario en la tabla de subsidio para determinar si es acreedor
+
+        limite_inf_subsidio=0;
+        limite_sup_subsidio=0;
+        valor_subsidio=0;
+        j=0;
+        for(j=0;j<=6;j++)
+        {
+            if(salario<= tablaSubsidioMensualsup[j])
+            {
+                limite_inf_subsidio=tablaSubsidioMensualinf[j];
+                limite_sup_subsidio=tablaSubsidioMensualsup[j];
+                valor_subsidio=subsidio[j];
+                break;
+            }
+
+        }
+        //Se calcula el excedente, restanto el salario menos el limite inferior
+        excedente=salario-limite_inferior;
+        //Se calcula el porentaje de excedente multiplicando el excedente anteriormente claculado por el % obtenido de la tabla de isr /100
+        porcentaje_excedente=(excedente*porcentaje_sobreex)/100;
+        // Se calcula la cuota fija sumando el porcentaje de excedente mas la cuota obtenida en la tabla de isr
+        cuota_aplicada=porcentaje_excedente+cuota_fija;
+        // finalmente se resta la cuota fija al salario
+        isr=(salario-cuota_aplicada)+valor_subsidio;
+
+        // calculo de cuota imss        
+        
+        // Primer Bloque: Cuota Fija
+        pro_i_cf=(dias*uma)*pocentaje_cuotafija;       
+        // Segundo bloque: Excedente de cuota fija 
+        prop_i_ex=0; /* provision excedente patron */
+        proe_i_ex=0; /* provision excedente empleado */
+        z=uma*3;
+        if(sdi>=(uma*3)) /* si el sbc supera 3 veces la uma */
+        {
+            /* calculo de excedente patron */
+            prop_i_ex=sdi-(uma*3);
+            prop_i_ex=prop_i_ex*dias;
+            prop_i_ex=prop_i_ex*porcentajep_i_ex;
+            /* Calculo de excedente empleado */
+            proe_i_ex=sdi-(uma*3);
+            proe_i_ex=proe_i_ex*dias;
+            proe_i_ex=proe_i_ex*porcentajee_i_ex;    
+        }
+        else
+        {
+        }
+        //Tercer bloque: Prestaciones en dinero
+        //Calculo de parte patronal
+        prop_i_pd=(sdi*dias)*porcentajep_i_pd;
+        // Calculo de parte empleado
+        proe_i_pd=(sdi*dias)*porcentajee_i_pd;
+        //Cuarto bloque: Gastos medicos para pensionados
+        prop_i_gm=(sdi*dias)*porcentajep_i_gm;
+        proe_i_gm=(sdi*dias)*porcentajee_i_gm;
+        // Quinto bloque: Riesgo de trabajo
+        prop_i_rt=(sdi*dias)*porcentajep_i_rt;   
+        // Sexto Bloque: Invalidez y vida 
+        prop_i_iv=(sdi*dias)*porcentajep_i_iv;
+        proe_i_iv=(sdi*dias)*porcentajee_i_iv;
+        // Septimo Bloque: Guarderia
+        prop_i_gg=(sdi*dias)*porcentajep_i_gg;
+        //Octavo bloque: Retiro
+        prop_i_re=(sdi*dias)*porcentajep_i_re;      
+        //Noveno bloque: infonavit
+        prop_i_in=(sdi*dias)*porcentajep_i_in;
+        //Onceavo bloque: Cesentia y vejez
+
+        // Tablas de cesentia
+        limite_inf_cesentia=0;
+        limite_sup_cesentia=0;
+        ccv=0;
+        tablaMensualCV_inf=[248.93,248.94,248.95,248.96,271.44,325.72,380.01,434.29];
+        tablaMensualCV_sup=[248.93,248.94,248.95,271.43,325.71,380,434.28,2714.25];
+        tablaMensualCV_CV=[3.15,3.413,4.00,4.353,4.588,4.756,4.882,5.331];
+        k=0;
+        for(k=0;k<=6;k++)
+        {
+            if(sdi<= tablaMensualCV_sup[k])
+            {
+                limite_inf_cesentia=tablaSubsidioMensualinf[k];
+                limite_sup_cesentia=tablaSubsidioMensualsup[k];
+                ccv=tablaMensualCV_CV[k];
+            }
+        }
+        //Cesentia y vejez patronal
+        proe_i_cv=(sdi*dias)*porccentajee_i_cv;
+        prop_i_cv=(sdi*dias)*ccv/100;
+
+        //Calculo de ISN 3% CDMX
+        isnp=salario*isn;
+        
+        //Calculo de IMSS empleado        
+        imss=proe_i_ex+proe_i_pd+proe_i_gm+proe_i_iv+proe_i_cv;
+        // Total de ISR menos el subsidio al emlpeo
+        tisr=cuota_aplicada-valor_subsidio; 
+        //Neto a pagar para empleado 
+        neto=(salario-tisr)-imss;
+        // Calculo IMSS para patron
+        imssp=pro_i_cf+prop_i_ex+prop_i_pd+prop_i_gm+prop_i_rt+prop_i_iv+prop_i_gg+prop_i_cv+prop_i_re+prop_i_in;
+        costo=imssp;    
+        if(valor_subsidio>=cuota_fija)
+        {
+            tisr=0;    
+        }
+
+        console.log( "++++ INICIO de proceso Bruto a Neto ++++");
+        console.log( "Salario capturado: "+salario+"");
+        console.log( "Factor de integracion capturado: "+fintegracion+"");
+        console.log( "Prima de riesgo capturada: "+riesgo+"  ");
+        console.log( "SDI a considerar: "+sdi+"  ");
+        console.log( "el SBC a considerar"+sbc+"  ");
+        console.log( "Salario:"+salario+"");
+        console.log( "Limite inferior: "+limite_inferior+"");
+        console.log( "Limite superior: "+limite_superior+"");
+        console.log( "Cuota fija: "+cuota_fija+"");
+        console.log( "Porcentaje: "+porcentaje_sobreex+"");
+        console.log( "Limite inferior de subsidio: "+limite_inf_subsidio+"");
+        console.log( "Limite superior de subsidio: "+limite_sup_subsidio+"");
+        console.log( "Valor de subsidio: "+valor_subsidio+"");
+        console.log( "Excedente: "+excedente+"");
+        console.log( "Porcentaje de excedente: "+porcentaje_excedente+"");
+        console.log( "ISR a aplicar: "+cuota_aplicada+"");
+        console.log( "Subsidio calculado: "+valor_subsidio+""); 
+        console.log( "Salario menos ISR: "+isr+"");
+        console.log( " /// DETERMINACION CUOTAS IMSS /// " );
+            
+        console.log("Salario Base Mensual: "+salario+"");
+        
+        console.log("Cuota fija determinada: "+ pro_i_cf+ " ");
+        console.log( "SDI: "+sdi+" condicion 3 veces la uma: "+z+"  ");
+        console.log( "Excedente empleado: "+proe_i_ex+"");
+        console.log( "Excedente patron: "+prop_i_ex+"  "); 
+        console.log( "Prestaciones en dinero empleado: "+proe_i_pd+"");
+        console.log( "Prestaciones en dinero patron: "+prop_i_pd+"  "); 
+        console.log( "Gastos medicos para pensionados empleado: "+proe_i_gm+"");
+        console.log( "Gastos medicos para pensionados patron: "+prop_i_gm+"  "); 
+        console.log( "Riesgo de trabajo patron: "+prop_i_rt+"  "); 
+        console.log( "Invalidez y vida empleado: "+proe_i_iv+"");
+        console.log( "Invalidez y vida patron: "+prop_i_iv+"  "); 
+        console.log( "Guarderia patron: "+prop_i_gg+"  "); 
+        console.log( "Retiro patron: "+prop_i_re+"  "); 
+        console.log( "infonavit patron: "+prop_i_in+"  "); 
+        console.log( "Porcentaje a aplicar: "+ccv);
+        console.log( "Cesentia y vejez patronal : "+prop_i_cv+"");
+        console.log( "Cesentia y vejez empleado : "+proe_i_cv+"");
+        console.log("Suma de imss patron:"+imssp);
+        console.log( neto+ "");
+        console.log(neto);
+    return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
+}
+
+ /* retorno a pagina de calculo con paso de variables en url */
+ 
+//header("Location: ++/nomina+php?&visr="+number_format(cuota_fija,2)+"&sbase="+number_format(salario,2)+"&vimss="+number_format(imss,2)+"&vsub="+number_format(valor_subsidio,2)+"&vneto="+number_format(neto,2)+"&vimssp="+number_format(imssp,2)+"&vinfo="+number_format(prop_i_in,2)+"&visn="+number_format(isnp,2)+"&vcosto="+number_format(costo,2)+"&visrr="+number_format(tisr,2)+"&vprima="+riesgo+""); 
+
