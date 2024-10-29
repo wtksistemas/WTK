@@ -47,7 +47,7 @@
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
-				<script src="../../prueba _interpolacion.js"></script>
+				<script src="../../prueba_interpolacion.js"></script>
 
 				<form class="formulario">
 
@@ -63,23 +63,23 @@
 								<option value="Neto a Bruto" name="Neto a Bruto">Neto a Bruto</option>
 							</select>
 				
-						<label name="v_isr" id="v_isr">ISR Determinado</label>
+						<label name="visr" id="visr">ISR Determinado</label>
 						<input disabled type="text" placeholder="0.000" name="v_isr" id="v_isr" value="0.0">	
 					</div>
 			 
 					<div class="fila">
-						<label name="v_mensual" id="v_mensual">Base Mensual</label>
+						<label name="vmensual" id="vmensual">Base Mensual</label>
 						<input type="text" placeholder="Ingrese un número" name="salario" id="salario" value="0.0">
 				 
-						<label name="v_sub">Subsidio al empleo</label>
+						<label name="vsub">Subsidio al empleo</label>
 						<input disabled type="text" placeholder="0.000" name="v_sub" id="v_sub" value="0.0">	 
 					</div>		
 	
 					<div class="fila">
-						<label name="v_priesgo">Prima de riesgo</label>
+						<label name="vpriesgo">Prima de riesgo</label>
 						<input type="text" placeholder="Ingrese el valor de prima de riesgo a considerar" name="priesgo" id="priesgo" value="0.0">
 					
-						<label name="v_isrr">ISR Retenido</label>
+						<label name="visrr">ISR Retenido</label>
 						<input disabled type="text" placeholder="0.000" name="v_isrr" id="v_isrr" value="0.0">
 					</div>
 
@@ -87,14 +87,14 @@
 					<div class="fila">
 						<label name="vacio"></label>
 						<label name="vacio"></label>
-						<label name="v_imss">Cuota Imss</label>
+						<label name="vmss">Cuota Imss</label>
 						<input disabled type="text" placeholder="0.000" name="v_imss" id="v_imss" value= "0.0">
 					</div>
 			 
 					<div class="fila">
 						<label name="vacio"></label>
 						<label name="vacio"></label>
-						<label name="v_neto" id="v_neto">Neto a pagar</label>
+						<label name="v_net" id="v_net">Neto a pagar</label>
 						<input disabled type="text" placeholder="0.000" name="v_neto" id="v_neto" value= "0.0">
 					</div>
 		
@@ -112,22 +112,22 @@
         			<h2 class="titulo">Cuotas Patronales<br><small>Por el Empleado</small></h2>
 			
 					<div class="fila">
-						<label name="v_imssp">IMSS</label>
+						<label name="vimss">IMSS</label>
 						<input disabled type="text" placeholder="0.000" name="v_imssp" id="v_imssp" value= "0.0">
 					</div>
 
 					<div class="fila">
-						<label name="v_infonavit">Infonavit</label>
+						<label name="v_infon">Infonavit</label>
 						<input disabled type="text" placeholder="0.000" name="v_infonavit" id="v_infonavit" value= "0.0">
 					</div>
 
 					<div class="fila">
-						<label name="v_infonavit">ISN (CDMX)</label>
+						<label name="v_infona">ISN (CDMX)</label>
 						<input disabled type="text" placeholder="0.000" name="v_isn" id="v_isn"value= "0.0">
 					</div>	
 
 					<div class="fila">
-						<label name="v_netop">Total de aportaciones</label>
+						<label name="v_net">Total de aportaciones</label>
 						<input disabled type="text" placeholder="0.000" name="v_netop" id="v_netop" value= "0.0">
 					</div>
 
