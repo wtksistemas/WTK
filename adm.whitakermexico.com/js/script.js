@@ -129,10 +129,10 @@ function validarCampos() {
 	const labelMensual = document.getElementById("v_mensual");
 	const labelNeto = document.getElementById("v_neto");
 
-	if (piramida === "Bruto Mensual Objetivo") {
+	if (piramida === "Bruto a Neto") {
 		labelMensual.innerText = "Bruto Objetivo Mensual";
 		labelNeto.innerText = "Neto a pagar";
-	} else if (piramida === "Neto Mensual objetivo") {
+	} else if (piramida === "Neto a Bruto") {
 		labelMensual.innerText = "Neto Mensual objetivo";
 		labelNeto.innerText = "Bruto objetivo";
 	} else {
@@ -140,3 +140,14 @@ function validarCampos() {
 		labelNeto.innerText = "Neto a pagar";
 	}
 }
+	function validarform(){
+		const seleccion = document.getElementById("piramida").value;
+		const salario = document.querySelector("input[name='salario']").value;
+
+		if(seleccion === "nada" || salario === ""){
+			alert("Debe seleccionar una opción valida y llenar todos los campos requeridos.");
+			window.location.reload();//recarga la pagina
+			return false;//evita el envio del formulario
+		}
+		return true;//permite envio exitoso
+	}

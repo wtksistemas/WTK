@@ -37,22 +37,7 @@
 	
 	
 
-	
-	
-    <!-- Menú lateral izquierdo -->
-    <div class="menu-lateral">
-        <a href="menu.php"><img src="img/logo.svg" alt="Imagen superior"></a>
-		
-		
-		
-		<!--AGREGAR COMO LISTA-->
-		<ul class="nav">
-			<li><a href="#">Coorporativo</a></li>
-            <li><a href="#">Archivo</a></li>
-            <li><a href="#">Expediente Virtual</a></li>
-		</ul>
 
-    </div>
 	
     <!-- Contenedor principal -->
     <div class="contenedor-principal">
@@ -62,7 +47,6 @@
 		<div class="opciones">
 			<a href="nomina.php">Nómina</a>
 			<a href="legal.php">Legal</a>
-			<a href="rh.php">RH</a>
 		</div>
         
 		<div class="perfil">
@@ -81,15 +65,7 @@
             <!-- Barra de búsqueda -->
             <div class="barra-busqueda">
 				<label for="f_busqueda">Filtros de busqueda:</label>
-				
-				<select name="f_busqueda" id="f_busqueda">
-					<option value="cliente">Cliente</option>
-					<option value="n_escritura">N° de  Escritura</option>
-					<option value="fecha">Fecha</option>
-					<option value="nombre">Nombre</option>
-				</select>
-				
-				<input type="text" placeholder="Informacion">				
+				<input type="text" placeholder="Nombre de empresa, N° Escritura, Intrumento legal, Tipo... ">				
             </div>
 
             <!-- Lista de expedientes -->
