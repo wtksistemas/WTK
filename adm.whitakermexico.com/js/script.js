@@ -130,10 +130,10 @@ function validarCampos() {
 	const labelNeto = document.getElementById("v_neto");
 
 	if (piramida === "Bruto a Neto") {
-		labelMensual.innerText = "Bruto Objetivo Mensual";
+		labelMensual.innerText = "Bruto Mensual";
 		labelNeto.innerText = "Neto a pagar";
 	} else if (piramida === "Neto a Bruto") {
-		labelMensual.innerText = "Neto Mensual objetivo";
+		labelMensual.innerText = "Neto Mensual";
 		labelNeto.innerText = "Bruto objetivo";
 	} else {
 		labelMensual.innerText = "Base Mensual";

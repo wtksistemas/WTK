@@ -99,7 +99,7 @@
 					</div>
 		
 					<div class="botones">
-						<button class="boton" id="b1">Enviar</button>
+						<button class="boton" type="button" onclick="valida_metodo()" id="b1">Enviar</button>
 						<button class="boton" id="b2"type="button" onclick="window.location.href='nomina.php'">Borrar</button>
 					</div>
 			 
