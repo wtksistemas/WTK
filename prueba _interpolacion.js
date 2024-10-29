@@ -8,23 +8,22 @@ const metodo=document.getElementById("piramida").value;
 const isr_determinado=document.getElementById("v_isr").value;
 const sub_determindado=document.getElementById("v_sub").value;
 const isrr_determinado=document.getElementById("v_isrr").value;
-const imss_empleado=document.getElementById("b_imss").value;
-const neto_calculado=document.getElementById("v_neto").value;
+const imss_empleado=document.getElementById("v_imss").value;
+const neto_calculado=document.getElementById("v_neto");
 
 
-
-if(metodo=="Neto Mensual objetivo")
+if(metodo=="Neto a Bruto")
 {
     
-    alert(bruto_neto(s_ingresado,pr_ingresado));
-    isr_determinado.textcontent("ss");
+const n=[neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(s_ingresado,pr_ingresado);
 
+neto_calculado.textContent=neto;
 
 
 }
 else
 {
-if(metodo=="Bruto Mensual Objetivo")
+if(metodo=="Bruto a Neto")
     {
 
 
@@ -297,7 +296,8 @@ function bruto_neto(bruto,riesgo)
         console.log("Suma de imss patron:"+imssp);
         console.log( neto+ "");
         console.log(neto);
-    return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
+   // return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
+   return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
 }
 
  /* retorno a pagina de calculo con paso de variables en url */
