@@ -17,11 +17,27 @@ var infoavit_patron=document.getElementById("v_infonavit");
 var isn_patron=document.getElementById("v_isn");
 var neto_patron=document.getElementById("v_netop");
 
-if (metodo === "nada" || s_ingresado === "" || s_ingresado === "0" || s_ingresado === "0.0") {
-    alert("Por favor, selecciona un método válido y asegúrate de ingresar un valor numérico mayor a cero en la base mensual.");
+
+
+if (metodo === "nada") {
+    alert("Por favor, selecciona un método válido");
     window.location.reload();//recarga la pagina
     return false;//evita el envio del formulario
 }
+else{
+    if(isNaN(s_ingresado)|| s_ingresado <= 0){
+        alert("Por favor, ingresa un valor númerico mayor a cero");
+        window.location.reload();//recarga la pagina
+        return false;//evita el envio del formulario
+    }else{
+        if(isNaN(pr_ingresado)|| pr_ingresado < 0.5){
+            alert("Por favor, ingresa un valor númerico mayor a 0.5");
+            window.location.reload();//recarga la pagina
+            return false;//evita el envio del formulario
+        }
+    }
+}
+
 if(metodo=="Neto a Bruto")
 {
 
