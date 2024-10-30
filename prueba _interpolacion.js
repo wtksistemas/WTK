@@ -55,18 +55,15 @@ function piramida(neto,riesgo)
     //Pasamos el neto objetivo y lo metemos en la funcion bruto_neto como un " Bruto "
     //La funcion bruto_neto me retornara un nuevo neto y el bruto(neto objetivo)
     var y=[nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(neto,riesgo);
-   var centavo=100;
-neto_funcion=parseInt(neto);
-
-
-   while(nuevo_neto<=neto_funcion)//Mientras el nuevo neto sea menos o igual al neto objetivo
-    {
-        nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr=bruto_neto(nuevo_bruto,riesgo);
-        nuevo_bruto=parseInt(nuevo_bruto)+parseInt(centavo);
-        parseInt(nuevo_neto);
-        parseInt(nuevo_bruto);
-        
-    }
+    var centavo=0.50;
+    parseFloat(neto);
+   do {
+    var x=[nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(nuevo_bruto,riesgo);
+    nuevo_bruto=parseFloat(nuevo_bruto)+parseFloat(centavo);
+    Number(nuevo_bruto.toFixed(2));
+    parseFloat(nuevo_neto);
+    Number(nuevo_neto.toFixed(2));    
+   } while (nuevo_neto<=neto);
     return nuevo_bruto;
 }
 
@@ -317,8 +314,8 @@ function bruto_neto(bruto,riesgo)
         console.log( "Cesentia y vejez patronal : "+prop_i_cv+"");
         console.log( "Cesentia y vejez empleado : "+proe_i_cv+"");
         console.log("Suma de imss patron:"+imssp);
-        console.log( neto+ "");
-        console.log(neto);
+        console.log( Number(neto.toFixed(2))+ "");
+        console.log(Number(neto.toFixed(2)));
    // return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
    return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
 }
