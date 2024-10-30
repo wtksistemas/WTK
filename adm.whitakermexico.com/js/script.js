@@ -99,30 +99,39 @@ function validarCampos() {
   }
 
 
+  
+
+
+
+
   function ValidarRegistro() {
-	const empresa = document.getElementById('empresa').value;
-	const mail = document.getElementById('mail').value;
-	const pass = document.getElementById('pass').value;
-	const tel = document.getElementById('tel').value;
-	const submit = document.getElementById('btn');
+    // Obtener todos los campos del formulario
+    const nombre = document.getElementById('nombre').value.trim();
+    const empresa = document.getElementById('empresa').value;
+    const division = document.getElementById('division').value.trim();
+    const mail = document.getElementById('mail').value.trim();
+    const pass = document.getElementById('pass').value.trim();
+    const tel = document.getElementById('tel').value.trim();
+
+    // Verificar si todos los campos están llenos y que se haya seleccionado una empresa
+    const isFormComplete = nombre && empresa !== "0" && division && mail && pass && tel;
+
+    // Habilitar o deshabilitar el botón de registro
+    document.getElementById('btn-registrate').disabled = !isFormComplete;
+
+
+}
+
+
+
+
+
+
+
+
+
 
   
-	if ( empresa === '0' || mail === '' ||  pass=== ''  ||  tel=== '') {
-
-		document.getElementById("a").textContent = "Formulario incompleto";
-		submit.disabled=true;
-	    
-	} 
-	else 
-	{
-	  
-		document.getElementById("a").textContent = "Formulario completo";
-		submit.disabled=false;
-	    
-
-
-	} 
-  }
 
   function netoaobjetivo() {
 	const piramida = document.getElementById("piramida").value;
