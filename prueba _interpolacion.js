@@ -17,6 +17,11 @@ var infoavit_patron=document.getElementById("v_infonavit");
 var isn_patron=document.getElementById("v_isn");
 var neto_patron=document.getElementById("v_netop");
 
+if (metodo === "nada" || s_ingresado === "" || s_ingresado === "0" || s_ingresado === "0.0") {
+    alert("Por favor, selecciona un método válido y asegúrate de ingresar un valor numérico mayor a cero en la base mensual.");
+    window.location.reload();//recarga la pagina
+    return false;//evita el envio del formulario
+}
 if(metodo=="Neto a Bruto")
 {
 var bruto_piramida=piramida(s_ingresado,pr_ingresado);
@@ -268,7 +273,7 @@ function bruto_neto(bruto,riesgo)
         // Calculo IMSS para patron
         imssp=pro_i_cf+prop_i_ex+prop_i_pd+prop_i_gm+prop_i_rt+prop_i_iv+prop_i_gg+prop_i_cv+prop_i_re+prop_i_in;
         costo=imssp;    
-        if(valor_subsidio>=cuota_fija)
+        if(valor_subsidio>=cuota_aplicada)
         {
             tisr=0;    
         }
@@ -320,7 +325,19 @@ function bruto_neto(bruto,riesgo)
    return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
 }
 
+function validarform(){
+    const seleccion = document.getElementById("piramida").value;
+    const salario = document.querySelector("input[name='salario']").value;
+
+    if(seleccion === "nada" || salario === ""){
+        alert("Debe seleccionar una opción valida y llenar todos los campos requeridos.");
+        window.location.reload();//recarga la pagina
+        return false;//evita el envio del formulario
+    }
+    return true;//permite envio exitoso
+}
  /* retorno a pagina de calculo con paso de variables en url */
  
 //header("Location: ++/nomina+php?&visr="+number_format(cuota_fija,2)+"&sbase="+number_format(salario,2)+"&vimss="+number_format(imss,2)+"&vsub="+number_format(valor_subsidio,2)+"&vneto="+number_format(neto,2)+"&vimssp="+number_format(imssp,2)+"&vinfo="+number_format(prop_i_in,2)+"&visn="+number_format(isnp,2)+"&vcosto="+number_format(costo,2)+"&visrr="+number_format(tisr,2)+"&vprima="+riesgo+""); 
+
 
