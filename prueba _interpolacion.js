@@ -19,7 +19,11 @@ var neto_patron=document.getElementById("v_netop");
 
 if(metodo=="Neto a Bruto")
 {
+var bruto_piramida=piramida(s_ingresado,pr_ingresado);
 
+neto_calculado.value=bruto_piramida;
+
+alert("El bruto estimado a considerar: "+bruto_piramida);
 
 }
 else
@@ -50,11 +54,18 @@ function piramida(neto,riesgo)
 { 
     //Pasamos el neto objetivo y lo metemos en la funcion bruto_neto como un " Bruto "
     //La funcion bruto_neto me retornara un nuevo neto y el bruto(neto objetivo)
-    list(nuevo_neto,nuevo_bruto)=bruto_neto(neto,riesgo);
-    while( nuevo_neto<=neto)//Mientras el nuevo neto sea menos o igual al neto objetivo
+    var y=[nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(neto,riesgo);
+   var centavo=100;
+neto_funcion=parseInt(neto);
+
+
+   while(nuevo_neto<=neto_funcion)//Mientras el nuevo neto sea menos o igual al neto objetivo
     {
-        list(nuevo_neto,nuevo_bruto)=bruto_neto(nuevo_bruto,riesgo);
-        nuevo_bruto=nuevo_bruto+.50;
+        nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr=bruto_neto(nuevo_bruto,riesgo);
+        nuevo_bruto=parseInt(nuevo_bruto)+parseInt(centavo);
+        parseInt(nuevo_neto);
+        parseInt(nuevo_bruto);
+        
     }
     return nuevo_bruto;
 }
@@ -86,12 +97,12 @@ function bruto_neto(bruto,riesgo)
          
          salario=bruto; //_POST['salario'];
          riesgo=riesgo;  //_POST['priesgo'];
-         parseFloat(salario);
+         parseInt(salario);
          parseFloat(riesgo);
         
         if(isNaN(salario))
         { 
-            alert("El salario base no es correcto, ingresa numeros unicamente porfavor");
+            alert("El salario base no es correcto, ingresa numeros unicamente porfavor: "+salario);
             window.location.reload();
                 }
         else 
