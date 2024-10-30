@@ -24,6 +24,7 @@ if (metodo === "nada" || s_ingresado === "" || s_ingresado === "0" || s_ingresad
 }
 if(metodo=="Neto a Bruto")
 {
+
 var bruto_piramida=piramida(s_ingresado,pr_ingresado);
 
 neto_calculado.value=bruto_piramida;
@@ -340,4 +341,19 @@ function validarform(){
  
 //header("Location: ++/nomina+php?&visr="+number_format(cuota_fija,2)+"&sbase="+number_format(salario,2)+"&vimss="+number_format(imss,2)+"&vsub="+number_format(valor_subsidio,2)+"&vneto="+number_format(neto,2)+"&vimssp="+number_format(imssp,2)+"&vinfo="+number_format(prop_i_in,2)+"&visn="+number_format(isnp,2)+"&vcosto="+number_format(costo,2)+"&visrr="+number_format(tisr,2)+"&vprima="+riesgo+""); 
 
+function netoaobjetivo() {
+	const piramida = document.getElementById("piramida").value;
+	const labelMensual = document.getElementById("vmensual");
+	const labelNeto = document.getElementById("v_net");
 
+	if (piramida === "Bruto a Neto") {
+		labelMensual.innerText = "Bruto Mensual";
+		labelNeto.innerText = "Neto a pagar";
+	} else if (piramida === "Neto a Bruto") {
+		labelMensual.innerText = "Neto Mensual";
+		labelNeto.innerText = "Bruto estimado";
+	} else {
+		labelMensual.innerText = "Base Mensual";
+		labelNeto.innerText = "Neto a pagar";
+	}
+}

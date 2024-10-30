@@ -183,6 +183,7 @@ label {
     flex: 1;
 	margin-bottom: 5px;
 	margin-left: 5.5px;	
+    margin-right: 1.25rem;
     }
 
 input,select {
@@ -279,4 +280,112 @@ input,select {
 }
 #b2{
     margin-left: 2px;
+}
+
+
+/* Para pantallas medianas (tablets) */
+@media (max-width: 1024px) {
+    body{
+        overflow:scroll;
+    }
+    /* Ajuste para el menú lateral */
+    .menu-lateral {
+        width: 200px;
+    }
+
+    /* Ajuste del contenedor principal */
+    .contenedor-principal {
+        margin-left: 0px; /* Reducir el margen cuando el menú lateral es más pequeño */
+        width: 100%;
+    }
+
+    /* Ajustes para formularios */
+    .formularios-contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formulario-izquierda, .formulario-derecha {
+        width: 80%;
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+    body{
+        overflow:scroll;
+    }
+    /* Menú lateral colapsado */
+    .menu-lateral {
+        width: 100px;
+        padding: 10px;
+    }
+
+    .menu-lateral img {
+        width: 50%;
+    }
+
+    .menu-lateral .nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Menú superior */
+    .menu-superior {
+        padding: 5px;
+    }
+
+    /* Ajuste del formulario */
+    .formularios-contenedor {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formulario-izquierda, .formulario-derecha {
+        width: 90%;
+        padding: 10px;
+    }
+
+    /* Estilos para el contenido */
+    .contenido {
+        padding: 10px;
+    }
+
+    /* Ajuste de tamaño para el banner */
+    .carousel img {
+        height: 250px;
+    }
+}
+
+/* Para pantallas extra pequeñas (teléfonos) */
+@media (max-width: 480px) {
+    body{
+        overflow:scroll;
+    }
+    .menu-lateral {
+        display: none; /* Ocultar el menú lateral en pantallas pequeñas */
+    }
+
+    .menu-superior .opciones {
+        flex-direction: column;
+    }
+
+    .contenido {
+        padding: 5px;
+    }
+
+    /* Ajuste de tamaño para botones */
+    .boton {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    /* Ajuste de ancho del contenedor */
+    .container {
+        width: 95%;
+        margin: auto;
+    }
+
+    .banner {
+        height: auto;
+    }
 }

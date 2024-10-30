@@ -57,7 +57,7 @@
 					<div class="fila">
 						<label name="piramidacion">Piramidación</label>
 						
-							<select id="piramida" name="piramida">
+							<select id="piramida" name="piramida" onchange="netoaobjetivo()">
 								<option value="nada" name="nada">	--	</option>
 								<option value="Bruto a Neto" name="Bruto a Neto">Bruto a Neto</option>
 								<option value="Neto a Bruto" name="Neto a Bruto">Neto a Bruto</option>
