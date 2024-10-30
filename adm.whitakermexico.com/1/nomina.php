@@ -47,7 +47,7 @@
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
-				<script src="../../prueba _interpolacion.js"></script>
+				<script src="js/piramidador.js"></script>
 
 				<form class="formulario">
 
