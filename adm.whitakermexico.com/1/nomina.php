@@ -31,6 +31,7 @@
 
 			<div class="opciones">
 				<a href="nomina.php">Nómina</a>
+				<a href="legal.php">legal</a>
 			</div>
         
 			<div class="perfil">
