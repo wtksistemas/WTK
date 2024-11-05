@@ -80,7 +80,7 @@
                     <button>Ver</button>
                     <button>Reservar</button>
                     <button>Histórico</button>
-                    <button>Expediente Virtual</button>
+                    <button>Detalles</button>
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
                     <button>Ver</button>
                     <button>Reservar</button>
                     <button>Histórico</button>
-                    <button>Expediente Virtual</button>
+                    <button>Detalles</button>
                 </div>
             </div>
 
