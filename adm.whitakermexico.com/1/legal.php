@@ -58,7 +58,7 @@
 			<?php
 				echo "<span style='color: white;'>".$_SESSION['username']."</span>";
 			?></P>
-	<a href="../php/logout.php"><button type="button">Cerrar sesion</button></a>
+	<a href="../php/logout.php"><button type="button" class="btn">Cerrar sesion</button></a>
 		</div>
 
 
@@ -72,6 +72,7 @@
             <div class="barra-busqueda">
 				<label for="f_busqueda">Filtros de busqueda:</label>
 				<input type="text" id="busqueda" placeholder="Nombre de empresa, N° Escritura, Intrumento legal, Tipo... " oninput= "agregarfilas()">				
+				<button class="btn" type="button">Nuevo registro</button>
             </div>
 
             <!-- Lista de expedientes -->

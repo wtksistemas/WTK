@@ -105,7 +105,14 @@ label {
     width: 50px;
     height: auto;
 }
-
+.btn{
+    background-color: white;
+    color: #F65100;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 22px;
+}
 .links{
 	margin-top: 2px;
 	margin-bottom: 15px;
@@ -280,6 +287,7 @@ label {
     background-color: #fff; /* Color de fondo al pasar el mouse */
     color: #F65608; /* Color del texto al pasar el mouse */
 }
+
 
 
 /* Para tabletas (481px - 768px) 
