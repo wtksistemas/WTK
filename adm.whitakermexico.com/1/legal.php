@@ -50,13 +50,18 @@
 		</div>
         
 		<div class="perfil">
-			<button>Perfil</button>
-			
-	<?php
-		echo"".$_SESSION['username']."" ;
-	?></P>
+			<a href="menu.php">
+				<img src="img/home.png" class="img-perfil">
+			</a>
+
+			<?php
+				echo "<span style='color: white;'>".$_SESSION['username']."</span>";
+			?></P>
 	<a href="../php/logout.php"><button type="button">Cerrar sesion</button></a>
 		</div>
+
+
+		
 	</div>
 	
 	<!-- Buscardor -->

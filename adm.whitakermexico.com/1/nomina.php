@@ -31,11 +31,13 @@
 
 			<div class="opciones">
 				<a href="nomina.php">Nómina</a>
-				<a href="legal.php">legal</a>
+				<a href="legal.php">Legal</a>
 			</div>
         
 			<div class="perfil">
-
+				<a href="menu.php">
+					<img src="img/home.png" class="img-perfil">
+				</a>
   				  <?php
   				      echo "<span style='color: white;'>".$_SESSION['username']."</span>";
   				  ?>

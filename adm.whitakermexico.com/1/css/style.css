@@ -281,6 +281,11 @@ input,select {
 #b2{
     margin-left: 2px;
 }
+.menu-superior .perfil .img-perfil {
+    width: 30px; /* Ajusta el tamaño según tus necesidades */
+    height: 30px;
+
+}
 
 
 /* Para pantallas medianas (tablets) */
