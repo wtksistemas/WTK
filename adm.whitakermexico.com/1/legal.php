@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
     <link rel="stylesheet" href="css/style.css">
+	<script src="../../clases_prueba.js"></script>
 </head>
 <body>
 	
@@ -66,14 +67,17 @@
 	
 	<!-- Buscardor -->
         <!-- Contenido -->
-        <div class="contenido">
+        <div class="contenido" id="contenido">
             <!-- Barra de búsqueda -->
             <div class="barra-busqueda">
 				<label for="f_busqueda">Filtros de busqueda:</label>
-				<input type="text" placeholder="Nombre de empresa, N° Escritura, Intrumento legal, Tipo... ">				
+				<input type="text" id="busqueda" placeholder="Nombre de empresa, N° Escritura, Intrumento legal, Tipo... " oninput= "agregarfilas()">				
             </div>
 
             <!-- Lista de expedientes -->
+
+			<div class="contenido" id="contenido_expedientes">
+
             <div class="expediente">
                 <span>Expediente 1</span>
                 <div>
@@ -95,7 +99,7 @@
             </div>
 
             <!-- Puedes agregar más expedientes aquí -->
-
+			</div>
         </div>
 
     </div>
