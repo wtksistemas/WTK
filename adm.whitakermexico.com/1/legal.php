@@ -72,7 +72,7 @@
             <div class="barra-busqueda">
 				<label for="f_busqueda">Filtros de busqueda:</label>
 				<input type="text" id="busqueda" placeholder="Nombre de empresa, N° Escritura, Intrumento legal, Tipo... " oninput= "agregarfilas()">				
-				<button class="btn" type="button">Nuevo registro</button>
+				<button class="btn" type="button" onclick="window.location.href='altainstrumentos.php'">Nuevo registro</button>
             </div>
 
             <!-- Lista de expedientes -->
