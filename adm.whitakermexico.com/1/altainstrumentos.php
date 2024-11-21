@@ -36,6 +36,7 @@
         <div class="contenido formulario-contenido">
             <div class="formulario-nuevo-instrumento">
                 <form>
+                    <script src="../../clases_prueba.js"></script>
 				<h1 class="titulo-formulario">Nuevo Instrumento Notarial</h1>
 
                     <div class="campo-formulario">
@@ -59,12 +60,17 @@
                     </div>
 
                     <div class="campo-formulario">
-                        <select id="ntipdocum" name="tipdocum">
+                        <select id="ntipdocum" name="tipdocum" onchange="mostrarCampoTestimonio()">
 							<option value="0">Tipo de Documento</option>
 							<option value="testimonio">Testimonio</option>
 							<option value="copia certificada">Copia Certificada</option>
 							<option value="copia simple">Copia Simple</option>
 						</select>
+                            <div class="campo-formulario" id="testimonioCampo" style="display: none;">
+                                <input id="numcertificado" name="ncertificado" type="number" placeholder="N° Certificado" oninput="concatenarTestimonio()">
+                                <p id="resultadoTestimonio"></p>
+                            </div>
+
 						<!--<input id="numcertificado" name="ncertificado" placeholder="N° Certificado">-->
 						<input id="nrutadrive" name="rutadrive" placeholder="Ruta en Drive">
                     </div>
