@@ -35,12 +35,13 @@
 
         <div class="contenido formulario-contenido">
             <div class="formulario-nuevo-instrumento">
-                <form>
+                <form action="php/registro_cliente.php" method="post" enctype="multipart/form-data">
 				<h1 class="titulo-formulario">Nuevo Cliente</h1>
 
                     <div class="campo-formulario">
                         <label>Carga la constancia Fiscal Completa <br>(4 hojas)</label>
-                        <input id="ncliente" name="cliente" type="file">
+                        <input id="constancia" name="constancia" type="file" size="250" maxlength="250" accept=".pdf">
+                        
 
 					</div>
 
@@ -66,7 +67,7 @@
 
                     <div class="boton-contenedor-formulario">
 						<button type="button" id="btn-regre" class="boton-formulario" onclick="window.location.href='altainstrumentos.php'" >Regresar</button>
-                        <button id="btn-registrarcli" class="boton-formulario">Registrar</button>
+                        <button id="btn-registrarcli" class="boton-formulario" type="submit">Registrar</button>
                     </div>
                 </form>
             </div>
