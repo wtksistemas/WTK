@@ -294,7 +294,7 @@ else
 
 
 
-header("Location: ../altaclientes.php?nom=".$nombre_cliente."&rfc=".$rfc_cliente."&regimen=".$regimen_cliente."&calle=".$calle_cliente."&nexterior=".$numero_ext_cliente."&ninterior=".$numero_int_cliente."&cp=".$cp_cliente."");
+header("Location: ../altaclientes.php?nom=".$nombre_cliente."&rfc=".$rfc_cliente."&regimen=".$regimen_cliente."&calle=".$nombre_vialidad_cliente."&nexterior=".$numero_ext_cliente."&ninterior=".$numero_int_cliente."&cp=".$cp_cliente."");
 
 
 function analizar_espacios($texto) {

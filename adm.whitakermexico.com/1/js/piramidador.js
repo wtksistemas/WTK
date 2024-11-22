@@ -373,3 +373,5 @@ function netoaobjetivo() {
 		labelNeto.innerText = "Neto a pagar";
 	}
 }
+
+

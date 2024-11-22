@@ -34,6 +34,8 @@
         </div>
 
         <div class="contenido formulario-contenido">
+            <script src="js/legal.js"></script>
+
             <div class="formulario-nuevo-instrumento">
                 <form action="php/registro_cliente.php" method="post" enctype="multipart/form-data">
 				<h1 class="titulo-formulario">Nuevo Cliente</h1>
@@ -46,28 +48,31 @@
 					</div>
 
 					<div class="campo-formulario">
-						<input id="nncliente" name="ncliente" type="text" placeholder="Nombre de Cliente" disabled>
-                        <input id="nrfc" name="rfc" type="text" placeholder="RFC" disabled>
+						<input id="nncliente" name="ncliente" type="text" placeholder="Nombre de Cliente" disabled value="<?php echo $_GET["nom"];?>">
+                        <input id="nrfc" name="rfc" type="text" placeholder="RFC" disabled value="<?php echo $_GET["rfc"];?>">
 					</div>
 
                     <div class="campo-formulario">
-						<input id="nrf" name="rf" type="text" placeholder="Régimen Fiscal" disabled>
-                        <input id="ncalle" name="calle" type="text" placeholder="Calle" disabled>
+						<input id="nrf" name="rf" type="text" placeholder="Régimen Fiscal" disabled value="<?php echo $_GET["regimen"];?>">
+                        <input id="ncalle" name="calle" type="text" placeholder="Calle" disabled value="<?php echo $_GET["calle"];?>">
 					</div>
 
                     <div class="campo-formulario">
-						<input id="nexterior" name="exterior" type="text" placeholder="N° Exterior" disabled>
-                        <input id="ninterior" name="interior" type="text" placeholder="N° Interior" disabled>
+						<input id="nexterior" name="exterior" type="text" placeholder="N° Exterior" disabled value="<?php echo $_GET["nexterior"];?>">
+                        <input id="ninterior" name="interior" type="text" placeholder="N° Interior" disabled value="<?php echo $_GET["ninterior"];?>">
 					</div>
 
                     <div class="campo-formulario">
-						<input id="ncp" name="cp" type="text" placeholder="C.P" disabled>
-                        <label></label>
+						<input id="ncp" name="cp" type="text" placeholder="C.P" disabled value="<?php echo $_GET["cp"];?>">
+                       <div class="check">
+                            <label>¿Deseas modificar?</label>
+                            <input id="che" name="check" type="checkbox" onclick="modificar_cn()">
+                       </div>
 					</div>
 
-                    <div class="boton-contenedor-formulario">
-						<button type="button" id="btn-regre" class="boton-formulario" onclick="window.location.href='altainstrumentos.php'" >Regresar</button>
-                        <button id="btn-registrarcli" class="boton-formulario" type="submit">Registrar</button>
+                    <div class="boton-contenedor-formulario" id="btn_pdf">
+						<button type="button" id="btn-regre" class="boton-formulario" onclick="window.location.href='altainstrumentos.php'"  >Regresar</button>
+                        <button id="btn-registrarcli" class="boton-formulario" type="submit" >Cargar PDF</button>  
                     </div>
                 </form>
             </div>
@@ -75,3 +80,4 @@
     </div>
 </body>
 </html>
+
