@@ -482,3 +482,26 @@
     width:20px;
 height:20px;
 }
+
+.boton-contenedor-formulario {
+    display: flex;
+    justify-content: space-around; /* Espaciado uniforme entre botones */
+    gap: 1rem; /* Separación opcional */
+    margin-top: 20px;
+}
+
+.boton-formulario {
+    background-color: #F65100;
+    color: #fff;
+    padding: 10px 20px; /* Ajusta el relleno según el diseño */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1; /* Hace que todos los botones ocupen el mismo ancho */
+    text-align: center;
+}
+
+.boton-formulario:hover {
+    background-color: #f44700;
+    color: white;
+}

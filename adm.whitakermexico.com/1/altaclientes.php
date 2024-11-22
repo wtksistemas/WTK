@@ -43,13 +43,12 @@
                     <div class="campo-formulario">
                         <label>Carga la constancia Fiscal Completa <br>(4 hojas)</label>
                         <input id="constancia" name="constancia" type="file" size="250" maxlength="250" accept=".pdf">
-                        
-
 					</div>
 
 					<div class="campo-formulario">
 						<input id="nncliente" name="ncliente" type="text" placeholder="Nombre de Cliente" disabled value="<?php echo $_GET["nom"];?>">
-                        <input id="nrfc" name="rfc" type="text" placeholder="RFC" disabled value="<?php echo $_GET["rfc"];?>">
+                        <input id="nrfc" name="rfc" type="text" placeholder="RFC" disabled value="<?php echo $_GET['rfc'];?>">
+
 					</div>
 
                     <div class="campo-formulario">
@@ -69,11 +68,14 @@
                             <input id="che" name="check" type="checkbox" onclick="modificar_cn()">
                        </div>
 					</div>
-
+                    
                     <div class="boton-contenedor-formulario" id="btn_pdf">
-						<button type="button" id="btn-regre" class="boton-formulario" onclick="window.location.href='altainstrumentos.php'"  >Regresar</button>
-                        <button id="btn-registrarcli" class="boton-formulario" type="submit" >Cargar PDF</button>  
+                        <button type="button" id="btn-regre" class="boton-formulario" onclick="window.location.href='altainstrumentos.php'">Regresar</button>
+                        <button id="btn-registrarcli" class="boton-formulario" type="submit">Cargar PDF</button>
+                       <button type="button" id="btn-alta" class="boton-formulario">Dar de alta</button>
                     </div>
+
+
                 </form>
             </div>
         </div>
