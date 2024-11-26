@@ -11,6 +11,7 @@
     <?php
         session_start();
         include "../php/control.php";
+        error_reporting(0);
         if ($_SESSION['id'] != '888') {
             header("Location: ../index.html");
         }
