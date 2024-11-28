@@ -4,32 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
-    <link rel="stylesheet" href="css/style.css">
-	<script src="../../clases_prueba.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="js/legal.js"></script>
 </head>
 <body>
     <?php
         session_start();
-        include "../php/control.php";
+        include "../../php/control.php";
         if ($_SESSION['id'] != '888') {
-            header("Location: ../index.html");
+            header("Location: ../../index.html");
         }
     ?>
 
     <div class="contenedor-principal">
         <div class="menu-superior">
             <div class="opciones">
-                <a href="nomina.php">Nómina</a>
+                <a href="../nominas/nomina.php">Nómina</a>
                 <a href="legal.php">Legal</a>
             </div>
             <div class="perfil">
-                <a href="menu.php">
-                    <img src="img/home.png" class="img-perfil">
+                <a href="../menu.php">
+                    <img src="../img/home.png" class="img-perfil">
                 </a>
                 <?php
                     echo "<span style='color: white;'>".$_SESSION['username']."</span>";
                 ?>
-                <a href="../php/logout.php"><button type="button" class="btn">Cerrar sesión</button></a>
+                <a href="../../php/logout.php"><button type="button" class="btn">Cerrar sesión</button></a>
             </div>
         </div>
 

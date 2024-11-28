@@ -50,7 +50,7 @@
 	<div class="menu-superior">
 		<div class="opciones">
 			<a href="nominas/nomina.php">Nómina</a>
-			<a href="legal.php">Legal</a>
+			<a href="legal/legal.php">Legal</a>
 		</div>
         
 		<div class="perfil">

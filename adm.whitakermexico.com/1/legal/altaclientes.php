@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 	<script src="../../clases_prueba.js"></script>
     <!-- Include pdf.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
@@ -12,27 +12,25 @@
 <body>
     <?php
         session_start();
-        include "../php/control.php";
-        error_reporting(0);
-        if ($_SESSION['id'] != '888')
-        {
-            header("Location: ../index.html");
+        include "../../php/control.php";
+        if ($_SESSION['id'] != '888') {
+            header("Location: ../../index.html");
         }
     ?>
     <div class="contenedor-principal">
         <div class="menu-superior">
             <div class="opciones">
-                <a href="nomina.php">Nómina</a>
-                <a href="legal.php">Legal</a>
+            <a href="../nominas/nomina.php">Nómina</a>
+            <a href="legal.php">Legal</a>
             </div>
             <div class="perfil">
-                <a href="menu.php">
-                    <img src="img/home.png" class="img-perfil">
+                <a href="../menu.php">
+                    <img src="../img/home.png" class="img-perfil">
                 </a>
                 <?php
                     echo "<span style='color: white;'>".$_SESSION['username']."</span>";
                 ?>
-                <a href="../php/logout.php"><button type="button" class="btn">Cerrar sesión</button></a>
+                <a href="../../php/logout.php"><button type="button" class="btn">Cerrar sesión</button></a>
             </div>
         </div>
         <div class="contenido formulario-contenido">
@@ -73,6 +71,6 @@
         </div>
     </div>
 </body>
-<script src="../1/js/lector_pdf.js"> </script>
+<script src="js/lector_pdf.js"> </script>
 </html>
 
