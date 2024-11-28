@@ -49,7 +49,7 @@
 	 <!-- Menú superior -->
 	<div class="menu-superior">
 		<div class="opciones">
-			<a href="nomina.php">Nómina</a>
+			<a href="nominas/nomina.php">Nómina</a>
 			<a href="legal.php">Legal</a>
 		</div>
         
