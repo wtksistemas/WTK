@@ -1,38 +1,48 @@
 <?php
 require_once("dbconnect.php");
 
-//Variables de formulario
-$cliente=$_POST['ncliente'];
-$rfc=$_POST['rfc'];
-$regimen=$_POST['rf'];
-$calle=$_POST['calle'];
-$nexterior=$_POST['exterior'];
-$ninterior=$_POST['interior'];
-$cp=$_POST['cp']
+// Variables de formulario
+$cliente = $_POST['ncliente'];
+$rfc = $_POST['rfc'];
+$regimen = $_POST['rf'];
+$calle = $_POST['calle'];
+$nexterior = $_POST['exterior'];
+$ninterior = $_POST['interior'];
+$cp = $_POST['cp'];
+$estatus = '1'; // Define un valor por defecto
+$espacio = " ";
 
-//echo "pagadora: ".$pagadadora."";
+// Consulta para insertar
+$query = "INSERT INTO tb_clientes 
+(ID, c_razonsocial, c_rfc, c_regimen, c_calle, c_nexterior, c_ninterior, c_cp, c_estatus) 
+VALUES 
+('$espacio', '$cliente', '$rfc', '$regimen', '$calle', '$nexterior', '$ninterior', '$cp', '$estatus')";
 
+// Consulta para verificar
+$query2 = "SELECT c_razonsocial FROM tb_clientes WHERE c_rfc='$rfc'";
+$resultado = mysqli_query($conn, $query2);
+$num_rows = mysqli_num_rows($resultado);
 
-// Seccion de consultas e inserciones 	
-$query="insert into tb_clientes (ID,c_razonsocial,c_rfc,c_regimen,c_calle,c_nexterior,c_ninterior,c_cp,c_estatus) values ('".$espacio."','".$cliente."','".$rfc."','".$regimen."','".$calle."','".$nexterior."','".$ninterior."'".$cp."','".$estatus."')";
-$query2=" Select c_usuario from tb_usuarios where c_usuario='".$mail."'";
-
-//Realizamos consulta para saber si exite ya el usuario registrado
-$resultado=mysqli_query($conn,$query2);
-$row = mysqli_fetch_array($resultado, MYSQLI_ASSOC);
-$num_rows=mysqli_num_rows($resultado);
-
-if($num_rows==null || $num_rows='' || $num_rows=0)
-{
-
-	$nuevo_registro=mysqli_query($conn,$query);
-	header("Location:../index.html?v=21"); 
+if ($num_rows === 0) {
+    $nuevo_registro = mysqli_query($conn, $query);
+    if ($nuevo_registro) {
+        echo "<script>
+            alert('Registro exitoso.');
+            window.location.href = '../altainstrumentos.php?v=21';
+        </script>";
+    } else {
+        echo "<script>
+            alert('Error al registrar el cliente. Por favor, inténtalo de nuevo.');
+            window.location.href = '../altainstrumentos.php';
+        </script>";
+    }
+} else {
+    echo "<script>
+        alert('El cliente ya está registrado.');
+        window.location.href = '../altainstrumentos.php?v=20';
+    </script>";
 }
-else
-{
-	header("Location:../index.html?v=20"); 
 
-}
+// Cierra la conexión
 mysqli_close($conn);
-
 ?>
