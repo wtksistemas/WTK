@@ -28,7 +28,7 @@ if ($num_rows === 0) {
     if ($nuevo_registro) {
         echo "<script>
             alert('Registro exitoso.');
-            window.location.href = '../altainstrumentos.php?v=21';
+            window.location.href = '../altainstrumentos.php';
         </script>";
     } else {
         echo "<script>
@@ -39,7 +39,7 @@ if ($num_rows === 0) {
 } else {
     echo "<script>
         alert('El cliente ya está registrado.');
-        window.location.href = '../altainstrumentos.php?v=20';
+        window.location.href = '../altainstrumentos.php';
     </script>";
 }
 

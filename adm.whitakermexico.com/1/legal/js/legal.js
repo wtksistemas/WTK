@@ -76,20 +76,76 @@ function modificar_cn() {
 }
 
 
-function mostrarCampoTestimonio() {
-    const seleccion = document.getElementById("ntipdocum").value;
-    const campoTestimonio = document.getElementById("testimonioCampo");
-
-    if (seleccion === "testimonio") {
-        campoTestimonio.style.display = "block";
-    } else {
-        campoTestimonio.style.display = "none";
-        document.getElementById("resultadoTestimonio").textContent = ""; // Limpiar el resultado si no es testimonio
-    }
-}
 
 function concatenarTestimonio() {
     const numero = document.getElementById("numcertificado").value;
     const resultado = document.getElementById("resultadoTestimonio");
     resultado.textContent = `Testimonio ${numero}`;
 }
+
+
+function mostrarCampoTestimonio() {
+    const tipoDocumentoSelect = document.getElementById("ntipdocum");
+    const formulario = document.querySelector(".formulario-nuevo-instrumento form");
+
+    // Función para crear el div con los campos adicionales
+    function agregarCamposAdicionales() {
+        // Comprueba si ya existe el div para evitar duplicados
+        if (document.getElementById("div-extra")) return;
+
+        // Crea el contenedor del div
+        const divExtra = document.createElement("div");
+        divExtra.className = "campo-formulario";
+        divExtra.id = "div-extra";
+
+        // Crea el input para "Número de Testimonio"
+        const inputTestimonio = document.createElement("input");
+        inputTestimonio.id = "ntestimonio";
+        inputTestimonio.name = "testimonio";
+        inputTestimonio.type = "number";
+        inputTestimonio.placeholder = "Número de Testimonio";
+
+        
+        // Crea el input para "concatenacion"
+        const inputConca = document.createElement("input");
+        inputConca.id = "contestimonio";
+        inputConca.name = "ncontestimonio";
+        inputConca.type = "text";
+        inputConca.placeholder = "Testimonio x";
+        inputConca.disabled = true;
+
+        // Actualiza el valor de concatenacion cuando se escribe en "Número de Testimonio"
+        inputTestimonio.addEventListener("input", () => {
+            const numero = inputTestimonio.value;
+            inputConca.value = numero ? `Testimonio ${numero}` : "";
+        });
+
+        // Añade los inputs al div
+        divExtra.appendChild(inputTestimonio);
+        divExtra.appendChild(inputConca);
+
+        // Inserta el div extra antes del botón "Registrar"
+        const botonRegistrar = document.getElementById("btn-registrar");
+        formulario.insertBefore(divExtra, botonRegistrar.parentElement);
+    }
+
+    // Función para eliminar el div con los campos adicionales
+    function eliminarCamposAdicionales() {
+        const divExtra = document.getElementById("div-extra");
+        if (divExtra) {
+            divExtra.remove();
+        }
+    }
+
+    // Event listener para mostrar u ocultar los campos adicionales
+    tipoDocumentoSelect.addEventListener("change", () => {
+        if (tipoDocumentoSelect.value === "testimonio") {
+            agregarCamposAdicionales();
+        } else {
+            eliminarCamposAdicionales();
+        }
+    });
+}
+
+// Invoca la función al cargar la página
+document.addEventListener("DOMContentLoaded", mostrarCampoTestimonio);

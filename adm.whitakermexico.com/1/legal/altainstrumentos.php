@@ -59,6 +59,12 @@
                     </div>
 
                     <div class="campo-formulario">
+                        <input id="nejemplares" name="ejemplares" type="text" placeholder="Número de ejemplares">
+                        <input id="ncodinter" name="codinter" type="text" placeholder="Codigo Interno" disabled>
+                    </div>
+
+
+                    <div class="campo-formulario">
                         <select id="ntipdocum" name="tipdocum" onchange="mostrarCampoTestimonio()">
                             <option value="0">Tipo de Documento</option>
                             <option value="testimonio">Testimonio</option>
@@ -66,16 +72,6 @@
                             <option value="copia simple">Copia Simple</option>
                         </select>
                         <input id="nrutadrive" name="rutadrive" placeholder="Ruta en Drive">
-                    </div>
-
-                    <div class="campo-formulario" id="testimonioCampo" style="display: none;">
-                            <input id="numcertificado" name="ncertificado" type="number" placeholder="N° Certificado" oninput="concatenarTestimonio()">
-                            <p id="resultadoTestimonio"></p>
-                        </div>
-
-                    <div class="campo-formulario">
-                        <input id="nejemplares" name="ejemplares" type="text" placeholder="Número de ejemplares">
-                        <input id="ncodinter" name="codinter" type="text" placeholder="Codigo Interno" disabled>
                     </div>
 
                     <div class="boton-contenedor-formulario">
@@ -88,3 +84,4 @@
     </div>
 </body>
 </html>
+
