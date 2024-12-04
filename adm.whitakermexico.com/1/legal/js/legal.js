@@ -125,7 +125,7 @@ function mostrarCampoTestimonio() {
         divExtra.appendChild(inputConca);
 
         // Inserta el div extra antes del botón "Registrar"
-        const botonRegistrar = document.getElementById("btn-registrar");
+        const botonRegistrar = document.getElementById("comenta");
         formulario.insertBefore(divExtra, botonRegistrar.parentElement);
     }
 

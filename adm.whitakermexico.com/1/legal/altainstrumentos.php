@@ -35,7 +35,7 @@
 
         <div class="contenido formulario-contenido">
             <div class="formulario-nuevo-instrumento">
-            <form>
+            <form action="php/altainstr.php" method="post">
                     <h1 class="titulo-formulario">Nuevo Instrumento Notarial</h1>
 
                     <div class="campo-formulario">
@@ -72,6 +72,11 @@
                             <option value="copia simple">Copia Simple</option>
                         </select>
                         <input id="nrutadrive" name="rutadrive" placeholder="Ruta en Drive">
+                    </div>
+
+                    <div class="campo-formulario">
+                        <textarea id="comenta" name="ncomenta" rows="3" placeholder=" Comentario"></textarea>
+                        
                     </div>
 
                     <div class="boton-contenedor-formulario">

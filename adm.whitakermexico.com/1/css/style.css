@@ -505,3 +505,6 @@ height:20px;
     background-color: #f44700;
     color: white;
 }
+textarea{
+    width: 96.5%;
+}
