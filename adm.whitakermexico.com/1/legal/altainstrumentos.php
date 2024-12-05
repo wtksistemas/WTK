@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<?php	 
+    session_start();
+    include "../../php/control.php";
+    if ($_SESSION['id'] != '888') 
+    {
+        header("Location: ../../index.html");
+    }
+    else
+    {
+        include_once("../legal/php/dbconnect.php");
+        $sql = "select ID,c_razonsocial from tb_clientes;";
+        $result = mysqli_query($conn,$sql);
+        $num_rows = mysqli_num_rows($result);
+        $id= array();
+        $cliente= array();
+
+        while($row= mysqli_fetch_array($result))
+        {
+        $id[]=$row["ID"];
+        $cliente[]=$row["c_razonsocial"];
+        }
+        $json_id= json_encode($id);
+        $json_cliente=json_encode($cliente);
+    }
+?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
     <link rel="stylesheet" href="../css/style.css">
-	<script src="js/legal.js"></script>
+    <script src="js/legal.js"></script>
 </head>
-<body>
-    <?php
-        session_start();
-        include "../../php/control.php";
-        if ($_SESSION['id'] != '888') {
-            header("Location: ../../index.html");
-        }
-    ?>
-
+<body onload='leer_clientes(<?php echo $json_id; ?>,<?php echo $json_cliente; ?>)'>
     <div class="contenedor-principal">
         <div class="menu-superior">
             <div class="opciones">
@@ -38,8 +55,16 @@
             <form action="php/altainstr.php" method="post">
                     <h1 class="titulo-formulario">Nuevo Instrumento Notarial</h1>
 
-                    <div class="campo-formulario">
-                        <input id="ncliente" name="cliente" type="text" placeholder="Nombre de Cliente">
+                    <div class="campo-formulario" id="contenedor_primera_fila">
+                        
+
+                        <select id="ncliente" name="cliente">
+                            <option value="0">Selecciona un cliente</option>
+                            
+                        </select>
+
+
+                        
                         <input id="nnotaria" name="notaria" type="number" placeholder="Notaria">
                     </div>
 
@@ -87,6 +112,8 @@
             </div>
         </div>
     </div>
+   
 </body>
+
 </html>
 

@@ -1,3 +1,19 @@
+// Seccion para desplegar los clientes en la pagina " alta de instrumentos notariales"
+function leer_clientes(id,cliente)
+{
+var selector=document.getElementById("ncliente");
+html='<option value="0">Selecciona un cliente</option>';
+for(i=0;i<id.length;i++)
+{
+html=html+'<option value="'+id[i]+'">'+cliente[i]+'</option>';
+
+console.log("ID: "+id[i]+" nombre de cliente: "+cliente[i]);
+}
+selector.innerHTML=html;
+}
+
+
+
 class Instrumento {
     div = document.createElement("div");//creamos el div
     div_contenido = document.createElement("div");
@@ -149,3 +165,7 @@ function mostrarCampoTestimonio() {
 
 // Invoca la función al cargar la página
 document.addEventListener("DOMContentLoaded", mostrarCampoTestimonio);
+
+
+
+
