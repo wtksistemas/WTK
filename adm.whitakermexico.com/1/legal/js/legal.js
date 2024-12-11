@@ -163,9 +163,52 @@ function mostrarCampoTestimonio() {
     });
 }
 
-// Invoca la función al cargar la página
-document.addEventListener("DOMContentLoaded", mostrarCampoTestimonio);
+document.addEventListener('DOMContentLoaded', function () {
+    const select = document.getElementById('grpempre');
+    const buttonContainer = document.getElementById('btn_pdf'); // Contenedor de los botones
+
+    function mostrarCampoGrupoEmpre() {
+        let existingDiv = document.getElementById('otroDiv'); // Div contenedor del nuevo input
+
+        if (select.value === '9999') {
+            if (!existingDiv) {
+                // Crear un nuevo div y input si no existe
+                const div = document.createElement('div');
+                div.id = 'otroDiv';
+                div.className = 'campo-formulario'; // Clases para estilos
+
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.name = 'notroGrupo';
+                input.id = 'otroGrupo';
+                input.placeholder = 'Especificar Grupo Empresarial';
+                input.className = 'input-adicional'; // Clase para estilos
+                input.required = true;
+
+                div.appendChild(input); // Agregar input al div
+                buttonContainer.parentNode.insertBefore(div, buttonContainer); // Insertar div antes de los botones
+            }
+        } else if (existingDiv) {
+            // Remover el div completo si existe y se selecciona otra opción
+            existingDiv.parentNode.removeChild(existingDiv);
+        }
+    }
+
+    // Asociar la función al evento 'change' del select
+    select.addEventListener('change', mostrarCampoGrupoEmpre);
+});
 
 
+//leer grupos existentes
+function leer_grpempresa(id,cl iente)
+{
+var selector=document.getElementById("ncliente");
+html='<option value="0">Selecciona un cliente</option>';
+for(i=0;i<id.length;i++)
+{
+html=html+'<option value="'+id[i]+'">'+cliente[i]+'</option>';
 
-
+console.log("ID: "+id[i]+" nombre de cliente: "+cliente[i]);
+}
+selector.innerHTML=html;
+}B

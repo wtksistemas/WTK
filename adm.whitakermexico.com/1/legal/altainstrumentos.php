@@ -56,13 +56,9 @@
                     <h1 class="titulo-formulario">Nuevo Instrumento Notarial</h1>
 
                     <div class="campo-formulario" id="contenedor_primera_fila">
-                        
-
                         <select id="ncliente" name="cliente">
                             <option value="0">Selecciona un cliente</option>
                         </select>
-
-
                         
                         <input id="nnotaria" name="notaria" type="number" placeholder="Notaria">
                     </div>

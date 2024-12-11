@@ -6,6 +6,8 @@
     <title>Panel Principal</title>
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../../clases_prueba.js"></script>
+        <script src="js/legal.js"></script>
+
     <!-- Include pdf.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 </head>
@@ -43,7 +45,7 @@
                         <input id="pdf" name="constancia" type="file" size="250" maxlength="250" accept=".pdf">
 					</div>
 					<div class="campo-formulario">
-						<input id="nncliente" name="ncliente" type="text" placeholder="Nombre de Cliente" value="">
+						<input id="nncliente" name="ncliente" type="text" placeholder="Razón Social" value="">
                         <input id="nrfc" name="rfc" type="text" placeholder="RFC" value="">
 					</div>
                     <div class="campo-formulario">
@@ -54,9 +56,14 @@
 						<input id="nexterior" name="exterior" type="text" placeholder="N° Exterior"  value="">
                         <input id="ninterior" name="interior" type="text" placeholder="N° Interior"  value="">
 					</div>
-                    <div class="campo-formulario">
+
+                    <div class="campo-formulario" onchange="mostrarCampoGrupoEmpre()">
 						<input id="ncp" name="cp" type="text" placeholder="C.P" value="">
-                        <label></label>
+                        <select id="grpempre" name="ngrpempre">
+                            <option value="0">Grupo Empresarial</option>
+                            <option value="9999">Otro</option>
+                        </select>
+
 					</div>
                     <div class="boton-contenedor-formulario" id="btn_pdf">
                         <button type="button" id="btn-regre" class="boton-formulario" onclick="window.location.href='altainstrumentos.php'">Regresar</button>
