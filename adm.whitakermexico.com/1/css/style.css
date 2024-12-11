@@ -506,5 +506,11 @@ height:20px;
     color: white;
 }
 textarea{
-    width: 96.5%;
+    width: 44.5%;
+
+}
+
+#comenta{
+    margin-left:1rem ;
+    margin-right: 1rem;
 }

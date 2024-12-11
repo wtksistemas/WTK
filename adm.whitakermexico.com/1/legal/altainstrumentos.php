@@ -60,7 +60,6 @@
 
                         <select id="ncliente" name="cliente">
                             <option value="0">Selecciona un cliente</option>
-                            
                         </select>
 
 
@@ -70,22 +69,30 @@
 
                     <div class="campo-formulario">
                         <input id="nuescritura" name="escritura" type="number" placeholder="N° de Escritura">
-                        <input id="nciudad" name="ciudad" type="text" placeholder="Ciudad">
+
+                        <select id="estado" name="nestado">
+                            <option value="0">Estado</option>
+                        </select>
+
                     </div>
 
                     <div class="campo-formulario">
                         <input id="ninstrumentacion" name="instrumentacion" type="text" placeholder="Instrumentación">
+
+                        <select id="nciudad" name="ciudad">
+                            <option value="0">Ciudad o Municipio</option>
+                        </select>
+
+                    </div>
+
+                    <div class="campo-formulario">
+                        <input id="nejemplares" name="ejemplares" type="text" placeholder="Número de ejemplares">
                         <select id="nubifisica" name="ubifisica">
                             <option value="0">Selecciona Ubicacion Fisica</option>
                             <option value="homero">Homero</option>
                             <option value="campos">Campos</option>
                             <option value="archivo">Archivo</option>
                         </select>
-                    </div>
-
-                    <div class="campo-formulario">
-                        <input id="nejemplares" name="ejemplares" type="text" placeholder="Número de ejemplares">
-                        <input id="ncodinter" name="codinter" type="text" placeholder="Codigo Interno" disabled>
                     </div>
 
 
@@ -96,12 +103,15 @@
                             <option value="copia certificada">Copia Certificada</option>
                             <option value="copia simple">Copia Simple</option>
                         </select>
-                        <input id="nrutadrive" name="rutadrive" placeholder="Ruta en Drive">
+
+                        <input id="ncodinter" name="codinter" type="text" placeholder="Codigo Interno" disabled>
                     </div>
 
                     <div class="campo-formulario">
-                        <textarea id="comenta" name="ncomenta" rows="3" placeholder=" Comentario"></textarea>
                         
+                        <textarea id="comenta" name="ncomenta" rows="3" placeholder=" Comentario"></textarea>
+
+                        <input id="nrutadrive" name="rutadrive" placeholder="Ruta en Drive">
                     </div>
 
                     <div class="boton-contenedor-formulario">

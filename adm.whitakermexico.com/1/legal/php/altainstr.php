@@ -1,5 +1,5 @@
 <?php
-require_once("dbconnect1.php");
+require_once("dbconnect.php");
 
 // Variables de formulario
 $cliente = $_POST['cliente'];
@@ -22,7 +22,7 @@ VALUES
 
 // Consulta para verificar
 $query2 = "SELECT c_cliente FROM tb_instrumentos WHERE c_rfc='$rfc'";
-$resultado = mysqli_query($conn, $query2);
+$resultado = mysqli_query($conn_arch, $query2);
 $num_rows = mysqli_num_rows($resultado);
 
 if ($num_rows === 0) {

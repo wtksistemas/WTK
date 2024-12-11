@@ -8,4 +8,6 @@ $data_base="whitaker_clientes";
 $llave=")G;09%XI=oY-CeIPDDEDW(-N!S;u36;d";
 
 
+$data_base_archivo="whitaker_archivo";
+
 ?>
