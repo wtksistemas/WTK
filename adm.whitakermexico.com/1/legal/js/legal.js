@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 //leer grupos existentes
-function leer_grpempresa(id,cl iente)
+function leer_grpempresa(id,cliente)
 {
 var selector=document.getElementById("ncliente");
 html='<option value="0">Selecciona un cliente</option>';
