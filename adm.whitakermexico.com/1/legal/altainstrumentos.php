@@ -10,20 +10,7 @@
     }
     else
     {
-        include_once("../legal/php/dbconnect.php");
-        $sql = "select ID,c_razonsocial from tb_clientes;";
-        $result = mysqli_query($conn,$sql);
-        $num_rows = mysqli_num_rows($result);
-        $id= array();
-        $cliente= array();
-
-        while($row= mysqli_fetch_array($result))
-        {
-        $id[]=$row["ID"];
-        $cliente[]=$row["c_razonsocial"];
-        }
-        $json_id= json_encode($id);
-        $json_cliente=json_encode($cliente);
+       
     }
 ?>
     <meta charset="UTF-8">
@@ -32,7 +19,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="js/legal.js"></script>
 </head>
-<body onload='leer_clientes(<?php echo $json_id; ?>,<?php echo $json_cliente; ?>)'>
+<body>
     <div class="contenedor-principal">
         <div class="menu-superior">
             <div class="opciones">
@@ -67,7 +54,6 @@
                         <input id="nuescritura" name="escritura" type="number" placeholder="N° de Escritura">
 
                         <select id="estado" name="nestado">
-                            <option value="0">Estado</option>
                         </select>
 
                     </div>

@@ -1,16 +1,38 @@
-// Seccion para desplegar los clientes en la pagina " alta de instrumentos notariales"
-function leer_clientes(id,cliente)
-{
-var selector=document.getElementById("ncliente");
-html='<option value="0">Selecciona un cliente</option>';
-for(i=0;i<id.length;i++)
-{
-html=html+'<option value="'+id[i]+'">'+cliente[i]+'</option>';
+// Seccion para desplegar los estados de la republica en las altas notariales"
+// Listener para esperar a que todo el HTML este cargado.. 
+document.addEventListener('DOMContentLoaded', () => {
 
-console.log("ID: "+id[i]+" nombre de cliente: "+cliente[i]);
-}
-selector.innerHTML=html;
-}
+    //Obtenemos el selector y consultamos con AJAX la BD para desplegar estados de la republica
+
+    const selector=document.getElementById('estado');
+    const opcion_1=document.createElement('option');
+    opcion_1.value='0';
+    opcion_1.text="Selecciona un estado";
+    selector.appendChild(opcion_1);
+
+// Peticion AJAX para obtener los estados de la republica
+fetch('../legal/php/estados_municipios.php')
+  .then(response => response.json())
+  .then(data => {
+    
+    data.forEach(estado => {
+
+        const option_estado = document.createElement('option');
+        option_estado.value = estado.ID;
+        option_estado.text = estado.c_estado;
+        selector.appendChild(option_estado);        
+      });
+
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+});
+
+
+
+
 
 
 
@@ -211,4 +233,4 @@ html=html+'<option value="'+id[i]+'">'+cliente[i]+'</option>';
 console.log("ID: "+id[i]+" nombre de cliente: "+cliente[i]);
 }
 selector.innerHTML=html;
-}B
+}
