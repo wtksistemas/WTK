@@ -1,40 +1,80 @@
-// Seccion para desplegar los estados de la republica en las altas notariales"
+// Seccion para desplegar los estados de la republica, municipios y clientes  en las altas notariales "
 // Listener para esperar a que todo el HTML este cargado.. 
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('DOMContentLoaded', () => 
+{
     //Obtenemos el selector y consultamos con AJAX la BD para desplegar estados de la republica
-
-    const selector=document.getElementById('estado');
+    const selector_estado=document.getElementById('estado');
     const opcion_1=document.createElement('option');
     opcion_1.value='0';
     opcion_1.text="Selecciona un estado";
-    selector.appendChild(opcion_1);
+    selector_estado.appendChild(opcion_1);
+    // Peticion AJAX para obtener los estados de la republica
+    fetch('../legal/php/estados.php')
+    .then(response => response.json())
+    .then(data => 
+    {
+        data.forEach(estado =>
+        {
+            const option_estado = document.createElement('option');
+            option_estado.value = estado.ID;
+            option_estado.text = estado.c_estado;
+            selector_estado.appendChild(option_estado);        
+        });
+    })
+    .catch(error => 
+    {
+        console.log('Error:', error);
+    });
+    // Peticion AJAX para obtener los clientes dados de alta...
+    selector_cliente=document.getElementById('ncliente');
+    fetch('../legal/php/consulta_clientes.php')
+    .then(response => response.json())
+    .then(data => 
+    {
+        data.forEach(cliente =>
+        {
+            const option_cliente = document.createElement('option');
+            option_cliente.value = cliente.ID;
+            option_cliente.text = cliente.c_razonsocial;
+            selector_estado.appendChild(option_estado);        
+        });
+    })
+    .catch(error =>
+    {
+        console.log('Error:', error);
+    });
 
-// Peticion AJAX para obtener los estados de la republica
-fetch('../legal/php/estados_municipios.php')
-  .then(response => response.json())
-  .then(data => {
-    
-    data.forEach(estado => {
-
-        const option_estado = document.createElement('option');
-        option_estado.value = estado.ID;
-        option_estado.text = estado.c_estado;
-        selector.appendChild(option_estado);        
-      });
-
-  })
-  .catch(error => {
-    console.log('Error:', error);
-  });
-
+    // Listener para obtener los municipios dado que se selecciona un estado..
+    selector_estado.addEventListener('change',()=>
+    {
+        id_estado=document.getElementById('estado').value;
+        // Peticion AJAX para obtener los municipios de un estado seleccionado 
+        // Crear la solicitud AJAX
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET','../legal/php/municipios.php?estado='+id_estado, true);
+        xhr.onload = function()
+        {
+            if (xhr.status === 200)
+            {
+                const municipios = JSON.parse(xhr.responseText);
+                const selector_municipios = document.getElementById('nciudad');
+                selector_municipios.innerHTML = ''; // Limpiamos las opciones anteriores
+                municipios.forEach(municipio =>
+                {
+                    const option = document.createElement('option');
+                    option.value = municipio.id;
+                    option.text = municipio.c_municipio;
+                    selector_municipios.appendChild(option);
+                });
+              } 
+              else 
+              {
+                console.error('Error al obtener los municipios');
+              }
+        };
+        xhr.send();
+    });
 });
-
-
-
-
-
-
 
 class Instrumento {
     div = document.createElement("div");//creamos el div
