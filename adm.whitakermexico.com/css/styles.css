@@ -300,11 +300,13 @@ label {
         font-size: 28px;
     }
     h2 {
-        font-size: 22px;
+        font-size: 22px;|
     }
 }
 
 */
 
 
-
+#otrogrp {
+    margin-left: 1rem;
+}

@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="../css/style.css">
 	<script src="../../clases_prueba.js"></script>
         <script src="js/legal.js"></script>
-
     <!-- Include pdf.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 </head>
 <body>
+
     <?php
         session_start();
         include "../../php/control.php";
@@ -19,22 +19,28 @@
             header("Location: ../../index.html");
         }
     ?>
+    
     <div class="contenedor-principal">
         <div class="menu-superior">
+            
             <div class="opciones">
-            <a href="../nominas/nomina.php">Nómina</a>
-            <a href="legal.php">Legal</a>
+                <a href="../nominas/nomina.php">Nómina</a>
+                <a href="legal.php">Legal</a>
             </div>
+            
             <div class="perfil">
                 <a href="../menu.php">
                     <img src="../img/home.png" class="img-perfil">
                 </a>
+            
                 <?php
                     echo "<span style='color: white;'>".$_SESSION['username']."</span>";
                 ?>
+                
                 <a href="../../php/logout.php"><button type="button" class="btn">Cerrar sesión</button></a>
             </div>
         </div>
+
         <div class="contenido formulario-contenido">
             <script src="js/legal.js"></script>
             <div class="formulario-nuevo-instrumento">
@@ -65,6 +71,10 @@
                         </select>
 
 					</div>
+
+
+
+                    
                     <div class="boton-contenedor-formulario" id="btn_pdf">
                         <button type="button" id="btn-regre" class="boton-formulario" onclick="window.location.href='altainstrumentos.php'">Regresar</button>
                         <button id="btn-registrarcli" class="boton-formulario" type="button" onclick="limpia_form()">limpiar formulario</button>

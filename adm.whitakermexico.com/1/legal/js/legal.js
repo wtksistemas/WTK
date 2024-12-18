@@ -225,40 +225,60 @@ function mostrarCampoTestimonio() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const select = document.getElementById('grpempre');
-    const buttonContainer = document.getElementById('btn_pdf'); // Contenedor de los botones
 
-    function mostrarCampoGrupoEmpre() {
-        let existingDiv = document.getElementById('otroDiv'); // Div contenedor del nuevo input
 
-        if (select.value === '9999') {
-            if (!existingDiv) {
-                // Crear un nuevo div y input si no existe
-                const div = document.createElement('div');
-                div.id = 'otroDiv';
-                div.className = 'campo-formulario'; // Clases para estilos
 
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.name = 'notroGrupo';
-                input.id = 'otroGrupo';
-                input.placeholder = 'Especificar Grupo Empresarial';
-                input.className = 'input-adicional'; // Clase para estilos
-                input.required = true;
+function mostrarCampoGrupoEmpre() {
+    const selectGrupoEmpre = document.getElementById('grpempre');
+    const botonContenedor = document.getElementById('btn_pdf');
 
-                div.appendChild(input); // Agregar input al div
-                buttonContainer.parentNode.insertBefore(div, buttonContainer); // Insertar div antes de los botones
-            }
-        } else if (existingDiv) {
-            // Remover el div completo si existe y se selecciona otra opción
-            existingDiv.parentNode.removeChild(existingDiv);
+    // Verificar si ya existe el div para evitar duplicados
+    let divExistente = document.getElementById('div-otro-grupo');
+    if (selectGrupoEmpre.value === '9999') {
+        if (!divExistente) {
+            // Crear el nuevo div
+            const nuevoDiv = document.createElement('div');
+            nuevoDiv.id = 'div-otro-grupo';
+            nuevoDiv.style.display = 'flex';
+            nuevoDiv.style.gap = '1rem';
+            nuevoDiv.style.marginTop = '1rem';
+            nuevoDiv.style.marginLeft = '1rem';
+
+            // Crear el input
+            const inputOtro = document.createElement('input');
+            inputOtro.type = 'text';
+            inputOtro.placeholder = 'Especificar otro grupo';
+            inputOtro.name = 'otroGrupo';
+            inputOtro.style.flex = '1';
+            inputOtro.id = "otrogrp";
+
+
+
+
+            // Crear el botón
+            const botonGuardar = document.createElement('button');
+            botonGuardar.type = 'button';
+            botonGuardar.textContent = 'Guardar';
+            botonGuardar.className = 'boton-formulario'; // Asigna las clases necesarias
+            botonGuardar.style.flex = '0.64';
+            botonGuardar.style.marginLeft = '4rem';
+            botonGuardar.style.marginRight = '4rem';
+
+            // Agregar input y botón al nuevo div
+            nuevoDiv.appendChild(inputOtro);
+            nuevoDiv.appendChild(botonGuardar);
+
+            // Insertar el div antes del contenedor de los botones
+            botonContenedor.parentNode.insertBefore(nuevoDiv, botonContenedor);
+        }
+    } else {
+        // Eliminar el div si se selecciona otra opción
+        if (divExistente) {
+            divExistente.remove();
         }
     }
+}
 
-    // Asociar la función al evento 'change' del select
-    select.addEventListener('change', mostrarCampoGrupoEmpre);
-});
 
 
 //leer grupos existentes
