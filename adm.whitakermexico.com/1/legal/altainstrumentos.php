@@ -64,7 +64,7 @@
                         </select>
                     </div>
                     <div class="campo-formulario">
-                        <select id="ntipdocum" name="tipdocum" onchange="mostrarCampoTestimonio()">
+                        <select id="ntipdocum" name="tipdocum">
                             <option value="0">Tipo de Documento</option>
                             <option value="testimonio">Testimonio</option>
                             <option value="copia certificada">Copia Certificada</option>
