@@ -126,7 +126,7 @@ l.addEventListener('change', function(ev)
     };
     reader.readAsArrayBuffer(file);
 });
-// funcion para recargar pagina y limpiar formulario
+// funcion para recargar pagina y limpiar formulario del alta de clientes (altaclientes.php)
 function limpia_form()
 {
 location.reload();
