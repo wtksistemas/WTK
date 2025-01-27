@@ -47,7 +47,7 @@
 		</div>
 	
 
-        <div class="formularios-contenedor">
+        <div class="formularios-contenedor" id="baja">
 
 			<div class="formulario-izquierda">
 				<script src="js/piramidador.js"></script>
@@ -65,7 +65,7 @@
 								<option value="vliquidacion" name="liquidacion" id="idliquidacion">Liquidación</option>
 							</select>
 				
-						<label name="diaguipag" id="iddiaguipag">Días de aguinaldo a pagar</label>
+						<label name="diaguipag" id="iddiaguipag">Días pactados de aguinaldo a pagar</label>
 						<input type="number" placeholder="0.000" name="ndiaguipag" id="id_diaguipag" value="0.0">	
 					</div>
 

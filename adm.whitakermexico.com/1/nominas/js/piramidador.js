@@ -508,15 +508,18 @@ function netoaobjetivo() {
 
 
 function baja(){
+
+    alert("Se considera para el salario diario integrado la prima vacacional que por ley es del 25% + días de aguinaldo");
+    
     const baja = document.getElementById("idtbaja");
     const optionbaja = document.getElementById("idescenario1"); 
-    
+    var salariodiario = 419.88; // salario diario 2025    
 
     if(baja.value === "vliquidacion"){
         optionbaja.disabled = false; 
     }
     
-    //dias laborado historico
+    // Días laborados histórico y del año 
     var fchinicio = new Date(document.getElementById("idfching").value); 
     var fchsalida = new Date(document.getElementById("idfchbj").value); 
     
@@ -524,7 +527,16 @@ function baja(){
         var diferen = fchsalida.getTime() - fchinicio.getTime(); // Diferencia en milisegundos
         var dilaborado = Math.round(diferen / (1000 * 60 * 60 * 24)); // Convertir a días
     
+        // Calcular días desde el inicio del año para la fecha de salida
+        var diaslabaño = Math.ceil((fchsalida - new Date(fchsalida.getFullYear(), 0, 1)) / (1000 * 60 * 60 * 24));
+    
+        // Calcular si el último año (año de fchsalida) es bisiesto
+        var ultimoAño = fchsalida.getFullYear();
+        var diasEnUltimoAño = (ultimoAño % 4 === 0 && (ultimoAño % 100 !== 0 || ultimoAño % 400 === 0)) ? 366 : 365;
+    
         alert("Días laborados: " + dilaborado);
+        alert("Días laborados en el año: " + diaslabaño);
+        alert("El año " + ultimoAño + " tiene " + diasEnUltimoAño + " días.");
     } else if (fchsalida != null && fchsalida < fchinicio) {
         alert("La fecha de salida debe ser mayor o igual a la fecha inicial");
     }
@@ -552,25 +564,60 @@ function baja(){
     
     // Aguinaldo    
     var diasFaltas = parseInt(document.getElementById("idfaltas").value); // Obtiene las faltas como número
-    var diaguipag = Document.getElementById("id_diaguipag").value;
-    var diasAño = 365; // Días totales del año
-
+    var diaguipag = parseInt (document.getElementById("id_diaguipag").value);
+    var saladi = parseFloat(document.getElementById("idsdi").value);
     var diaguipa;
-    if (diaguipag > 15)
 
 
-    if (!isNaN(diasFaltas) && diasFaltas >= 0 && diasFaltas <= diasAño) {
-        var diasAguinaldo = diasAño - diasFaltas; // Calcula los días del aguinaldo
-        alert("Días de aguinaldo a calacular con ausentismos: " + diasAguinaldo);
+    if (diaguipag <= 15){
+        diaguipa = 15;
+        alert("Días pactados de aguinaldo a pagar debe ser minimo 15 dias")
+    } else {
+        diaguipa=diaguipag;
+    }
+    alert("Dias de aguinaldo a pagar: "+diaguipa);
 
-        var propoagui = diasAguinaldo *  ;
-
-
+    if (!isNaN(diasFaltas) && diasFaltas >= 0 && diasFaltas <= diasEnUltimoAño) {
+        // Calcula los días de aguinaldo restando las faltas
+        var diaPropoci = diaslabaño - diasFaltas;
+        
+        // Calcula la proporción de pago de aguinaldo
+        var diaProporPaga = (diaPropoci * diaguipa) / diasEnUltimoAño;
+        
+        // Calcula el aguinaldo a pagar
+        var agui = diaProporPaga * saladi;
+    
+        // Redondear a 2 decimales
+        diaProporPaga = parseFloat(diaProporPaga.toFixed(2));
+        agui = parseFloat(agui.toFixed(2));
+    
+        // Muestra los resultados
+        alert("Días de aguinaldo a pagar con ausentismos: " + diaPropoci);
+        alert("Proporción que le corresponde de pago de aguinaldo: " + diaProporPaga);
+        alert("Salario diario: " + saladi);
+        alert("Aguinaldo a pagar: " + agui);
     } else {
         alert("Por favor, ingresa un número válido de días de faltas.");
     }
 
 
+    //Salario diario integrado
+
+    var fint = (diaslabaño + (divaca * 0.25) + diaguipa)/diaslabaño;
+    
+    alert("Factor de integracion: "+ fint);
+
+    var sinte = fint * saladi;
+    
+    alert("Salario diario Integrado: " + sinte);
+
+    //Antiguedad
+
+    // si el salrio base excede al doble, si no lo exede se queda con ese pero si lo exede se queda con el minimo 
+    if (salariodiario<=(salariodiario*2)){
+        
+
+    }
 
 }
  
