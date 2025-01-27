@@ -1,6 +1,7 @@
 
 function valida_metodo()
 {
+const periodi = document.getElementById("periodicidad").value;
 const s_ingresado=document.getElementById("salario").value;
 const pr_ingresado=document.getElementById("priesgo").value;
 const metodo=document.getElementById("piramida").value;
@@ -68,6 +69,13 @@ if(metodo=="Bruto a Neto")
     }
 }
 
+if(periodi == "nada" || salario === "" ){
+    alert("Debe seleccionar una opción valida y llenar todos los campos requeridos.");
+    window.location.reload();//recarga la pagina
+    return false;//evita el envio del formulario
+}
+
+return true;//permite envio exitoso
 
 
 }
@@ -89,28 +97,82 @@ function piramida(neto,riesgo)
     return nuevo_bruto;
 }
 
+
+
 function bruto_neto(bruto,riesgo)
     {
-        // tablas deISR 
+        const tbimpuestos = document.getElementById("periodicidad").value;
 
-        // Tabla ISR mensual limite inferior
-        tablaMensual = [0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62];
-        // Tabla ISR mensual limite superior
-        tablaMensualsup=[746.04,6332.05,11128.00,12935.8,15487.7,31236.5,49233.00,93993.9,125325,375976,10000000000];
-        // Tabla ISR mensual Cuota fija
-        cuotaMensual = [ 0.00, 14.32, 371.83, 893.63, 1182.88, 1640.18, 5004.12, 9236.89, 22665.17, 32691.18, 117912.32];
-        // Tabla ISR mensual excedente
-        porcMensual = [ 1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00];
-        // Tabla subsidio mensual hasta ingresos de
-        ingSubMensual = [ 1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 4717.18, 5335.42, 6224.67, 7113.90, 7382.33];
-        // Tabla de subsidio ISR mensual - Cantidad de subsidio para el empleo
-        canSubMensual = [ 407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00];
+        var dias;
+        var tablaMensual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var tablaMensualsup=[0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0];
+        var cuotaMensual = [ 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0];
+        var porcMensual = [ 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0];
+        var ingSubMensual = [ 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0];
+        var canSubMensual = [ 0, 0, 0, 0, 0, 0,0 ,0 ,0 ,0 ,0];
+
+            switch (tbimpuestos) {
+                case "vsemanal":
+                    dias=7;
+                    tablaMensual = [0.01, 171.79, 1458.04, 2562.36, 2978.65, 3566.23, 7192.65, 11336.58, 21643.31, 28857.79, 86573.35];
+                    //Tabla ISR semanal limite inferior
+                    tablaMensualsup = [171.78, 1458.03, 2562.35, 2978.64, 3566.22, 7192.64, 11336.57, 21643.30, 28857.78, 86573.34, 10000000000];
+                     // Tabla ISR Semanal Cuota fija
+                    cuotaMensual = [0.00, 3.29, 85.61, 205.80, 272.37, 377.65, 1152.27, 2126.95, 5218.92, 7527.59, 27150.83];
+                      // Tabla ISR Semanal excedente
+                    porcMensual = [1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00];
+                    // Tabla subsidio Semanal hasta ingresos de
+                    ingSubMensual = [407.33, 610.96, 799.68, 814.66, 1023.75, 1228.57, 1433.32, 1638.07, 1699.88];
+                    // Tabla de subsidio ISR Semanal - Cantidad de subsidio para el empleo
+                    canSubMensual = [93.73, 93.66, 93.66, 90.44, 88.06, 81.55, 74.83, 67.83, 58.38, 50.12, 0.00];
+                    break;
+                case "vquincenal":
+                    dias=15;
+                    //Tabla ISR Quinsenal limite inferior
+                    tablaMensual = [0.01, 368.11, 3124.36, 5490.76, 6382.81, 7641.91, 15412.81, 24292.66, 46378.51, 61838.11, 185514.31];
+                    // Tabla ISR Quincenal limite superior
+                    tablaMensualsup = [368.10, 3124.35, 5490.75, 6382.80, 7641.90, 15412.80, 24292.65, 46378.50, 61838.10, 185514.30, 10000000000];
+                    // Tabla ISR Quincenal Cuota fija
+                    cuotaMensual = [0.00, 7.05, 183.45, 441.00, 583.65, 809.25, 2,469.15, 4557.75, 11183.40, 16130.55, 58180.35];
+                    // Tabla ISR Quincenal excedente
+                    porcMensual = [1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00];
+                    // Tabla subsidio Quincenal hasta ingresos de
+                    ingSubMensual = [872.85, 1309.20, 1713.60, 1745.70, 2193.75, 2327.55, 2632.65, 3071.40, 3510.15, 3642.60];
+                    // Tabla de subsidio ISR Quincenal - Cantidad de subsidio para el empleo
+                    canSubMensual = [200.85, 200.70, 200.70, 193.80, 188.70, 174.75, 160.35, 145.35, 125.10, 107.40, 0.00];
+                    break;
+                case "vmensual":
+                    dias=30;
+                    tablaMensual = [0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62];
+                    // Tabla ISR mensual limite superior
+                    tablaMensualsup=[746.04,6332.05,11128.00,12935.8,15487.7,31236.5,49233.00,93993.9,125325,375976,10000000000];
+                    // Tabla ISR mensual Cuota fija
+                    cuotaMensual = [ 0.00, 14.32, 371.83, 893.63, 1182.88, 1640.18, 5004.12, 9236.89, 22665.17, 32691.18, 117912.32];
+                    // Tabla ISR mensual excedente
+                    porcMensual = [ 1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00];
+                    // Tabla subsidio mensual hasta ingresos de
+                    ingSubMensual = [ 1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 4717.18, 5335.42, 6224.67, 7113.90, 7382.33];
+                    // Tabla de subsidio ISR mensual - Cantidad de subsidio para el empleo
+                    canSubMensual = [ 407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00];
+                    break;
+                case "vanual":
+                    tablaMensual = [0.01, 8952.50, 75984.56, 133536.08, 155229.81, 185852.58, 374837.89, 590796.00, 1127926.85, 1503902.47, 4511707.38];
+                    // Tabla ISR anual limite superior
+                    tablaMensualsup = [2238.12, 75984.55, 133536.07, 155229.80, 185852.57, 374837.88, 590795.99, 1127926.84, 1503902.46, 4511707.37, 10000000000];
+                    // Tabla ISR anual Cuota fija
+                    cuotaMensual = [0.00, 171.88, 4461.94, 10723.55, 14194.54, 19682.13, 60049.40, 110842.74, 271981.99, 392294.17, 1414947.85];  
+                    // Tabla ISR anual excedente                    
+                    porcMensual = [1.92, 6.40, 10.88, 16.00, 17.92, 21.3, 23.52, 30.00, 32.00, 34.00, 35.00];
+                    break
+                default:
+                    break;
+            }     
 
         // Tablas subsidio
 
-        tablaSubsidioMensualinf = [0.01,1768.97,2653.39,3472.85,3537.88,44446.46,9081.01];
+        tablaSubsidioMensualinf = [0.01,1768.97,2653.39,3472.85,3537.88,44446.46,10144];
         tablaSubsidioMensualsup = [1768.96,2653.38,3472.84,3537.87,4446.15,9081,100000000000];
-        subsidio=[407.02,406.83,406.62,392.77,382.46,390,0];
+        subsidio=[407.02,406.83,406.62,392.77,382.46,475,0];
     
         /* Variables de usuario para calculo */
          
@@ -135,12 +197,12 @@ function bruto_neto(bruto,riesgo)
   
         /* Variables Globales estaticas  */
  
-        fintegracion=1.0493; /* Factor de integracion para 2024 */
-        uma=108.57; /* Valor de UMA 2024 */
+        fintegracion=1.0493; /* Factor de integracion para 2025 */
+        uma=113.14; /*    Valor de UMA 2025 */
         sbc=salario*fintegracion; /* Calculo de Salario Base de Cotizacion mensual */
-        dias=30; /* Dias trabajados para calculo */
+        /*dias=30;  Dias trabajados para calculo */
         sdi=sbc/dias; /* Calculo de Salario diario integrado */
-        isn=3.00/100; /* Porcentaje de ISN CDMX */ 
+        isn=4.00/100; /* Porcentaje de ISN CDMX */ 
         tope_umas_imss=uma*25;
         
         if(sdi>tope_umas_imss)
@@ -342,8 +404,10 @@ function bruto_neto(bruto,riesgo)
    return [neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr];
 }
 
-function validarform(){
+
+/*function validarform(){
     const seleccion = document.getElementById("piramida").value;
+    const periodi = document.getElementById("periodicidad").value;
     const salario = document.querySelector("input[name='salario']").value;
 
     if(seleccion === "nada" || salario === ""){
@@ -351,27 +415,167 @@ function validarform(){
         window.location.reload();//recarga la pagina
         return false;//evita el envio del formulario
     }
+
+    if(periodi == "nada" || salario === "" ){
+        alert("Debe seleccionar una opción valida y llenar todos los campos requeridos.");
+        window.location.reload();//recarga la pagina
+        return false;//evita el envio del formulario
+    }
+
     return true;//permite envio exitoso
-}
+
+
+}*/
+
  /* retorno a pagina de calculo con paso de variables en url */
  
 //header("Location: ++/nomina+php?&visr="+number_format(cuota_fija,2)+"&sbase="+number_format(salario,2)+"&vimss="+number_format(imss,2)+"&vsub="+number_format(valor_subsidio,2)+"&vneto="+number_format(neto,2)+"&vimssp="+number_format(imssp,2)+"&vinfo="+number_format(prop_i_in,2)+"&visn="+number_format(isnp,2)+"&vcosto="+number_format(costo,2)+"&visrr="+number_format(tisr,2)+"&vprima="+riesgo+""); 
 
-function netoaobjetivo() {
-	const piramida = document.getElementById("piramida").value;
-	const labelMensual = document.getElementById("vmensual");
-	const labelNeto = document.getElementById("v_net");
 
-	if (piramida === "Bruto a Neto") {
-		labelMensual.innerText = "Bruto Mensual";
-		labelNeto.innerText = "Neto a pagar";
-	} else if (piramida === "Neto a Bruto") {
-		labelMensual.innerText = "Neto Mensual";
-		labelNeto.innerText = "Bruto estimado";
-	} else {
-		labelMensual.innerText = "Base Mensual";
-		labelNeto.innerText = "Neto a pagar";
-	}
+
+function netoaobjetivo() { 
+    const piramida = document.getElementById("piramida").value;
+    const periodicidad = document.getElementById("periodicidad");
+    const labelMensual = document.getElementById("vmensual");
+    const labelNeto = document.getElementById("v_net");
+    const opcionAnual = document.getElementById("idanual");
+    const inputSubanual = document.getElementById("id_vsubanual");
+
+    // Verificar si la opción seleccionada es "Bruto a Neto"
+    if (piramida === "Bruto a Neto") {
+        opcionAnual.style.display = "inline-block"; // Mostrar la opción Anual
+        labelNeto.innerText = "Neto a pagar";
+        switch (periodicidad.value) {
+            case "vsemanal":
+                labelMensual.innerText = "Base Semanal";
+                inputSubanual.disabled = true;
+                inputSubanual.value = "0.0";
+                break;
+            case "vquincenal":
+                labelMensual.innerText = "Base Quincenal";
+                inputSubanual.disabled = true;
+                inputSubanual.value = "0.0";
+                break;
+            case "vmensual":
+                labelMensual.innerText = "Base Mensual";
+                inputSubanual.disabled = true;
+                inputSubanual.value = "0.0";
+                break;
+            case "vanual":
+                labelMensual.innerText = "Base Anual";
+                inputSubanual.disabled = false; // Habilitar el input cuando se selecciona Anual
+                break;
+            default:
+                labelMensual.innerText = "Bruto";
+                inputSubanual.value = "0.0";
+                inputSubanual.disabled = true;
+                break;
+        }
+    } else if (piramida === "Neto a Bruto") {
+        opcionAnual.style.display = "none"; // Ocultar la opción Anual
+        inputSubanual.disabled = true; // Deshabilitar el input si no está seleccionado Anual
+        inputSubanual.value = "0.0";
+
+        labelMensual.innerText = "Neto";
+        labelNeto.innerText = "Bruto estimado";
+        switch (periodicidad.value) {
+            case "vsemanal":
+                labelMensual.innerText = "Neto Semanal";
+                break;
+            case "vquincenal":
+                labelMensual.innerText = "Neto Quincenal";
+                break;
+            case "vmensual":
+                labelMensual.innerText = "Neto Mensual";
+                break;
+            default:
+                labelMensual.innerText = "Neto";
+                break;
+        }
+
+        if (periodicidad.value === "vanual") {
+            alert("¡Advertencia! No puedes seleccionar la opción 'Anual' cuando la pirámide es 'Neto a Bruto'.");
+            location.reload();
+        }
+    } else {
+        opcionAnual.style.display = "none"; // Ocultar la opción Anual
+        inputSubanual.disabled = true; // Deshabilitar el input si no está seleccionado Anual
+        labelMensual.innerText = "Bruto";
+        labelNeto.innerText = "Neto a pagar";
+    }
 }
+
+
+
+function baja(){
+    const baja = document.getElementById("idtbaja");
+    const optionbaja = document.getElementById("idescenario1"); 
+    
+
+    if(baja.value === "vliquidacion"){
+        optionbaja.disabled = false; 
+    }
+    
+    //dias laborado historico
+    var fchinicio = new Date(document.getElementById("idfching").value); 
+    var fchsalida = new Date(document.getElementById("idfchbj").value); 
+    
+    if (fchinicio <= fchsalida) { 
+        var diferen = fchsalida.getTime() - fchinicio.getTime(); // Diferencia en milisegundos
+        var dilaborado = Math.round(diferen / (1000 * 60 * 60 * 24)); // Convertir a días
+    
+        alert("Días laborados: " + dilaborado);
+    } else if (fchsalida != null && fchsalida < fchinicio) {
+        alert("La fecha de salida debe ser mayor o igual a la fecha inicial");
+    }
+    
+
+    //tabla de vacaciones 2025
+    var tbvacaciones = [0, 12, 14, 16, 18, 20, 22, 22, 22, 22, 22, 24, 24, 24, 24, 24, 26, 26, 26, 26, 26, 28, 28, 28, 28, 28, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30];
+
+    var añolab = Math.floor(dilaborado / 365); // Redondea hacia abajo
+    var divaca = tbvacaciones[añolab];
+
+    alert("Años laborados: " + añolab);
+    alert("Dias de vacaciones: " + divaca);
+
+    //Dias a pendientes o a deber vacaciones
+    const didisf = document.getElementById("id_vacdi").value;
+
+    if (didisf <= divaca) {
+        let vacrest = divaca - didisf;
+        alert("Días por disfrutar = " + vacrest);
+    } else if (didisf >= divaca){
+        let vacdebe = didisf - divaca;
+        alert("Dias a descontar = " + vacdebe);
+    }
+    
+    // Aguinaldo    
+    var diasFaltas = parseInt(document.getElementById("idfaltas").value); // Obtiene las faltas como número
+    var diaguipag = Document.getElementById("id_diaguipag").value;
+    var diasAño = 365; // Días totales del año
+
+    var diaguipa;
+    if (diaguipag > 15)
+
+
+    if (!isNaN(diasFaltas) && diasFaltas >= 0 && diasFaltas <= diasAño) {
+        var diasAguinaldo = diasAño - diasFaltas; // Calcula los días del aguinaldo
+        alert("Días de aguinaldo a calacular con ausentismos: " + diasAguinaldo);
+
+        var propoagui = diasAguinaldo *  ;
+
+
+    } else {
+        alert("Por favor, ingresa un número válido de días de faltas.");
+    }
+
+
+
+}
+ 
+
+
+
 
 
