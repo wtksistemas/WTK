@@ -611,11 +611,11 @@ function baja(){
     
     alert("Salario diario Integrado: " + sinte);
 
-    //Antiguedad
+    //Antiguedad si ya cumplio 12 años 
 
     // si el salrio base excede al doble, si no lo exede se queda con ese pero si lo exede se queda con el minimo 
     if (salariodiario<=(salariodiario*2)){
-        
+
 
     }
 
