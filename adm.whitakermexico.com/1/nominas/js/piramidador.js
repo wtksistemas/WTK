@@ -1,94 +1,110 @@
 
+
 function valida_metodo()
 {
-const periodi = document.getElementById("periodicidad").value;
-const s_ingresado=document.getElementById("salario").value;
-const pr_ingresado=document.getElementById("priesgo").value;
-const metodo=document.getElementById("piramida").value;
+    // leemos todos los valores del formulario enviado..
+    const periodi = document.getElementById("periodicidad").value;
+    const s_ingresado=document.getElementById("salario").value;
+    const pr_ingresado=document.getElementById("priesgo").value;
+    const metodo=document.getElementById("piramida").value;
+    const subsidio_anual=document.getElementById("id_vsubanual").value;
 
 
-var isr_determinado=document.getElementById("v_isr");
-var sub_determindado=document.getElementById("v_sub");
-var isrr_determinado=document.getElementById("v_isrr");
-var imss_empleado=document.getElementById("v_imss");
-var neto_calculado=document.getElementById("v_neto");
+    var isr_determinado=document.getElementById("v_isr");
+    var sub_determindado=document.getElementById("v_sub");
+    var isrr_determinado=document.getElementById("v_isrr");
+    var imss_empleado=document.getElementById("v_imss");
+    var neto_calculado=document.getElementById("v_neto");
 
-var imss_patron=document.getElementById("v_imssp");
-var infoavit_patron=document.getElementById("v_infonavit");
-var isn_patron=document.getElementById("v_isn");
-var neto_patron=document.getElementById("v_netop");
+    var imss_patron=document.getElementById("v_imssp");
+    var infoavit_patron=document.getElementById("v_infonavit");
+    var isn_patron=document.getElementById("v_isn");
+    var neto_patron=document.getElementById("v_netop");
 
 
+    // Evaluamos los valores mimimos que el usuario debe ingresar.. 
 
-if (metodo === "nada") {
-    alert("Por favor, selecciona un método válido");
-    window.location.reload();//recarga la pagina
-    return false;//evita el envio del formulario
-}
-else{
-    if(isNaN(s_ingresado)|| s_ingresado <= 0){
-        alert("Por favor, ingresa un valor númerico mayor a cero");
-        window.location.reload();//recarga la pagina
-        return false;//evita el envio del formulario
-    }else{
-        if(isNaN(pr_ingresado)|| pr_ingresado < 0.5){
-            alert("Por favor, ingresa un valor númerico mayor a 0.5");
+    if(isNaN(s_ingresado)|| s_ingresado < 419.88 || isNaN(pr_ingresado)|| pr_ingresado < 0.5)
+        {
+            alert("Por favor, ingresa un salario mayor al minimo vigente y una prima de riesgo mayor a 0.5");
             window.location.reload();//recarga la pagina
             return false;//evita el envio del formulario
         }
-    }
-}
+        else{}
 
-if(metodo=="Neto a Bruto")
-{
+    //Realizamos los calculos dependiendo la seleccion del usuario.. 
+        switch (metodo) 
+        {
+            case "nada":
+                alert("Por favor, selecciona un método válido");
+                window.location.reload();//recarga la pagina
+                //return false; evita el envio del formulario
+              break;
+            case "Bruto a Neto":
+                const n=[neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(s_ingresado,pr_ingresado,periodi,subsidio_anual);
 
-var bruto_piramida=piramida(s_ingresado,pr_ingresado);
-
-neto_calculado.value=bruto_piramida;
-
-alert("El bruto estimado a considerar: "+bruto_piramida);
-
-}
-else
-{
-if(metodo=="Bruto a Neto")
-    {
-        const n=[neto,bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(s_ingresado,pr_ingresado);
-
-        isr_determinado.value=Number(cuota_aplicada.toFixed(2));
-        sub_determindado.value=Number(valor_subsidio.toFixed(2));
-        isrr_determinado.value=Number(tisr.toFixed(2));
-        imss_empleado.value=Number(imss.toFixed(2));
-        neto_calculado.value=Number(neto.toFixed(2));
+                isr_determinado.value=Number(cuota_aplicada.toFixed(2));
+                sub_determindado.value=Number(valor_subsidio.toFixed(2));
+                isrr_determinado.value=Number(tisr.toFixed(2));
+                imss_empleado.value=Number(imss.toFixed(2));
+                neto_calculado.value=Number(neto.toFixed(2));
         
-        imss_patron.value=Number(imssp.toFixed(2));
-        infoavit_patron.value=Number(prop_i_in.toFixed(2));
-        isn_patron.value=Number(isnp.toFixed(2));
-        neto_patron.value=Number(costo.toFixed(2));
+                imss_patron.value=Number(imssp.toFixed(2));
+                infoavit_patron.value=Number(prop_i_in.toFixed(2));
+                isn_patron.value=Number(isnp.toFixed(2));
+                neto_patron.value=Number(costo.toFixed(2));
+                break;
+            case "Neto a Bruto":
+                var bruto_piramida=piramida(s_ingresado,pr_ingresado,periodi);
+                neto_calculado.value=bruto_piramida;
+                alert("El bruto estimado a considerar: "+bruto_piramida);
+                break;
 
+
+
+            default:
+                alert("Favor de llenar todo el formulario");
+                window.location.reload();//recarga la pagina
+                //return false; evita el envio del formulario
+          }
+          
+/*
+
+    if(metodo=="Neto a Bruto")
+    {
+        var bruto_piramida=piramida(s_ingresado,pr_ingresado);
+        neto_calculado.value=bruto_piramida;
+        alert("El bruto estimado a considerar: "+bruto_piramida);
+
+    }   
+    else
+    {
+        if(metodo=="Bruto a Neto")
+        {
+        
+        }
     }
-}
 
-if(periodi == "nada" || salario === "" ){
+    if(periodi == "nada" || salario === "" ){
     alert("Debe seleccionar una opción valida y llenar todos los campos requeridos.");
     window.location.reload();//recarga la pagina
     return false;//evita el envio del formulario
+    }
+    */
+    return true;//permite envio exitoso
 }
 
-return true;//permite envio exitoso
 
 
-}
- 
-function piramida(neto,riesgo)
+function piramida(neto,riesgo,periodicidad,sub)
 { 
     //Pasamos el neto objetivo y lo metemos en la funcion bruto_neto como un " Bruto "
     //La funcion bruto_neto me retornara un nuevo neto y el bruto(neto objetivo)
-    var y=[nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(neto,riesgo);
+    var y=[nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(neto,riesgo,periodicidad,sub);
     var centavo=0.50;
     parseFloat(neto);
    do {
-    var x=[nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(nuevo_bruto,riesgo);
+    var x=[nuevo_neto,nuevo_bruto,riesgo,cuota_aplicada,imss,valor_subsidio,imssp,prop_i_in,isnp,costo,tisr]=bruto_neto(nuevo_bruto,riesgo,periodicidad,sub);
     nuevo_bruto=parseFloat(nuevo_bruto)+parseFloat(centavo);
     Number(nuevo_bruto.toFixed(2));
     parseFloat(nuevo_neto);
@@ -98,10 +114,10 @@ function piramida(neto,riesgo)
 }
 
 
-
-function bruto_neto(bruto,riesgo)
+// Funcion para el calulo de salario bruto a salario neto pasando el valor de salario bruto y la prima de riesgo.. 
+function bruto_neto(bruto,riesgo,tbimpuestos,sub)
     {
-        const tbimpuestos = document.getElementById("periodicidad").value;
+        //window.alert(valor_subsidio);
 
         var dias;
         var tablaMensual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -181,6 +197,8 @@ function bruto_neto(bruto,riesgo)
          parseInt(salario);
          parseFloat(riesgo);
         
+
+         /* comentamos la parte de la validacion ya que al validar el formulario ya se valida esta parte.. 
         if(isNaN(salario))
         { 
             alert("El salario base no es correcto, ingresa numeros unicamente porfavor: "+salario);
@@ -194,7 +212,7 @@ function bruto_neto(bruto,riesgo)
             window.location.reload();
             }
         }
-  
+  */
         /* Variables Globales estaticas  */
  
         fintegracion=1.0493; /* Factor de integracion para 2025 */
@@ -202,7 +220,7 @@ function bruto_neto(bruto,riesgo)
         sbc=salario*fintegracion; /* Calculo de Salario Base de Cotizacion mensual */
         /*dias=30;  Dias trabajados para calculo */
         sdi=sbc/dias; /* Calculo de Salario diario integrado */
-        isn=4.00/100; /* Porcentaje de ISN CDMX */ 
+        isn=4.00/100; /* Porcentaje de ISN CDMX 2025 */ 
         tope_umas_imss=uma*25;
         
         if(sdi>tope_umas_imss)
@@ -254,19 +272,26 @@ function bruto_neto(bruto,riesgo)
 
         limite_inf_subsidio=0;
         limite_sup_subsidio=0;
-        valor_subsidio=0;
         j=0;
-        for(j=0;j<=6;j++)
+        valor_subsidio=sub;
+        if(valor_subsidio<=0)
         {
-            if(salario<= tablaSubsidioMensualsup[j])
-            {
-                limite_inf_subsidio=tablaSubsidioMensualinf[j];
-                limite_sup_subsidio=tablaSubsidioMensualsup[j];
-                valor_subsidio=subsidio[j];
-                break;
-            }
-
+            for(j=0;j<=6;j++)
+                {
+                    if(salario<= tablaSubsidioMensualsup[j])
+                    {
+                        limite_inf_subsidio=tablaSubsidioMensualinf[j];
+                        limite_sup_subsidio=tablaSubsidioMensualsup[j];
+                        valor_subsidio=subsidio[j];
+                        break;
+                    }
+        
+                }  
         }
+        else{}
+        
+       
+        
         //Se calcula el excedente, restanto el salario menos el limite inferior
         excedente=salario-limite_inferior;
         //Se calcula el porentaje de excedente multiplicando el excedente anteriormente claculado por el % obtenido de la tabla de isr /100
@@ -433,7 +458,7 @@ function bruto_neto(bruto,riesgo)
 
 
 
-function netoaobjetivo() { 
+function formulario_piramidador() { 
     const piramida = document.getElementById("piramida").value;
     const periodicidad = document.getElementById("periodicidad");
     const labelMensual = document.getElementById("vmensual");
@@ -505,9 +530,21 @@ function netoaobjetivo() {
     }
 }
 
+// funcion para adecuar el formulario dependiendo de que opcion se elija en el tipo de baja (finiquito/liquidacion)
+function adecuacion_formulario() 
+{
 
 
-function baja(){
+}
+//funcion para procesar el calulo seleccionado por usuario
+function procesa_calculo()
+{
+
+
+}
+
+//funcion para calcular finiquitos
+function calculo_baja(){
 
     alert("Se considera para el salario diario integrado la prima vacacional que por ley es del 25% + días de aguinaldo");
     
@@ -618,6 +655,14 @@ function baja(){
 
 
     }
+
+}
+
+function calculo_liquidacion() // funcion para calcular liquidaciones 
+{
+
+
+
 
 }
  

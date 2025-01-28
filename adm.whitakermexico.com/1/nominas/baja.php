@@ -59,7 +59,7 @@
 					<div class="fila">
 						<label name="tipbaja">¿Que deseas calcular?</label>
 						
-							<select id="idtbaja" name="tbaja" onchange="baja()">
+							<select id="idtbaja" name="tbaja" onchange="adecuacion_formulario()">
 								<option value="nada" name="nada">	--	</option>
 								<option value="vfiniquito" name="finiquito" id="idfiniquito">Finiquito</option>
 								<option value="vliquidacion" name="liquidacion" id="idliquidacion">Liquidación</option>
@@ -105,7 +105,7 @@
 			 
 		
 					<div class="botones">
-						<button class="boton" type="button" onclick="baja() " id="b1">Enviar</button>
+						<button class="boton" type="button" onclick="procesa_calculo() " id="b1">Enviar</button>
 						<button class="boton" id="b2"type="button" onclick="window.location.href='baja.php'">Borrar</button>
 					</div>
 			 

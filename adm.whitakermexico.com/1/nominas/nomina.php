@@ -59,7 +59,7 @@
 					<div class="fila">
 						<label name="piramidacion">Piramidación</label>
 						
-							<select id="piramida" name="piramida" onchange="netoaobjetivo()">
+							<select id="piramida" name="piramida" onchange="formulario_piramidador()">
 								<option value="nada" name="nada">	--	</option>
 								<option value="Bruto a Neto" name="Bruto a Neto">Bruto a Neto</option>
 								<option value="Neto a Bruto" name="Neto a Bruto">Neto a Bruto</option>
@@ -72,7 +72,7 @@
 					<div class="fila">
 						<label name="tb_impuestos">Tabla de impuesto</label>
 						
-						<select id="periodicidad" name="periodicidad" onchange="netoaobjetivo()">
+						<select id="periodicidad" name="periodicidad" onchange="formulario_piramidador()">
 							<option value="nada" name="nada">    --    </option>
     						<option value="vsemanal" name="semanal">Semanal</option>
    		 					<option value="vquincenal" name="quincenal">Quincenal</option>
