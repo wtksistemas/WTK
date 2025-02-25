@@ -11,7 +11,7 @@ if(valores != "" )
 			}
 		else if (validacion == "3")
 			{
-			window.alert("Contraseña y/o Usuario incorrecto, verefique sus datos ! ");
+			window.alert("Contraseña y/o Usuario incorrecto y/o invalidos, verefique sus datos ! ");
 
 			}
 		
