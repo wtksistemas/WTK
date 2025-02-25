@@ -115,7 +115,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
             // Tabla ISR Quincenal limite superior
             tablaMensualsup = [368.10, 3124.35, 5490.75, 6382.80, 7641.90, 15412.80, 24292.65, 46378.50, 61838.10, 185514.30, 10000000000];
             // Tabla ISR Quincenal Cuota fija
-            cuotaMensual = [0.00, 7.05, 183.45, 441.00, 583.65, 809.25, 2, 469.15, 4557.75, 11183.40, 16130.55, 58180.35];
+            cuotaMensual = [0.00, 7.05, 183.45, 441.00, 583.65, 809.25, 2469.15, 4557.75, 11183.40, 16130.55, 58180.35];
             // Tabla ISR Quincenal excedente
             porcMensual = [1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00];
             // Tabla subsidio Quincenal hasta ingresos de
@@ -151,9 +151,9 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     }
 
     // Tablas subsidio
-    tablaSubsidioMensualinf = [0.01, 1768.97, 2653.39, 3472.85, 3537.88, 44446.46, 10144];
-    tablaSubsidioMensualsup = [1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 9081, 100000000000];
-    subsidio = [407.02, 406.83, 406.62, 392.77, 382.46, 475, 0];
+    tablaSubsidioMensualinf = [0.01, 10171.01];
+    tablaSubsidioMensualsup = [10171.00, 100000000000];
+    subsidio = [475.00, 0.0];
 
     // Variables de usuario para calculo
 
@@ -320,10 +320,10 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
         // Tablas de cesentia
         limite_inf_cesentia = 0;
         limite_sup_cesentia = 0;
-        ccv = 0;
-        tablaMensualCV_inf = [248.93, 248.94, 248.95, 248.96, 271.44, 325.72, 380.01, 434.29];
-        tablaMensualCV_sup = [248.93, 248.94, 248.95, 271.43, 325.71, 380, 434.28, 2714.25];
-        tablaMensualCV_CV = [3.15, 3.413, 4.00, 4.353, 4.588, 4.756, 4.882, 5.331];
+        ccv = 0;                        
+        tablaMensualCV_inf = [248.93, 251.41, 283.98, 340.55, 397.12, 453.69];
+        tablaMensualCV_sup = [248.93, 282.85, 339.42, 395.99, 452.56, 10000000000];
+        tablaMensualCV_CV = [3.15, 4.954, 5.307, 5.559, 5.747, 6.422];
         k = 0;
         for (k = 0; k <= 6; k++) {
             if (sdi <= tablaMensualCV_sup[k]) {
@@ -336,7 +336,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
         proe_i_cv = (sdi * dias) * porccentajee_i_cv;
         prop_i_cv = (sdi * dias) * ccv / 100;
 
-        //Calculo de ISN 3% CDMX
+        //Calculo de ISN 4% CDMX 2025
         isnp = salario * isn;
 
         //Calculo de IMSS empleado        

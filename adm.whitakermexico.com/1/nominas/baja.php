@@ -104,7 +104,7 @@
 			 
 		
 					<div class="botones">
-						<button class="boton" type="button" onclick="procesa_calculo() " id="b1">Enviar</button>
+						<button class="boton" type="button" onclick="calculo_baja() " id="b1">Enviar</button>
 						<button class="boton" id="b2"type="button" onclick="window.location.href='baja.php'">Borrar</button>
 					</div>
 			 
