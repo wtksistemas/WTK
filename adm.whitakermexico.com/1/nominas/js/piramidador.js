@@ -344,7 +344,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
 
         // Calculo IMSS para patron
         imssp = pro_i_cf + prop_i_ex + prop_i_pd + prop_i_gm + prop_i_rt + prop_i_iv + prop_i_gg + prop_i_cv + prop_i_re + prop_i_in;
-        costo = imssp;
+        costo = imssp+isnp+prop_i_in;
         if (valor_subsidio >= cuota_aplicada) {
             tisr = 0;
         }
