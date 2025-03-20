@@ -160,3 +160,18 @@ function validarCampos() {
 		}
 		return true;//permite envio exitoso
 	}
+
+
+function nav(){
+	const submenus = document.querySelectorAll('.submenu');
+
+submenus.forEach(submenu => {
+  submenu.parentElement.addEventListener('mouseenter', () => {
+    submenu.style.display = 'block';
+  });
+
+  submenu.parentElement.addEventListener('mouseleave', () => {
+    submenu.style.display = 'none';
+  });
+});
+}

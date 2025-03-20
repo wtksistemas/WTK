@@ -520,3 +520,37 @@ textarea{
 #baja {
     justify-content: center;
 }
+
+
+    /* Quitar bullets de las listas específicas */
+    .menu, .menu ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 1rem;
+    }
+
+    /* Ocultar submenú y estilo para "as" */
+    .menu > li + ul {
+        display: none;
+        position: absolute;
+        background: #fff;
+        padding: 5px;
+        border-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        color: black;
+    }
+
+    /* Mostrar submenú al hover */
+    .menu > li:hover + ul,
+    .menu > li + ul:hover {
+        display: block;
+    }
+
+    /* Estilo opcional para el ítem "as" */
+    .menu > li + ul li {
+        padding: 5px 10px;
+        white-space: nowrap;
+    }
+#submenu{
+    color: #F65100;
+}
