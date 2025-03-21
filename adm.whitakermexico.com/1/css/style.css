@@ -520,3 +520,59 @@ textarea{
 #baja {
     justify-content: center;
 }
+
+
+/* Menú superior - Dropdown */
+.menu-superior .opciones {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.menu > li {
+    list-style: none;
+    position: relative;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+
+    left: 0;
+    background: #fff;
+    padding: 10px;
+    margin-top: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.submenu li {
+    padding: 8px 0;
+}
+
+.submenu a {
+    color: #F65100 !important;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.submenu a:hover {
+    background-color: #f8f8f8;
+}
+
+/* Clase activa para mostrar el submenú */
+.dropdown.active .submenu {
+    display: block;
+}

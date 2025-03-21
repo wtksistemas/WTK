@@ -6,6 +6,7 @@
     <title>Panel division Legal</title>
     <link rel="stylesheet" href="../css/style.css">
 	<script src="js/legal.js"></script>
+	<script src="../../js/script.js"></script>
 </head>
 <body>
 	<?php
@@ -23,8 +24,19 @@
 	 <!-- Menú superior -->
 		<div class="menu-superior">
 			<div class="opciones">
-				<a href="../nominas/nomina.php">Nómina</a>
-				<a href="legal.php">Legal</a>
+				<ul class="menu">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle">Nóminas</a>
+							<ul class="submenu">
+								<li><a id="submenu" href="../nominas/nomina.php">Cotizador</a></li>
+								<li><a id="submenu" href="../nominas/validacion.php">Validación de cuentas</a></li>
+							</ul>
+						</li>
+					</ul>
+				
+					<ul class="menu">
+						<li><a href="../legal/legal.php">Legal</a></li>
+					</ul>
 			</div>
 			<div class="perfil">
 				<a href="../menu.php">

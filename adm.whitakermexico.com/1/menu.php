@@ -36,12 +36,7 @@
 			</div>
 		</nav>
 	</header>-->
-	
-	
-
-	
-	
-   
+	   
 	
     <!-- Contenedor principal -->
     <div class="contenedor-principal">
@@ -49,8 +44,19 @@
 	 <!-- Menú superior -->
 	<div class="menu-superior">
 		<div class="opciones">
-			<a href="nominas/nomina.php">Nómina</a>
-			<a href="legal/legal.php">Legal</a>
+			<ul class="menu">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle">Nóminas</a>
+					<ul class="submenu">
+						<li><a id="submenu" href="nominas/nomina.php">Cotizador</a></li>
+						<li><a id="submenu" href="nominas/validacion.php">Validación de cuentas</a></li>
+					</ul>
+				</li>
+			</ul>
+			
+			<ul class="menu">
+				<li><a href="legal/legal.php">Legal</a></li>
+			</ul>
 		</div>
         
 		<div class="perfil">

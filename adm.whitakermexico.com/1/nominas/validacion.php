@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<script src="../../js/script.js"></script> <!-- Script general -->
+
 </head>
 <body>
 	
@@ -28,6 +29,8 @@
 		 <!-- Menú superior -->
 		<div class="menu-superior">
 
+		
+
 			<div class="opciones">
 				<ul class="menu">
 					<li class="dropdown">
@@ -38,10 +41,10 @@
 						</ul>
 					</li>
 				</ul>
-			
+				
 				<ul class="menu">
 					<li><a href="../legal/legal.php">Legal</a></li>
-				</ul>
+				</ul>			
 			</div>
         
 			<div class="perfil">
@@ -64,7 +67,7 @@
 
 				<form class="formulario">
 
-					<h2 class="titulo">Calculo de Nomina<br><small>Del Empleado</small></h2>
+					<h2 class="titulo">Validador<br><small>De Cuentas</small></h2>
 
 					<div class="fila">
 						<label name="piramidacion">Piramidación</label>

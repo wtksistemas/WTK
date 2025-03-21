@@ -290,6 +290,7 @@ label {
 
 
 
+
 /* Para tabletas (481px - 768px) 
 @media only screen and (min-width: 481px) and (max-width: 768px) {
     .login-container {
@@ -305,6 +306,37 @@ label {
 }
 
 */
+
+
+/* Quitar bullets de las listas específicas */
+.menu, .menu ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* Ocultar submenú y estilo para "as" */
+.menu > li + ul {
+    display: none;
+    position: absolute;
+    background: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    /* Mostrar submenú al hover */
+    .menu > li:hover + ul,
+    .menu > li + ul:hover {
+        display: block;
+    }
+
+    /* Estilo opcional para el ítem "as" */
+    .menu > li + ul li {
+        padding: 5px 10px;
+        white-space: nowrap;
+    }
+
+
 
 
 #otrogrp {
