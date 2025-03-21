@@ -45,11 +45,13 @@
 	<div class="menu-superior">
 		<div class="opciones">
 			<ul class="menu">
-				<li><a href="#">Nóminas</a></li>
-				<ul>
-					<li><a id="submenu" href="nominas/nomina.php">Cotizador</a></li>
-					<li><a id="submenu" href="nominas/validacion.php">Validación de cuentas</a></li>
-				</ul>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle">Nóminas</a>
+					<ul class="submenu">
+						<li><a id="submenu" href="nominas/nomina.php">Cotizador</a></li>
+						<li><a id="submenu" href="nominas/validacion.php">Validación de cuentas</a></li>
+					</ul>
+				</li>
 			</ul>
 			
 			<ul class="menu">

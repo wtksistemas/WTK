@@ -522,35 +522,57 @@ textarea{
 }
 
 
-    /* Quitar bullets de las listas específicas */
-    .menu, .menu ul {
-        list-style-type: none;
-        padding-left: 0;
-        margin-top: 1rem;
-    }
+/* Menú superior - Dropdown */
+.menu-superior .opciones {
+    position: relative;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
 
-    /* Ocultar submenú y estilo para "as" */
-    .menu > li + ul {
-        display: none;
-        position: absolute;
-        background: #fff;
-        padding: 5px;
-        border-radius: 4px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        color: black;
-    }
+.menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
 
-    /* Mostrar submenú al hover */
-    .menu > li:hover + ul,
-    .menu > li + ul:hover {
-        display: block;
-    }
+.menu > li {
+    list-style: none;
+    position: relative;
+}
 
-    /* Estilo opcional para el ítem "as" */
-    .menu > li + ul li {
-        padding: 5px 10px;
-        white-space: nowrap;
-    }
-#submenu{
-    color: #F65100;
+.submenu {
+    display: none;
+    position: absolute;
+    list-style-type: none;
+
+    left: 0;
+    background: #fff;
+    padding: 10px;
+    margin-top: 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.submenu li {
+    padding: 8px 0;
+}
+
+.submenu a {
+    color: #F65100 !important;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+}
+
+.submenu a:hover {
+    background-color: #f8f8f8;
+}
+
+/* Clase activa para mostrar el submenú */
+.dropdown.active .submenu {
+    display: block;
 }

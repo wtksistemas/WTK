@@ -162,16 +162,35 @@ function validarCampos() {
 	}
 
 
-function nav(){
-	const submenus = document.querySelectorAll('.submenu');
 
-submenus.forEach(submenu => {
-  submenu.parentElement.addEventListener('mouseenter', () => {
-    submenu.style.display = 'block';
-  });
+	// Función para mostrar u ocultar el submenú
 
-  submenu.parentElement.addEventListener('mouseleave', () => {
-    submenu.style.display = 'none';
-  });
-});
-}
+	document.addEventListener('DOMContentLoaded', function() {
+		// Manejar dropdowns
+		const dropdowns = document.querySelectorAll('.dropdown');
+		
+		dropdowns.forEach(dropdown => {
+			const toggle = dropdown.querySelector('.dropdown-toggle');
+			
+			toggle.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				dropdown.classList.toggle('active');
+				
+				// Cerrar otros dropdowns
+				dropdowns.forEach(other => {
+					if(other !== dropdown) other.classList.remove('active');
+				});
+			});
+		});
+	
+		// Cerrar dropdowns al hacer clic fuera
+		document.addEventListener('click', function(e) {
+			if(!e.target.closest('.dropdown')) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove('active');
+				});
+			}
+		});
+	});
+
