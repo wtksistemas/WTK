@@ -49,7 +49,7 @@ function valida_metodo() {
             neto_patron.value = Number(costo.toFixed(2));
             break;
         case "Neto a Bruto":
-            var bruto_piramida = piramida(s_ingresado, pr_ingresado, periodi);
+            var bruto_piramida = piramida(s_ingresado, pr_ingresado, periodi,subsidio_anual);
             neto_calculado.value = bruto_piramida;
             alert("El bruto estimado a considerar: " + bruto_piramida);
             break;
@@ -66,13 +66,13 @@ function valida_metodo() {
 }
 
 
-// Funcion para realizar piramidacion.. ( netro a bruto )
-function piramida(neto, riesgo, periodicidad, sub) {
+// Funcion para realizar piramidacion.. ( neto a bruto )
+function piramida(neto, riesgo, periodicidad,sub) {
     //Pasamos el neto objetivo y lo metemos en la funcion bruto_neto como un " Bruto "
     //La funcion bruto_neto me retornara un nuevo neto y el bruto(neto objetivo)
     var y = [nuevo_neto, nuevo_bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr] = bruto_neto(neto, riesgo, periodicidad, sub);
     var centavo = 0.50;
-    parseFloat(neto);
+    parseFloat(nuevo_neto);
     do {
         var x = [nuevo_neto, nuevo_bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr] = bruto_neto(nuevo_bruto, riesgo, periodicidad, sub);
         nuevo_bruto = parseFloat(nuevo_bruto) + parseFloat(centavo);
@@ -397,8 +397,8 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     console.log("Cesentia y vejez patronal : " + prop_i_cv + "");
     console.log("Cesentia y vejez empleado : " + proe_i_cv + "");
     console.log("Suma de imss patron:" + imssp);
-    console.log(Number(neto.toFixed(2)) + "");
-    console.log(Number(neto.toFixed(2)));
+    console.log("NETO!! :"+neto+ "");
+    //console.log(Number(neto.toFixed(2)));
 
     return [neto, bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr];
 }
