@@ -28,9 +28,6 @@
     <div class="contenedor-principal">		
 		 <!-- Menú superior -->
 		<div class="menu-superior">
-
-		
-
 			<div class="opciones">
 				<ul class="menu">
 					<li class="dropdown">
@@ -58,8 +55,13 @@
   				  <a href="../../php/logout.php"><button type="button">Cerrar sesión</button></a>
 			</div>
 		</div>
-	
 
+		<div class="formularios-contenedor">
+			<h1>Chambeando <small>--- PROXIMANTE ---</small></h1>
+			<img src="../../img/trabajo-en-progreso.png" alt="">
+		</div>
+	
+<!--
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
@@ -166,7 +168,7 @@
 			</div>			
 
         </div>
-
+			-->
     </div>
 </body>
 </html>
