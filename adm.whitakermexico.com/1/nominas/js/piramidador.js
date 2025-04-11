@@ -1,3 +1,23 @@
+//cambiar de fija a proyectada
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleccionamos el checkbox por su ID real (switch-label)
+    const switchCheckbox = document.getElementById('switch-label');
+    // Seleccionamos el input por su ID (mecanica)
+    const mecanicaInput = document.getElementById('mecanica');
+
+    actualizarTooltip();
+
+    switchCheckbox.addEventListener('change', function() {
+        // Actualizamos el valor y placeholder simultáneamente
+        mecanicaInput.value = this.checked ? 'PROYECTADA' : 'FIJA';
+        mecanicaInput.placeholder = this.checked ? 'PROYECTADA' : 'FIJA';
+
+        actualizarTooltip();
+    });
+});
+
+
+
 // Funcion para validar el metodo de piramidacion...
 function valida_metodo() {
     // leemos todos los valores del formulario enviado..
@@ -12,6 +32,37 @@ function valida_metodo() {
     var isrr_determinado = document.getElementById("v_isrr");
     var imss_empleado = document.getElementById("v_imss");
     var neto_calculado = document.getElementById("v_neto");
+
+
+    // Variables para el calculo de isr..
+
+    var nuevo_salario = document.getElementById("v_sala");
+    var limitesuperior = document.getElementById("v_ls");
+    var limiteinferior = document.getElementById("v_lf");
+    var cuotafija = document.getElementById("v_cufij");
+    var porcentaje = document.getElementById("v_porc");
+    
+    // Variables para el calculo de imss empleado..
+
+    var exempleado = document.getElementById("ex_emple");
+    var presemple= document.getElementById("pres_emple");
+    var gastemple= document.getElementById("gast_emple");
+    var invaemple= document.getElementById("inva_emple");
+    var cesemple= document.getElementById("cen_emple");
+
+
+    // variables para el calculo de imss patron..
+
+    var expatron = document.getElementById("ex_patr");
+    var prespatron = document.getElementById("pres_patr");
+    var gastpatron = document.getElementById("gast_patr");
+    var rtpatron = document.getElementById("rt_patr");
+    var invapatron = document.getElementById("inv_patr");
+    var guarpatron = document.getElementById("guar_patr");
+    var retpatron = document.getElementById("ret_patr");
+    var infonapatron = document.getElementById("infona_patr");
+    var cenpatron = document.getElementById("cen_patr");
+
 
     var imss_patron = document.getElementById("v_imssp");
     var infoavit_patron = document.getElementById("v_infonavit");
@@ -36,13 +87,40 @@ function valida_metodo() {
             //return false; evita el envio del formulario
             break;
         case "Bruto a Neto":
-            const n = [neto, bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr] = bruto_neto(s_ingresado, pr_ingresado, periodi, subsidio_anual);
+            const n = [neto, bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr, limite_superior, limite_inferior, salario, cuota_fija, porcentaje_sobreex] = bruto_neto(s_ingresado, pr_ingresado, periodi, subsidio_anual);
             isr_determinado.value = Number(cuota_aplicada.toFixed(2));
             sub_determindado.value = Number(valor_subsidio.toFixed(2));
             isrr_determinado.value = Number(tisr.toFixed(2));
             imss_empleado.value = Number(imss.toFixed(2));
             neto_calculado.value = Number(neto.toFixed(2));
 
+
+        // valores de isr
+            nuevo_salario.value = Number(salario);
+            limitesuperior.value = Number(limite_superior.toFixed(2));
+            limiteinferior.value = Number(limite_inferior);
+            cuotafija.value = Number(cuota_fija.toFixed(2));
+            porcentaje.value = Number(porcentaje_sobreex.toFixed(2));
+
+        // valores de imss empleado
+            exempleado.value = Number(proe_i_ex.toFixed(2));
+            presemple.value = Number(proe_i_pd.toFixed(2));
+            gastemple.value = Number(proe_i_gm.toFixed(2));
+            invaemple.value = Number(proe_i_iv.toFixed(2));
+            cesemple.value = Number(proe_i_cv.toFixed(2));
+
+
+        // valores de imss patron
+            expatron.value = Number(prop_i_ex.toFixed(2));
+            prespatron.value = Number(prop_i_pd.toFixed(2));
+            gastpatron.value = Number(prop_i_gm.toFixed(2));
+            rtpatron.value = Number(prop_i_rt.toFixed(2));
+            invapatron.value = Number(prop_i_iv.toFixed(2));
+            guarpatron.value = Number(prop_i_gg.toFixed(2));
+            retpatron.value = Number(prop_i_re.toFixed(2));
+            infonapatron.value = Number(prop_i_in.toFixed(2));
+            cenpatron.value = Number(prop_i_cv.toFixed(2));
+    
             imss_patron.value = Number(imssp.toFixed(2));
             infoavit_patron.value = Number(prop_i_in.toFixed(2));
             isn_patron.value = Number(isnp.toFixed(2));
@@ -72,6 +150,8 @@ function piramida(neto, riesgo, periodicidad,sub) {
     //La funcion bruto_neto me retornara un nuevo neto y el bruto(neto objetivo)
     var y = [nuevo_neto, nuevo_bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr] = bruto_neto(neto, riesgo, periodicidad, sub);
     var centavo = 0.50;
+
+
     parseFloat(nuevo_neto);
     do {
         var x = [nuevo_neto, nuevo_bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr] = bruto_neto(nuevo_bruto, riesgo, periodicidad, sub);
@@ -85,6 +165,9 @@ function piramida(neto, riesgo, periodicidad,sub) {
 
 // Funcion para el calulo de salario bruto a salario neto pasando el valor de salario bruto, la prima de riesgo, periodicidad y subsidio calculado anual si aplica...
 function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
+    const mecanica = document.getElementById("mecanica").value;
+    var salarioingre = bruto;
+    var bruto1;
     var dias;
     var tablaMensual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     var tablaMensualsup = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -93,8 +176,38 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     var ingSubMensual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     var canSubMensual = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     // Evaluamos la periodicidad para llenar los vectores que se usaran para determinar isr..
+    if(mecanica === "PROYECTADA"){
+        switch (tbimpuestos) {
+            case "vsemanal":
+                dias = 7;
+                bruto1 = (bruto / 7) * 30;
+                periodicidad = "vmensual";
+                break;
+            case "vquincenal":
+                dias = 15;
+                bruto1 = bruto * 2;
+                periodicidad = "vmensual";
+                break;
+            case "vmensual":
+                dias = 30;
+                bruto1 = bruto;
+                break;
+            case "vanual":
+                break;
+        }
+                        //tabla mensual
+                        tablaMensual = [0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62];
+                        tablaMensualsup = [746.04, 6332.05, 11128.00, 12935.8, 15487.7, 31236.5, 49233.00, 93993.9, 125325, 375976, 10000000000];
+                        cuotaMensual = [0.00, 14.32, 371.83, 893.63, 1182.88, 1640.18, 5004.12, 9236.89, 22665.17, 32691.18, 117912.32];
+                        porcMensual = [1.92, 6.40, 10.88, 16.00, 17.92, 21.36, 23.52, 30.00, 32.00, 34.00, 35.00];
+                        ingSubMensual = [1768.96, 2653.38, 3472.84, 3537.87, 4446.15, 4717.18, 5335.42, 6224.67, 7113.90, 7382.33];
+                        canSubMensual = [407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00]; 
+
+
+}if (mecanica === "FIJA"){
     switch (tbimpuestos) {
         case "vsemanal":
+            bruto1=bruto;
             dias = 7;
             tablaMensual = [0.01, 171.79, 1458.04, 2562.36, 2978.65, 3566.23, 7192.65, 11336.58, 21643.31, 28857.79, 86573.35];
             //Tabla ISR semanal limite inferior
@@ -109,6 +222,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
             canSubMensual = [93.73, 93.66, 93.66, 90.44, 88.06, 81.55, 74.83, 67.83, 58.38, 50.12, 0.00];
             break;
         case "vquincenal":
+            bruto1=bruto;
             dias = 15;
             //Tabla ISR Quinsenal limite inferior
             tablaMensual = [0.01, 368.11, 3124.36, 5490.76, 6382.81, 7641.91, 15412.81, 24292.66, 46378.51, 61838.11, 185514.31];
@@ -124,6 +238,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
             canSubMensual = [200.85, 200.70, 200.70, 193.80, 188.70, 174.75, 160.35, 145.35, 125.10, 107.40, 0.00];
             break;
         case "vmensual":
+            bruto1=bruto;
             dias = 30;
             tablaMensual = [0.01, 746.05, 6332.06, 11128.02, 12935.83, 15487.72, 31236.50, 49233.01, 93993.91, 125325.21, 375975.62];
             // Tabla ISR mensual limite superior
@@ -138,6 +253,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
             canSubMensual = [407.02, 406.83, 406.62, 392.77, 382.46, 354.23, 324.87, 294.63, 253.54, 217.61, 0.00];
             break;
         case "vanual":
+            bruto1=bruto;
             tablaMensual = [0.01, 8952.50, 75984.56, 133536.08, 155229.81, 185852.58, 374837.89, 590796.00, 1127926.85, 1503902.47, 4511707.38];
             // Tabla ISR anual limite superior
             tablaMensualsup = [2238.12, 75984.55, 133536.07, 155229.80, 185852.57, 374837.88, 590795.99, 1127926.84, 1503902.46, 4511707.37, 10000000000];
@@ -148,7 +264,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
             break
         default:
             break;
-    }
+    }}
 
     // Tablas subsidio
     tablaSubsidioMensualinf = [0.01, 10171.01];
@@ -157,7 +273,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
 
     // Variables de usuario para calculo
 
-    salario = bruto;
+    salario = bruto1
     riesgo = riesgo;
     parseInt(salario);
     parseFloat(riesgo);
@@ -165,9 +281,14 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     /* Variables Globales estaticas  */
 
     fintegracion = 1.0493; /* Factor de integracion para 2025 */
-    uma = 113.14; /*    Valor de UMA 2025 */
-    sbc = salario * fintegracion; /* Calculo de Salario Base de Cotizacion mensual */
-    /*dias=30;  Dias trabajados para calculo */
+    uma = 113.14; /*    Valor de UMA 2025 */ 
+    var sbc 
+    if (mecanica === "PROYECTADA"){
+        sbc = salarioingre * fintegracion; /* Calculo de Salario Base de Cotizacion mensual */
+    }if (mecanica === "FIJA"){
+        sbc = salario * fintegracion; /* Calculo de Salario Base de Cotizacion mensual */
+    }
+       /*dias=30;  Dias trabajados para calculo */
     sdi = sbc / dias; /* Calculo de Salario diario integrado */
     isn = 4.00 / 100; /* Porcentaje de ISN CDMX 2025 */
     tope_umas_imss = uma * 25;
@@ -256,11 +377,11 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     porcentaje_excedente = (excedente * porcentaje_sobreex) / 100;
     // Se calcula la cuota fija sumando el porcentaje de excedente mas la cuota obtenida en la tabla de isr
     cuota_aplicada = porcentaje_excedente + cuota_fija;
-    // finalmente se resta la cuota fija al salario
+    // Se calcula el isr restando el salario menos la cuota fija obtenida en la tabla de isr
     isr = (salario - cuota_aplicada) + valor_subsidio;
 
 
-
+    // Se calcula el subsidio al empleo restando el salario menos la cuota fija obtenida en la tabla de isr
     if (valor_subsidio <= 0) {
         for (j = 0; j <= 6; j++) {
             if (salario <= tablaSubsidioMensualsup[j]) {
@@ -272,9 +393,33 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
 
         }
 
+    //  PROYECTADO 
+
+        //ISR PROYECTADO
+    // EL salario debe ser mensualizado 
+    // Buscar el limite inferior en la tabla mensual con salario mensualizado
+    // resta de salario mensualizado menos limite inferior
+        isr1 = salario - limite_inferior;
+    // multiplicar por porcentaje de tablas
+     isr2 = isr1 * (porcentaje_sobreex / 100);
+    // despues sumar mas cuota fija de tablas
+        isr3 = cuota_fija + isr2;
+    // de la suma entre 30* dias
+        isr4 = (isr3 / 30) * dias;
 
 
+        // SUBSIDIO PROYECTADO
+    
+    Sub=(valor_subsidio/30)*dias;
 
+    
+if (mecanica === "PROYECTADA"){
+    cuota_aplicada = isr4;
+    valor_subsidio = Sub;
+}if (mecanica === "FIJA"){
+    cuota_aplicada = cuota_aplicada;
+    valor_subsidio = valor_subsidio;
+}
 
         // calculo de cuota imss        
 
@@ -337,7 +482,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
         prop_i_cv = (sdi * dias) * ccv / 100;
 
         //Calculo de ISN 4% CDMX 2025
-        isnp = salario * isn;
+        isnp = salarioingre * isn;
 
         //Calculo de IMSS empleado        
         imss = proe_i_ex + proe_i_pd + proe_i_gm + proe_i_iv + proe_i_cv;
@@ -353,19 +498,32 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     }
     else { }
 
+
+    
+
+
     // Total de ISR menos el subsidio al emlpeo
     tisr = cuota_aplicada - valor_subsidio;
     //Neto a pagar para empleado 
-    neto = (salario - tisr) - imss;
-    // Impresion de valores en consola para validar en caso de requerir una revision detallada .. 
+    var neto;
+    if (mecanica === "PROYECTADA"){
+        neto = salarioingre- (tisr+imss);
+    } if (mecanica === "FIJA"){
+      neto = (salario - tisr) - imss;
+    }   
+    
+        // Impresion de valores en consola para validar en caso de requerir una revision detallada .. 
     console.log("++++ INICIO de proceso Bruto a Neto ++++");
     console.log("Salario capturado: " + salario + "");
+    console.log("Salario original: " + salarioingre + "");
     console.log("Factor de integracion capturado: " + fintegracion + "");
     console.log("Prima de riesgo capturada: " + riesgo + "  ");
     console.log("SDI a considerar: " + sdi + "  ");
     console.log("el SBC a considerar" + sbc + "  ");
     console.log("Salario:" + salario + "");
-    console.log("Limite inferior: " + limite_inferior + "");
+    console.log("TABLA QUE CONSIDERA: " + tablaMensual + "");
+    console.log("ISR PROYECTADOS: " + isr4 + "" );
+    console.log("Limite inferior: " + limite_inferior + "");     
     console.log("Limite superior: " + limite_superior + "");
     console.log("Cuota fija: " + cuota_fija + "");
     console.log("Porcentaje: " + porcentaje_sobreex + "");
@@ -377,7 +535,7 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     console.log("ISR a aplicar: " + cuota_aplicada + "");
     console.log("Subsidio calculado: " + valor_subsidio + "");
     console.log("Salario menos ISR: " + isr + "");
-    console.log(" /// DETERMINACION CUOTAS IMSS /// ");
+    console.log(" /// DETERMINACION CUOTAS IMSS /// ");                      
     console.log("Salario Base Mensual: " + salario + "");
     console.log("Cuota fija determinada: " + pro_i_cf + " ");
     console.log("SDI: " + sdi + " condicion 3 veces la uma: " + z + "  ");
@@ -397,10 +555,11 @@ function bruto_neto(bruto, riesgo, tbimpuestos, sub) {
     console.log("Cesentia y vejez patronal : " + prop_i_cv + "");
     console.log("Cesentia y vejez empleado : " + proe_i_cv + "");
     console.log("Suma de imss patron:" + imssp);
+    console.log("Suma de imss empleado:" + imss);
     console.log("NETO!! :"+neto+ "");
     //console.log(Number(neto.toFixed(2)));
 
-    return [neto, bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr];
+    return [neto, bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr, limite_superior, limite_inferior, salario, cuota_fija, porcentaje_sobreex, proe_i_ex, proe_i_pd, proe_i_gm, proe_i_iv, proe_i_cv, proe_i_ex, prop_i_pd, prop_i_gm, prop_i_rt, prop_i_iv, prop_i_gg, prop_i_gg, prop_i_re, prop_i_in, prop_i_cv];
 }
 
 // Funcion para validar formulario de piramidador.. 
@@ -610,4 +769,31 @@ function calculo_liquidacion() // funcion para calcular liquidaciones
 
 
 
+}
+
+
+// funcion de calculo ISR, iMSS PATRON Y EMPLEADO
+function toggle(section) {
+    const additionalFields = document.getElementById('additionalFields');
+    const additionalFields2 = document.getElementById('additionalFields2');
+    const additionalFields3 = document.getElementById('additionalFields3');
+    
+    if (section === 'fields1') {
+        additionalFields.style.display = additionalFields.style.display === 'none' ? 'block' : 'none';
+    }
+    
+    if (section === 'fields2') {
+        additionalFields2.style.display = additionalFields2.style.display === 'none' ? 'block' : 'none';
+    }
+
+    if (section === 'fields3') {
+        additionalFields3.style.display = additionalFields3.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+
+function actualizarTooltip() {
+    const mecanica = document.getElementById('mecanica').value;
+    const tooltip = document.getElementById('v_sala_tooltip');
+    tooltip.textContent = mecanica === 'FIJA' ? 'Salario fijo' : 'Salario Mensualizado';
 }

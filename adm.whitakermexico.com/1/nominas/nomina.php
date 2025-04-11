@@ -63,62 +63,172 @@
 				<script src="js/piramidador.js"></script>
 
 				<form class="formulario">
-
 					<h2 class="titulo">Calculo de Nomina<br><small>Del Empleado</small></h2>
+					<div class="fila">
+
+						<label name="mecacalc">Mecanica de Calculo</label>
+						
+						<div class="switch-button">
+							<input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
+							<label for="switch-label" class="switch-button__label"></label>
+						</div>
+
+						<label name="vmeca">Mécanica </label>
+						<input disabled  placeholder="FIJA" name="mecanica" id="mecanica" value="FIJA">
+
+						
+					</div>
 
 					<div class="fila">
+
 						<label name="piramidacion">Piramidación</label>
 						
 							<select id="piramida" name="piramida" onchange="formulario_piramidador()">
 								<option value="nada" name="nada">	--	</option>
 								<option value="Bruto a Neto" name="Bruto a Neto">Bruto a Neto</option>
 								<option value="Neto a Bruto" name="Neto a Bruto">Neto a Bruto</option>
-							</select>
-				
+							</select> 						
+
 						<label name="visr" id="visr">ISR Determinado</label>
-						<input disabled type="number" placeholder="0.000" name="v_isr" id="v_isr" value="0.0">	
-					</div>
 
-					<div class="fila">
-						<label name="tb_impuestos">Tabla de impuesto</label>
+						<div class=input-button-container>
+							<input disabled type="number" placeholder="0.000" name="v_isr" id="v_isr" value="0.0">	
 						
-						<select id="periodicidad" name="periodicidad" onchange="formulario_piramidador()">
-							<option value="nada" name="nada">    --    </option>
-    						<option value="vsemanal" name="semanal">Semanal</option>
-   		 					<option value="vquincenal" name="quincenal">Quincenal</option>
-    						<option value="vmensual" name="mensual">Mensual</option>
-							<option value="vanual" name="anual" id="idanual">Anual</option>
-						</select>
-							
-							<label name="vsub">Subsidio al empleo</label>
-							<input disabled type="number" placeholder="0.000" name="v_sub" id="v_sub" value="0.0">
+							<button class="toggle-button" type="button" onclick="toggle('fields1')" id="b1">▼</button>
+						</div>
+
 					</div>
 
 
+					 <!--DIV DE CALCULO -->
+					 
+					<div id="additionalFields" style="display: none;">
+    					<div class="fila" >
+
+						<label name="vsub" id="adicion">Salario</label>
+							<div class="tooltip">
+								<input class="ad" disabled type="number" placeholder="0.000" name="v_sala" id="v_sala" value="0.0">
+								<span class="tooltiptext" id="v_sala_tooltip"></span>
+							</div>	
+
+
+						<label name="vsub" id="adicion">Limite Superior</label>
+						<input  class="ad" disabled type="number" placeholder="0.000" name="v_ls" id="v_ls" value="0.0">
+    					
+						</div>
+
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Limite Inferior </label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="v_lf" id="v_lf" value="0.0">
+
+						<label name="vsub" id="adicion">Cuota Fija</label>
+						<input  class="ad" disabled type="number" placeholder="0.000" name="v_cufij" id="v_cufij" value="0.0">
+
+						</div>
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Porcentaje </label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="v_porc" id="v_porc" value="0.0">
+
+						<label name="vacio"></label>
+						<label name="vacio"></label>
+
+						</div>
+					</div>
+
+
+
+
+
+
+
 					<div class="fila">
-						<label name="vmensual" id="vmensual">Bruto</label>
-						<input type="text" placeholder="Ingrese un número" name="salario" id="salario" value="0.0">
-				 
-						<label name="visrr">ISR Retenido</label>
-						<input disabled type="text" placeholder="0.000" name="v_isrr" id="v_isrr" value="0.0">	 
+						
+						<label name="tb_impuestos">Periodicidad</label>
+							<select id="periodicidad" name="periodicidad" onchange="formulario_piramidador()">
+								<option value="nada" name="nada">    --    </option>
+    							<option value="vsemanal" name="semanal">Semanal</option>
+   		 						<option value="vquincenal" name="quincenal">Quincenal</option>
+    							<option value="vmensual" name="mensual">Mensual</option>
+								<option value="vanual" name="anual" id="idanual">Anual</option>
+							</select>
+
+						<label name="vsub">Subsidio al empleo</label>
+						<input disabled type="number" placeholder="0.000" name="v_sub" id="v_sub" value="0.0">
+
 					</div>		
 	
 					<div class="fila">
+						
+						<label name="vmensual" id="vmensual">Bruto</label>
+						<input type="text" placeholder="Ingrese un número" name="salario" id="salario" value="0.0">
+					
+						<label name="visrr" id="id_visrr">ISR Retenido</label>
+						<input disabled type="text" placeholder="0.000" name="v_isrr" id="v_isrr" value="0.0">	 
+					</div>
+
+					<div class="fila">
+
 						<label name="vpriesgo">Prima de riesgo</label>
 						<input type="number" placeholder="Ingrese el valor de prima de riesgo a considerar" name="priesgo" id="priesgo" value="0.0">
 					
 						<label name="vmss">Cuota Imss</label>
-						<input disabled type="text" placeholder="0.000" name="v_imss" id="v_imss" value= "0.0">
+
+						<div class=input-button-container>
+							<input disabled type="text" placeholder="0.000" name="v_imss" id="v_imss" value= "0.0">
+						
+							<button class="toggle-button" type="button" onclick="toggle('fields2')" id="b1">▼</button>
+						</div>
 					</div>
+
+
+
+					 <!--DIV DE CALCULO -->
+					 
+					 <div id="additionalFields2" style="display: none;">
+    					<div class="fila" >
+
+						<label name="vsub" id="adicion">Excedente empleado</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="ex_emple" id="ex_emple" value="0.0">
+
+						<label name="vsub" id="adicion">Prestaciones en dinero empleado</label>
+						<input  class="ad" disabled type="number" placeholder="0.000" name="pres_emple" id="pres_emple" value="0.0">
+    					
+						</div>
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Gastos medicos para pensionados empleado</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="gast_emple" id="gast_emple" value="0.0">
+
+						<label name="vsub" id="adicion">Invalidez y vida empleado</label>
+						<input  class="ad" disabled type="number" placeholder="0.000" name="inva_emple" id="inva_emple" value="0.0">
+
+						</div>
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Censentia y vejez</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="cen_emple" id="cen_emple" value="0.0">
+
+						<label name="vacio"></label>
+						<label name="vacio"></label>
+						</div>
+					</div>
+
 
 
 					<div class="fila">
+
 						<label name="nsubanual" id="idsubanual">Subsidio del año causado</label>
-						<input disabled type="number"  placeholder="0.000" name="v_subanual" id="id_vsubanual" value="0.0">
-					
+						<input disabled type="number"  placeholder="0.000" name="v_subanual" id="id_vsubanual" value="0.0"> 
+						
 						<label name="v_net" id="v_net">Neto a pagar</label>
 						<input disabled type="text" placeholder="0.000" name="v_neto" id="v_neto" value= "0.0">
-					</div>
+					</div>					
 			 
 					<div class="fila">
 						<label name="vacio"></label>
@@ -140,8 +250,73 @@
 			
 					<div class="fila">
 						<label name="vimss">IMSS</label>
-						<input disabled type="text" placeholder="0.000" name="v_imssp" id="v_imssp" value= "0.0">
+					
+						<div class=input-button-container>
+							<input disabled type="text" placeholder="0.000" name="v_imssp" id="v_imssp" value= "0.0">
+
+							<button class="toggle-button" type="button" onclick="toggle('fields3')" id="b1">▼</button>
+						</div>
 					</div>
+
+
+
+					 <!--DIV DE CALCULO -->
+					 
+					 <div id="additionalFields3" style="display: none;">
+    					<div class="fila" >
+
+						<label name="vsub" id="adicion">Excedente Patrón</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="ex_patr" id="ex_patr" value="0.0">
+
+						<label name="vsub" id="adicion">Prestaciones en dinero patrón</label>
+						<input  class="ad" disabled type="number" placeholder="0.000" name="pres_patr" id="pres_patr" value="0.0">
+    					
+						</div>
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Gastos medicos para pensionados patrón</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="gast_patr" id="gast_patr" value="0.0">
+
+						<label name="vsub" id="adicion">Riesgo de trabajo patrón</label>
+						<input  class="ad" disabled type="number" placeholder="0.000" name="rt_patr" id="rt_patr" value="0.0">
+
+						</div>
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Invalidez y vida patrón</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="inv_patr" id="inv_patr" value="0.0">
+
+						<label name="vsub" id="adicion">Guarderia patrón</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="guar_patr" id="guar_patr" value="0.0">
+						
+						</div>
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Retiro patrón</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="ret_patr" id="ret_patr" value="0.0">
+
+						<label name="vsub" id="adicion">Infonavit patrón</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="infona_patr" id="infona_patr" value="0.0">
+						
+						</div>
+
+
+						<div class="fila" >
+
+						<label name="vsub" id="adicion">Censentia y vejez patronal</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="cen_patr" id="cen_patr" value="0.0">
+
+
+						<label name="vacio"></label>
+						<label name="vacio"></label>						
+						</div>
+
+
+					</div>
+
 
 					<div class="fila">
 						<label name="v_infon">Infonavit</label>
