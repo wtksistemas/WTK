@@ -309,19 +309,19 @@
 						<label name="vsub" id="adicion">Censentia y vejez patronal</label>
 						<input class="ad" disabled type="number" placeholder="0.000" name="cen_patr" id="cen_patr" value="0.0">
 
-
-						<label name="vacio"></label>
-						<label name="vacio"></label>						
+						<label name="cfija" id="adicion">Cuota Fija</label>
+						<input class="ad" disabled type="number" placeholder="0.000" name="cufija" id="cufija" value="0.0">
+						
 						</div>
 
 
 					</div>
 
-
+<!--
 					<div class="fila">
 						<label name="v_infon">Infonavit</label>
 						<input disabled type="text" placeholder="0.000" name="v_infonavit" id="v_infonavit" value= "0.0">
-					</div>
+					</div> -->
 
 					<div class="fila">
 						<label name="v_infona">ISN (CDMX)</label>

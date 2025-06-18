@@ -64,8 +64,10 @@ function valida_metodo() {
     var cenpatron = document.getElementById("cen_patr");
 
 
+
+    var cufija = document.getElementById("cufija");
     var imss_patron = document.getElementById("v_imssp");
-    var infoavit_patron = document.getElementById("v_infonavit");
+
     var isn_patron = document.getElementById("v_isn");
     var neto_patron = document.getElementById("v_netop");
 
@@ -120,11 +122,13 @@ function valida_metodo() {
             retpatron.value = Number(prop_i_re.toFixed(2));
             infonapatron.value = Number(prop_i_in.toFixed(2));
             cenpatron.value = Number(prop_i_cv.toFixed(2));
-    
+
+            cufija.value = Number(pro_i_cf.toFixed(2));    
             imss_patron.value = Number(imssp.toFixed(2));
-            infoavit_patron.value = Number(prop_i_in.toFixed(2));
             isn_patron.value = Number(isnp.toFixed(2));
             neto_patron.value = Number(costo.toFixed(2));
+
+
             break;
         case "Neto a Bruto":
             var bruto_piramida = piramida(s_ingresado, pr_ingresado, periodi,subsidio_anual);
@@ -529,6 +533,7 @@ if (mecanica === "PROYECTADA"){
     console.log("Porcentaje: " + porcentaje_sobreex + "");
     console.log("Limite inferior de subsidio: " + limite_inf_subsidio + "");
     console.log("Limite superior de subsidio: " + limite_sup_subsidio + "");
+
     console.log("Valor de subsidio: " + valor_subsidio + "");
     console.log("Excedente: " + excedente + "");
     console.log("Porcentaje de excedente: " + porcentaje_excedente + "");
@@ -559,7 +564,7 @@ if (mecanica === "PROYECTADA"){
     console.log("NETO!! :"+neto+ "");
     //console.log(Number(neto.toFixed(2)));
 
-    return [neto, bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr, limite_superior, limite_inferior, salario, cuota_fija, porcentaje_sobreex, proe_i_ex, proe_i_pd, proe_i_gm, proe_i_iv, proe_i_cv, proe_i_ex, prop_i_pd, prop_i_gm, prop_i_rt, prop_i_iv, prop_i_gg, prop_i_gg, prop_i_re, prop_i_in, prop_i_cv];
+    return [neto, bruto, riesgo, cuota_aplicada, imss, valor_subsidio, imssp, prop_i_in, isnp, costo, tisr, limite_superior, limite_inferior, salario, cuota_fija, porcentaje_sobreex, proe_i_ex, proe_i_pd, proe_i_gm, proe_i_iv, proe_i_cv, proe_i_ex, prop_i_pd, prop_i_gm, prop_i_rt, prop_i_iv, prop_i_gg, prop_i_gg, prop_i_re, prop_i_in, prop_i_cv, pro_i_cf];
 }
 
 // Funcion para validar formulario de piramidador.. 
