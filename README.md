@@ -1,2 +1,0 @@
-# WTK
-repositorio para proyecto 
