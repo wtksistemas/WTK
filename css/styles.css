@@ -1,0 +1,296 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #FF7C39;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /*evitamos el scroll*/
+}
+
+
+/* inicio de Sesión */
+
+h1 {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+h2{
+	color: #666666;
+}
+
+a {
+	text-decoration: none;
+	color: #777777;
+	font-size: small;
+}
+
+.links{
+	margin-top: 2px;
+	margin-bottom: 15px;
+}
+
+label {
+	color: #666666;
+	display:block;
+	margin-bottom: 10px;
+}
+
+.container-1 {
+    text-align: center;
+}
+
+.login-container {
+    position: relative;
+   width: 450px;
+    background-color: rgba(255, 255, 255, 0.8); /* Hace el formulario un poco invisible */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+	margin:auto;
+}
+
+.login-container .logo {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    width: 50px;
+    height: auto;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"],
+.login-container input[type="tel"],
+.login-container input[type="email"]
+{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+	margin-top: 10px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #F65608;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+	margin-top: 20px;
+}
+
+.login-container button:hover {
+    background-color: #fff;
+	color:#F65608;
+}
+
+.login-container .logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: auto;
+}
+
+.btn{
+    background-color: white;
+    color: #F65100;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 22px;
+}
+
+
+/* PAGINA DE REGISTRO */
+
+.login-container input[type="text"],
+.login-container input[type="password"],
+.login-container input[type="tel"],
+.login-container input[type="email"],
+.login-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.login-container select {
+    appearance: none; /* Oculta la flecha del select en algunos navegadores */
+    -webkit-appearance: none; /* Para Safari */
+    -moz-appearance: none; /* Para Firefox */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    padding-right: 30px; /* Añade espacio para la flecha personalizada */
+}
+
+#registro-login-container {
+    width: 80%; /* Ajusta el ancho del contenedor principal */
+    max-width: 900px; /* Define un ancho máximo para evitar que sea demasiado grande en pantallas grandes */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+#registro{ 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%; /* Mantiene el formulario del mismo ancho que el contenedor */
+    margin: 0 auto; /* Centra el formulario horizontalmente */
+}
+
+#registro-titulo {
+    text-align: center; /* Centra el título */
+    font-size: 2rem;
+    color: #fff;
+
+}
+
+#registro-sub {
+    width: 700px; /* Ajusta el ancho como desees */
+    max-width: 90%; /* Evita que el contenedor sea más grande que el 90% de la pantalla */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px; /* Agrega un poco de espacio interno */
+    background-color: rgba(255, 255, 255, 0.8); /* Mantiene el fondo semi-transparente */
+    border-radius: 8px; /* Asegúrate de mantener el borde redondeado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar el contenedor */
+}
+#registro .form-derecho {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* Ocupa casi la mitad del espacio del contenedor */
+    align-items: flex-end; /* Alinea los inputs al lado derecho */
+}
+
+#registro .form-izquierdo {
+    display: flex;
+    flex-direction: column;
+    width: 48%; /* Ocupa casi la mitad del espacio del contenedor */
+    align-items: flex-start; /* Alinea los inputs al lado izquierdo */
+}
+
+#registro .login-container input, 
+#registro .login-container select {
+    width: 100%;
+    padding: 10px;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centra los botones */
+    text-align: center;;
+    margin-left: 92px; /* Espacio superior para separar los botones del formulario */
+}
+
+
+
+/* PAGINA DE CONFIRMACION */
+
+#btn-registrate {
+    width: 208px; /* Ajusta el ancho según sea necesario */
+    background-color: #F65608; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    margin-right: 20px; /* Espacio a la derecha del botón de registrarse */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+
+}
+
+#btn-regresar {
+    width: 208px; /* Ajusta el ancho según sea necesario */
+    background-color: #F65608; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+/* Cambia el fondo y el color del texto al pasar el mouse */
+#btn-registrate:hover, 
+#btn-regresar:hover {
+    background-color: #fff; /* Color de fondo al pasar el mouse */
+    color: #F65608; /* Color del texto al pasar el mouse */
+}
+
+/* ============ MEDIA QUERIES ============ */
+
+/* Teléfonos (hasta 480px) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  .login-container,
+  #registro-sub {
+    width: 95%;
+    padding: 15px;
+  }
+  .form-derecho, .form-izquierdo {
+    width: 100%;
+  }
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .login-container,
+  #registro-sub {
+    width: 90%;
+  }
+  .form-derecho, .form-izquierdo {
+    width: 100%;
+  }
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Laptops (769px - 1200px) */
+@media (min-width: 769px) and (max-width: 1200px) {
+  .login-container,
+  #registro-sub {
+    width: 80%;
+  }
+}
+
+/* Monitores grandes (más de 1200px) */
+@media (min-width: 1201px) {
+  .login-container,
+  #registro-sub {
+    max-width: 900px;
+  }
+}
