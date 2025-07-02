@@ -36,11 +36,16 @@
 		
 	 <!-- Menú superior -->
 	<div class="menu-superior">
+		<!-- Opciones del menú -->
 		<div class="opciones">
+
 			<ul class="menu">
 				<li><a href="menu.php">Vacaciones</a></li>
 			</ul>
-
+			
+			<ul class="menu">
+				<li><a href="notificaciones.php">Notificaciones</a></li>
+			</ul>
 
 			<ul class="menu">
 				<li class="dropdown">
@@ -68,23 +73,49 @@
 
 		</div>
 	</div>
-	
-  <div>
-    <h1>Solicitud de Vacaciones</h1>
 
+	<!-- Módulo de Vacaciones -->
+	<div class="modulo-vacaciones">
+    	<h1 class="titulo-vacaciones">Vacaciones</h1>
+
+	    <div class="contenido-vacaciones">
+    	    <!-- Panel Izquierdo -->
+        	<div class="panel-izquierdo">
+            	
+				<div class="info-empleado">
+                	<p><strong>ID del empleado:</strong> 12345</p>
+                	<p><strong>Vacaciones disponibles:</strong> 10 días</p>
+                	<p><strong>Vacaciones tomadas:</strong> 5 días</p>
+					<p><strong>Nuevo saldo:</strong> 2 días</p>
+            	</div>
+
+            	<form class="formulario-vacaciones">
+             	   <h2>Solicitar Vacaciones</h2>
+              	  <label for="fechaInicio">Inicio:</label>
+              	  <input type="date" id="fechaInicio" name="fechaInicio" required>
+
+             	   <label for="fechaFin">Fin:</label>
+              	  <input type="date" id="fechaFin" name="fechaFin" required>
+
+             	   <label for="motivo">Motivo:</label>
+              	  <textarea id="motivo" name="motivo" rows="3" placeholder="Escribe el motivo..." required></textarea>
+
+             	   <button type="submit">Solicitar</button>
+          	  </form>
+       	 </div>
+
+   	     <!-- Panel Derecho -->
+       	<div class="panel-derecho">
+            <iframe src="https://calendar.google.com/calendar/embed?src=es.mexican%23holiday%40group.v.calendar.google.com&ctz=America%2FMexico_City" 
+                    style="border: 0" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0" 
+                    scrolling="no">
+            </iframe>
+        </div>
+    </div>
 </div>
-
-  
-
-
-
-
-
-
-
-
-
-
 
 
     </div>

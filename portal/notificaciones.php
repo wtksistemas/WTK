@@ -36,12 +36,13 @@
 		
 	 <!-- Menú superior -->
 	<div class="menu-superior">
+		<!-- Opciones del menú -->
 		<div class="opciones">
 
 			<ul class="menu">
 				<li><a href="menu.php">Vacaciones</a></li>
 			</ul>
-
+			
 			<ul class="menu">
 				<li><a href="notificaciones.php">Notificaciones</a></li>
 			</ul>
@@ -72,20 +73,66 @@
 
 		</div>
 	</div>
-	
-	<!-- Buscardor -->
-    <!-- Contenido -->
+
+	<!-- Módulo de Notificaciones  -->
+	<div class="modulo-vacaciones">
+    	<h1 class="titulo-vacaciones">Notificaciones</h1>
+
+    </div>
+
+	<div class="modulo-notificaciones">
+		
+		<div class="grid-areas">
+    		
+			<div class="area-tarjeta" onclick="mostrarNotificaciones('vacaciones')">
+        		<img src="img/vacaciones.png" alt="Vacaciones">
+        		<p>Vacaciones</p>
+    		</div>
+			
+			<div class="area-tarjeta" onclick="mostrarNotificaciones('facturas')">
+        		<img src="img/factura.png" alt="Facturas">
+        		<p>Facturas</p>
+    		</div>
+    
+			<div class="area-tarjeta" onclick="mostrarNotificaciones('rh')">
+    			<img src="img/rh.png" alt="Recursos Humanos">
+        		<p>RH</p>
+    		</div>
+
+		    <div class="area-tarjeta" onclick="mostrarNotificaciones('ti')">
+        		<img src="img/ti.png" alt="TI">
+       			<p>TI</p>
+    		</div>
+    
+			<div class="area-tarjeta" onclick="mostrarNotificaciones('legal')">
+    		    <img src="img/legal.png" alt="Legal">
+    		    <p>Legal</p>
+   			</div>
+    
+			<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
+    		    <img src="img/contabilidad.png" alt="Contabilidad">
+    		    <p>Contabilidad</p>
+    		</div>
+
+			<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
+    		    <img src="img" alt="Gastos">
+    		    <p>Gastos</p>
+    		</div>
+
+			<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
+    		    <img src="img" alt="Permisos">
+    		    <p>Permisos</p>
+    		</div>
 
 
 
-  </script>
-</body>
-</html>
+</div>
 
+<div id="contenedor-notificaciones" class="contenedor-notificaciones"></div>
 
+</div>
 
-
-
+</div>
 
 
     </div>

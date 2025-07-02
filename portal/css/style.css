@@ -121,3 +121,131 @@ button:hover,
     background-color: #F65100;
     color: white;
 }
+
+
+/* VACACIONES */
+/* Título centrado */
+.titulo-vacaciones {
+    text-align: center;
+    margin: 20px 0;
+    color: #F65100;
+    font-size: 2rem;
+}
+
+/* Layout principal de vacaciones */
+.modulo-vacaciones {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contenido-vacaciones {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Panel izquierdo */
+.panel-izquierdo {
+    flex: 1;
+    min-width: 500px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.info-empleado p {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* Formulario */
+.formulario-vacaciones {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-vacaciones h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.formulario-vacaciones label {
+    margin: 10px 0 5px;
+}
+
+.formulario-vacaciones input,
+.formulario-vacaciones textarea {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.formulario-vacaciones button {
+    margin-top: 15px;
+    background-color: #F65100;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-vacaciones button:hover {
+    background-color: #cc4400;
+}
+
+/* Panel derecho */
+.panel-derecho {
+    flex: 1;
+    min-width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+/* NOTIFICACIONES */
+/* Grid de áreas */
+.grid-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    margin-bottom: 30px;
+}
+
+.area-tarjeta {
+    background-color: white;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 140px;
+}
+
+.area-tarjeta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.area-tarjeta img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.area-tarjeta p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
