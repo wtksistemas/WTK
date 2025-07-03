@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
     <link rel="stylesheet" href="css/style.css">
-	<script src="../js/script.js"></script>
+	<script src="js/script.js"></script>
 </head>
+			<script src="js/script.js"></script>
 
 <body>
 	
@@ -38,11 +39,17 @@
 	<div class="menu-superior">
 		<!-- Opciones del menú -->
 		<div class="opciones">
-
-			<ul class="menu">
-				<li><a href="menu.php">Vacaciones</a></li>
-			</ul>
 			
+			<ul class="menu">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle">Checador</a>
+					<ul class="submenu">
+						<li><a id="submenu" href="checador.php">Ver Checador</a></li>
+						<li><a id="submenu" href="vacaciones.php">Vacaciones</a></li>
+					</ul>
+				</li>
+			</ul>
+
 			<ul class="menu">
 				<li><a href="notificaciones.php">Notificaciones</a></li>
 			</ul>
@@ -83,47 +90,55 @@
 	<div class="modulo-notificaciones">
 		
 		<div class="grid-areas">
-    		
-			<div class="area-tarjeta" onclick="mostrarNotificaciones('vacaciones')">
-        		<img src="img/vacaciones.png" alt="Vacaciones">
-        		<p>Vacaciones</p>
-    		</div>
-			
-			<div class="area-tarjeta" onclick="mostrarNotificaciones('facturas')">
-        		<img src="img/factura.png" alt="Facturas">
-        		<p>Facturas</p>
-    		</div>
+
+    	<div class="area-tarjeta" onclick="mostrarNotificaciones('vacaciones')">
+    		<span class="badge" id="badge-vacaciones"></span>     		
+			<img src="img/vacaciones.png" alt="Vacaciones">		        
+			<p>Vacaciones</p>
+		</div>
     
-			<div class="area-tarjeta" onclick="mostrarNotificaciones('rh')">
-    			<img src="img/rh.png" alt="Recursos Humanos">
-        		<p>RH</p>
-    		</div>
-
-		    <div class="area-tarjeta" onclick="mostrarNotificaciones('ti')">
-        		<img src="img/ti.png" alt="TI">
-       			<p>TI</p>
-    		</div>
+   		<div class="area-tarjeta" onclick="mostrarNotificaciones('facturas')">
+        	<span class="badge" id="badge-facturas"></span>  
+			<img src="img/factura.png" alt="Facturas">
+        	<p>Facturas</p>
+    	</div>
     
-			<div class="area-tarjeta" onclick="mostrarNotificaciones('legal')">
-    		    <img src="img/legal.png" alt="Legal">
-    		    <p>Legal</p>
-   			</div>
+    	<div class="area-tarjeta" onclick="mostrarNotificaciones('rh')">
+        	<span class="badge" id="badge-rh"></span>
+        	<img src="img/rh.png" alt="Recursos Humanos">
+        	<p>RH</p>
+    	</div>
     
-			<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
-    		    <img src="img/contabilidad.png" alt="Contabilidad">
-    		    <p>Contabilidad</p>
-    		</div>
-
-			<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
-    		    <img src="img" alt="Gastos">
-    		    <p>Gastos</p>
-    		</div>
-
-			<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
-    		    <img src="img" alt="Permisos">
-    		    <p>Permisos</p>
-    		</div>
-
+    	<div class="area-tarjeta" onclick="mostrarNotificaciones('ti')">
+        	<span class="badge" id="badge-ti"></span>
+        	<img src="img/ti.png" alt="TI">
+        	<p>TI</p>
+    	</div>
+    
+   		 <div class="area-tarjeta" onclick="mostrarNotificaciones('legal')">
+       		<span class="badge" id="badge-legal"></span>
+        	<img src="img/legal.png" alt="Legal">
+        	<p>Legal</p>
+    	</div>
+    
+    	<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
+        	<span class="badge" id="badge-contabilidad"></span>
+        	<img src="img/contabilidad.png" alt="Contabilidad">
+        	<p>Contabilidad</p>
+    	</div>
+    
+    	<div class="area-tarjeta" onclick="mostrarNotificaciones('gastos')">
+        	<span class="badge" id="badge-gastos"></span>
+        	<img src="img/gastos.png" alt="Gastos">
+        	<p>Gastos</p>
+    	</div>
+    
+    	<div class="area-tarjeta" onclick="mostrarNotificaciones('permisos')">
+        	<span class="badge" id="badge-permisos"></span>
+        	<img src="img/permisos.png" alt="Permisos">
+        	<p>Permisos</p>
+    	</div>
+</div>
 
 
 </div>
