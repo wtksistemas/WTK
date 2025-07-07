@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
     <link rel="stylesheet" href="css/style.css">
-	<script src="../js/script.js"></script>
+	<script src="js/script.js"></script>
 </head>
 
 <body>
@@ -39,8 +39,15 @@
 		<div class="opciones">
 
 			<ul class="menu">
-				<li><a href="menu.php">Vacaciones</a></li>
+				<li class="dropdown">	
+					<a href="#" class="dropdown-toggle">Checador</a>
+					<ul class="submenu">
+						<li><a id="submenu" href="checador.php">Ver Checador</a></li>
+						<li><a id="submenu" href="vacaciones.php">Vacaciones</a></li>
+					</ul>
+				</li>
 			</ul>
+			
 
 			<ul class="menu">
 				<li><a href="notificaciones.php">Notificaciones</a></li>

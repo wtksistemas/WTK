@@ -67,9 +67,21 @@
 			<ul class="menu">
 				<li><a href="legal/legal.php">Legal</a></li>
 			</ul>
+
+			<ul class="menu" id="reloj-menu">
+				<div class="mini-reloj" id="reloj">
+                    <div class="hora" id="hora-actual"></div>
+                    <div class="icono" id="icono-dia-noche"></div>
+                </div>
+			</ul>
+
+
 		</div>
         
 		<div class="perfil">
+
+
+
 			<a href="menu.php">
 				<img src="img/home.png" class="img-perfil">
 			</a>
