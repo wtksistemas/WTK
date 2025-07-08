@@ -66,6 +66,7 @@
 			<ul class="menu">
 				<li><a href="legal/legal.php">Legal</a></li>
 			</ul>
+			
 		</div>
         
 		<div class="perfil">

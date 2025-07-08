@@ -340,7 +340,7 @@ button:hover,
   align-items: stretch;
   gap: 20px;
   width: 300px;
-  margin-top: 50px;
+  margin-top: 44px;
 }
 
 .boton-checar, .boton-correccion {
@@ -414,21 +414,19 @@ button:hover,
   to {opacity: 1; transform: translateY(0);}
 }
 
-
-.registro-horas {
-  display: block;
-}
-
+/* minireloj */
 /* Mini reloj */
 .mini-reloj { 
-  color: white;
+  color: #F65100;
+  background-color: #fff;
   border-radius: 30px;
   padding: 14px;
-  width: 102px;
+  width: 150px;
   height: 10px;
   transition: background 0.5s ease, box-shadow 0.3s ease;
   text-align: center;
   margin-bottom: 6px;
+  cursor: pointer;
 }
 
 .mini-reloj:hover {
@@ -439,7 +437,51 @@ button:hover,
 .mini-reloj .hora {
   font-size: 1rem;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 #reloj-menu{
   margin-left: 850px;
+}
+
+.formulario-reloj {
+  max-width: 300px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.formulario-reloj .buton-checar1 {
+  background-color: #F65100;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+
+}
+.hora-con-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.mini-reloj .icono {
+  font-size: 1.2rem;
+}
+.formulario-reloj {
+  transition: all 0.3s ease;
+}
+
+#boton-checar1 {
+  font-size: 15px;
+  padding: 12px 25px;
+
+}
+
+#icono-dia-noche1 {
+  margin: 0;
 }

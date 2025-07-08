@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
     <link rel="stylesheet" href="css/style.css">
-	<script src="js/script.js"></script>
 </head>
-			<script src="js/script.js"></script>
 
 <body>
 	
@@ -29,7 +27,10 @@
 				<button class="btn-cerrar">Cerrar Sesión</button>
 			</div>
 		</nav>
-	</header>-->
+	</header>
+	
+
+	-->
 	   
 	
     <!-- Contenedor principal -->
@@ -68,19 +69,36 @@
 				<li><a href="legal/legal.php">Legal</a></li>
 			</ul>
 
-			<ul class="menu" id="reloj-menu">
-				<div class="mini-reloj" id="reloj">
-                    <div class="hora" id="hora-actual"></div>
-                    <div class="icono" id="icono-dia-noche"></div>
-                </div>
-			</ul>
+	
+		<!-- 		<ul class="menu" id="reloj-menu">
+				<li>
+					<div class="mini-reloj" id="reloj" role = "button" tabindex="0"> 
+						<div class="hora" id="hora-actual"></div>
+						<div class="icono" id="icono-dia-noche"></div>
+					</div>
+				</li>
+			</ul>-->
+
+<!-- Formulario bajo el mini reloj -->
+<div id="formulario-reloj" class="formulario-reloj" style="display: none;">
+  <button class="boton-checar" id="boton-checar1">Checar</button>
+</div>
+
+
+<div class="mini-reloj" id="reloj" role="button" tabindex="0">
+  <div class="hora-con-icono">
+    <div class="icono" id="icono-dia-noche1"></div>
+    <div class="hora" id="hora-actual"></div>
+  </div>
+</div>
+
+
 
 
 		</div>
+
         
 		<div class="perfil">
-
-
 
 			<a href="menu.php">
 				<img src="img/home.png" class="img-perfil">
@@ -89,8 +107,10 @@
 				//echo "<span style='color: white;'>".$_SESSION['username']."</span>";
 			?>
 			<a href="../php/logout.php"><button type="button">Cerrar sesión</button></a>
-
 		</div>
+			<div id="formulario-reloj" class="formulario-reloj" style ="display: none;">
+  				<button class="boton-checar" id="boton-checar">Checar</button>
+			</div>
 	</div>
 
 	<!-- Módulo de Notificaciones  -->
@@ -163,5 +183,9 @@
 
 
     </div>
+
+
+
+<script src="js/script.js"></script>
 </body>
 </html>
