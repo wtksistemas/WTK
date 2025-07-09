@@ -34,7 +34,7 @@
 	   
 	
     <!-- Contenedor principal -->
-    <div class="contenedor-principal">
+<div class="contenedor-principal">
 		
 	 <!-- Menú superior -->
 	<div class="menu-superior">
@@ -68,18 +68,12 @@
 			<ul class="menu">
 				<li><a href="legal/legal.php">Legal</a></li>
 			</ul>
+	</div>
 
-	
-		<!-- 		<ul class="menu" id="reloj-menu">
-				<li>
-					<div class="mini-reloj" id="reloj" role = "button" tabindex="0"> 
-						<div class="hora" id="hora-actual"></div>
-						<div class="icono" id="icono-dia-noche"></div>
-					</div>
-				</li>
-			</ul>-->
-
-<!-- Formulario bajo el mini reloj -->
+      
+	<div class="perfil">
+  
+		<!-- Formulario bajo el mini reloj -->
 <div id="formulario-reloj" class="formulario-reloj" style="display: none;">
   <button class="boton-checar" id="boton-checar1">Checar</button>
 </div>
@@ -91,15 +85,6 @@
     <div class="hora" id="hora-actual"></div>
   </div>
 </div>
-
-
-
-
-		</div>
-
-        
-		<div class="perfil">
-
 			<a href="menu.php">
 				<img src="img/home.png" class="img-perfil">
 			</a>
@@ -108,9 +93,7 @@
 			?>
 			<a href="../php/logout.php"><button type="button">Cerrar sesión</button></a>
 		</div>
-			<div id="formulario-reloj" class="formulario-reloj" style ="display: none;">
-  				<button class="boton-checar" id="boton-checar">Checar</button>
-			</div>
+
 	</div>
 
 	<!-- Módulo de Notificaciones  -->

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
     <link rel="stylesheet" href="css/style.css">
-	<script src="js/script.js"></script>
 </head>
 
 <body>
@@ -69,7 +68,20 @@
 			</ul>
 		</div>
         
-		<div class="perfil">
+	<div class="perfil">
+  
+		<!-- Formulario bajo el mini reloj -->
+<div id="formulario-reloj" class="formulario-reloj" style="display: none;">
+  <button class="boton-checar" id="boton-checar1">Checar</button>
+</div>
+
+
+<div class="mini-reloj" id="reloj" role="button" tabindex="0">
+  <div class="hora-con-icono">
+    <div class="icono" id="icono-dia-noche1"></div>
+    <div class="hora" id="hora-actual"></div>
+  </div>
+</div>
 			<a href="menu.php">
 				<img src="img/home.png" class="img-perfil">
 			</a>
@@ -77,8 +89,8 @@
 				//echo "<span style='color: white;'>".$_SESSION['username']."</span>";
 			?>
 			<a href="../php/logout.php"><button type="button">Cerrar sesión</button></a>
-
 		</div>
+
 	</div>
 
 	<!-- Módulo de Vacaciones -->
@@ -126,5 +138,6 @@
 
 
     </div>
+<script src="js/script.js"></script>
 </body>
 </html>

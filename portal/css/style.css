@@ -115,9 +115,13 @@ body {
 
 button:hover,
 .menu-superior .perfil button:hover {
-  background-color: #F65100;
-  color: white;
+  background-color: white;
+  color: #F65100;
 }
+
+
+
+
 
 /* VACACIONES */
 .titulo-vacaciones {
@@ -467,6 +471,8 @@ button:hover,
   align-items: center;
   justify-content: center;
   gap: 5px;
+  margin-top: -3px;
+
 }
 
 .mini-reloj .icono {
@@ -479,9 +485,12 @@ button:hover,
 #boton-checar1 {
   font-size: 15px;
   padding: 12px 25px;
+  background: white;
 
 }
 
 #icono-dia-noche1 {
   margin: 0;
+  margin-top: -7px;
+
 }
