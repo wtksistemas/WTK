@@ -1,0 +1,35 @@
+[06-Sep-2024 13:16:50 America/Mexico_City] PHP Warning:  Undefined variable $conn in /home/whitaker/clientes.whitakermexico.com/php/funciones.php on line 42
+[06-Sep-2024 13:16:50 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function ping() on null in /home/whitaker/clientes.whitakermexico.com/php/funciones.php:42
+Stack trace:
+#0 /home/whitaker/clientes.whitakermexico.com/php/restablece.php(39): insertar_tkn()
+#1 {main}
+  thrown in /home/whitaker/clientes.whitakermexico.com/php/funciones.php on line 42
+[09-Sep-2024 17:57:26 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[10-Sep-2024 16:03:31 America/Mexico_City] PHP Warning:  Trying to access array offset on null in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 18
+[10-Sep-2024 16:03:31 America/Mexico_City] PHP Warning:  Trying to access array offset on null in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[10-Sep-2024 16:03:44 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[12-Sep-2024 19:02:59 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[13-Sep-2024 15:00:16 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 16:35:47 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 16:59:09 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 17:04:49 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 17:06:05 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 17:08:28 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 17:16:05 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 17:21:28 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 18:29:56 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[19-Sep-2024 18:30:44 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[20-Sep-2024 09:33:57 America/Mexico_City] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_array(): Argument #1 ($result) must be of type mysqli_result, true given in /home/whitaker/clientes.whitakermexico.com/php/registro.php:37
+Stack trace:
+#0 /home/whitaker/clientes.whitakermexico.com/php/registro.php(37): mysqli_fetch_array()
+#1 {main}
+  thrown in /home/whitaker/clientes.whitakermexico.com/php/registro.php on line 37
+[20-Sep-2024 18:18:59 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[20-Sep-2024 18:34:17 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[20-Sep-2024 18:39:53 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[23-Sep-2024 18:10:46 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[08-Oct-2024 18:29:48 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[08-Oct-2024 18:36:54 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[09-Oct-2024 14:09:48 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[09-Oct-2024 15:38:19 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
+[09-Oct-2024 18:01:09 America/Mexico_City] PHP Warning:  Undefined array key "cast(aes_decrypt(c_password,')G;09%XI=oY-CeIPDDEDW(-N!S;u36;d') as char)" in /home/whitaker/clientes.whitakermexico.com/php/sesion.php on line 19
