@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Principal</title>
+	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -80,7 +81,7 @@
 				</div>
 
 				<a href="menu.php">
-					<img src="img/home.png" class="img-perfil">
+					<img src="../img/Principales/home.png" class="img-perfil">
 				</a>
 
 				<?php
@@ -92,7 +93,7 @@
 
 		</div>
 <!--	---------------------------------------------- BODY ----------------------------------------------	 -->
-	
+
 
 <script src="js/script.js"></script>
 </body>

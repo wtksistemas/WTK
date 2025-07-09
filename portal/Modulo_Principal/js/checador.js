@@ -1,5 +1,3 @@
-// GENERAL
-
 
 // Script para manejar el menú desplegable
 
@@ -32,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		});
 	});
+
+//  ------------------------------------------- MODULOS  ------------------------------------------
 
 // RELOJ CHECADOR   
 

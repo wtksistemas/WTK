@@ -119,24 +119,104 @@ button:hover,
   color: #F65100;
 }
 
-
-
-
-
-/* VACACIONES */
-.titulo-vacaciones {
+.titulo-modulo {
   text-align: center;
   margin: 20px 0;
   color: #F65100;
   font-size: 2rem;
 }
 
-.modulo-vacaciones {
-  padding: 20px;
+.modulo-titulo {
   max-width: 1200px;
   margin: 0 auto;
 }
 
+/* Mini checador - mini reloj */
+
+/* minireloj */
+
+.mini-reloj { 
+  color: #F65100;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 14px;
+  width: 150px;
+  height: 10px;
+  transition: background 0.5s ease, box-shadow 0.3s ease;
+  text-align: center;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.mini-reloj:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.mini-reloj .hora {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+#reloj-menu{
+  margin-left: 850px;
+}
+
+.formulario-reloj {
+  max-width: 300px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.formulario-reloj .buton-checar1 {
+  background-color: #F65100;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s ease;
+
+}
+.hora-con-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: -3px;
+
+}
+
+.mini-reloj .icono {
+  font-size: 1.2rem;
+}
+.formulario-reloj {
+  transition: all 0.3s ease;
+}
+
+#boton-checar1 {
+  font-size: 15px;
+  padding: 12px 25px;
+  background: white;
+
+}
+
+#icono-dia-noche1 {
+  margin: 0;
+  margin-top: -7px;
+
+}
+
+
+
+
+
+/* ----------------------------------------------------- MODULOS ----------------------------------------------------- */ 
+
+/* -------------------------- VACACIONES --------------------------*/
 .contenido-vacaciones {
   display: flex;
   gap: 40px;
@@ -196,6 +276,7 @@ button:hover,
   background-color: #cc4400;
 }
 
+
 .panel-derecho {
   flex: 1;
   min-width: 300px;
@@ -205,6 +286,11 @@ button:hover,
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+
+
+
+/*-------------------------- NOTIFICACIONES --------------------------*/
+
 .grid-areas {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -213,7 +299,7 @@ button:hover,
   margin-bottom: 30px;
 }
 
-.area-tarjeta {
+.area-tarjeta {                  /*---- Se ocupa modulo de checador tambien todo lo de area-tarjeta ----*/
   background-color: white;
   border-radius: 12px;
   padding: 10px;
@@ -261,6 +347,11 @@ button:hover,
   z-index: 10;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
+
+
+
+/* -------------------------- CHECADOR -------------------------- */
+
 
 /* Reloj */
 .grid-checador {
@@ -418,79 +509,3 @@ button:hover,
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* minireloj */
-/* Mini reloj */
-.mini-reloj { 
-  color: #F65100;
-  background-color: #fff;
-  border-radius: 30px;
-  padding: 14px;
-  width: 150px;
-  height: 10px;
-  transition: background 0.5s ease, box-shadow 0.3s ease;
-  text-align: center;
-  margin-bottom: 6px;
-  cursor: pointer;
-}
-
-.mini-reloj:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-
-.mini-reloj .hora {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-#reloj-menu{
-  margin-left: 850px;
-}
-
-.formulario-reloj {
-  max-width: 300px;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  text-align: center;
-}
-
-.formulario-reloj .buton-checar1 {
-  background-color: #F65100;
-  color: white;
-  border: none;
-  padding: 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: background-color 0.3s ease;
-
-}
-.hora-con-icono {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  margin-top: -3px;
-
-}
-
-.mini-reloj .icono {
-  font-size: 1.2rem;
-}
-.formulario-reloj {
-  transition: all 0.3s ease;
-}
-
-#boton-checar1 {
-  font-size: 15px;
-  padding: 12px 25px;
-  background: white;
-
-}
-
-#icono-dia-noche1 {
-  margin: 0;
-  margin-top: -7px;
-
-}

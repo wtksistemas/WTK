@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Principal</title>
+    <title>Notificaciones</title>
     <link rel="stylesheet" href="css/style.css">
+	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
 </head>
 
 <body>
@@ -80,7 +81,7 @@
 				</div>
 
 				<a href="menu.php">
-					<img src="img/home.png" class="img-perfil">
+					<img src="../img/Principales/home.png" class="img-perfil">
 				</a>
 
 				<?php
@@ -95,8 +96,8 @@
 
 
 		<!-- Módulo de Notificaciones  -->
-		<div class="modulo-vacaciones">
-    		<h1 class="titulo-vacaciones">Notificaciones</h1>
+		<div class="modulo-titulo">
+    		<h1 class="titulo-modulo">Notificaciones</h1>
 
 	    </div>
 
@@ -106,49 +107,49 @@
 
 	    		<div class="area-tarjeta" onclick="mostrarNotificaciones('vacaciones')">
     				<span class="badge" id="badge-vacaciones"></span>     		
-					<img src="img/vacaciones.png" alt="Vacaciones">		        
+					<img src="../img/Modulo_notificaciones/vacaciones.png" alt="Vacaciones">		        
 					<p>Vacaciones</p>
 				</div>
     
    				<div class="area-tarjeta" onclick="mostrarNotificaciones('facturas')">
-    	    		<span class="badge" id="badge-facturas"></span>  
-					<img src="img/factura.png" alt="Facturas">
+    	    		<span class="badge" id="badge-facturas"></span>
+					<img src="../img/Modulo_notificaciones/factura.png" alt="Facturas">
         			<p>Facturas</p>
     			</div>
     
    	 			<div class="area-tarjeta" onclick="mostrarNotificaciones('rh')">
         			<span class="badge" id="badge-rh"></span>
-        			<img src="img/rh.png" alt="Recursos Humanos">
+        			<img src="../img/Modulo_notificaciones/rh.png" alt="Recursos Humanos">
         			<p>RH</p>
     			</div>
     
     			<div class="area-tarjeta" onclick="mostrarNotificaciones('ti')">
         			<span class="badge" id="badge-ti"></span>
-        			<img src="img/ti.png" alt="TI">
+        			<img src="../img/Modulo_notificaciones/ti.png" alt="TI">
         			<p>TI</p>
     			</div>
     
    		 		<div class="area-tarjeta" onclick="mostrarNotificaciones('legal')">
        				<span class="badge" id="badge-legal"></span>
-        			<img src="img/legal.png" alt="Legal">
+        			<img src="../img/Modulo_notificaciones/legal.png" alt="Legal">
         			<p>Legal</p>
     			</div>
     
     			<div class="area-tarjeta" onclick="mostrarNotificaciones('contabilidad')">
         			<span class="badge" id="badge-contabilidad"></span>
-        			<img src="img/contabilidad.png" alt="Contabilidad">
+        			<img src="../img/Modulo_notificaciones/contabilidad.png" alt="Contabilidad">
         			<p>Contabilidad</p>
     			</div>
     
     			<div class="area-tarjeta" onclick="mostrarNotificaciones('gastos')">
         			<span class="badge" id="badge-gastos"></span>
-        			<img src="img/gastos.png" alt="Gastos">
+        			<img src="../img/Modulo_notificaciones/gastos.png" alt="Gastos">
         			<p>Gastos</p>
     			</div>
     
     			<div class="area-tarjeta" onclick="mostrarNotificaciones('permisos')">
         			<span class="badge" id="badge-permisos"></span>
-        			<img src="img/permisos.png" alt="Permisos">
+        			<img src="../img/Modulo_notificaciones/permisos.png" alt="Permisos">
         			<p>Permisos</p>
     			</div>
 			</div>

@@ -119,307 +119,22 @@ button:hover,
   color: #F65100;
 }
 
-
-
-
-
-/* VACACIONES */
-.titulo-vacaciones {
+.titulo-modulo {
   text-align: center;
   margin: 20px 0;
   color: #F65100;
   font-size: 2rem;
 }
 
-.modulo-vacaciones {
-  padding: 20px;
+.modulo-titulo {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.contenido-vacaciones {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.panel-izquierdo {
-  flex: 1;
-  min-width: 500px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.info-empleado p {
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-.formulario-vacaciones {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.formulario-vacaciones h2 {
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.formulario-vacaciones label {
-  margin: 10px 0 5px;
-}
-
-.formulario-vacaciones input,
-.formulario-vacaciones textarea {
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.formulario-vacaciones button {
-  margin-top: 15px;
-  background-color: #F65100;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.formulario-vacaciones button:hover {
-  background-color: #cc4400;
-}
-
-.panel-derecho {
-  flex: 1;
-  min-width: 300px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.grid-areas {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 20px;
-  justify-items: center;
-  margin-bottom: 30px;
-}
-
-.area-tarjeta {
-  background-color: white;
-  border-radius: 12px;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  width: 140px;
-  position: relative;
-}
-
-.area-tarjeta:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.area-tarjeta img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-.area-tarjeta p {
-  margin: 0;
-  font-weight: bold;
-  color: #333;
-}
-
-.modulo-notificaciones {
-  margin-left: 70px;
-  margin-right: 70px;
-}
-
-.badge {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  background-color: #F65100;
-  color: white;
-  border-radius: 50%;
-  padding: 4px 7px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  z-index: 10;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-}
-
-/* Reloj */
-.grid-checador {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
-  margin: 30px 70px;
-  align-items: start;
-}
-
-.lado-izquierdo {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.lado-izquierdo .area-tarjeta {
-  width: 150px;
-  text-align: center;
-}
-
-.lado-izquierdo .area-tarjeta img {
-  width: 100px;
-  height: auto;
-}
-
-.lado-izquierdo .area-tarjeta p {
-  font-weight: bold;
-  color: #333;
-}
-
-.contenedor-central {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 355px;
-  gap: 200px;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.reloj-minimalista {
-  color: #F65100;
-  border-radius: 30px;
-  padding: 30px;
-  width: 350px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  transition: background 0.5s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.reloj-minimalista:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-
-.hora {
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-.fecha {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.icono {
-  margin-top: 10px;
-  font-size: 2.5rem;
-}
-
-.contenedor-boton-horas {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 20px;
-  width: 300px;
-  margin-top: 44px;
-}
-
-.boton-checar, .boton-correccion {
-  background: linear-gradient(135deg, #F65100, #FF8533);
-  color: white;
-  border: none;
-  padding: 15px 25px;
-  font-size: 1.1rem;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.boton-checar:hover, .boton-correccion:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
-}
-
-.registro-horas {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  font-size: 1rem;
-  color: #333;
-}
-
-.registro-horas p {
-  margin: 8px 0;
-  font-weight: bold;
-}
-
-.formulario-correccion {
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  display: none;
-  flex-direction: column;
-  gap: 12px;
-  animation: fadeIn 0.4s ease;
-}
-
-.formulario-correccion label {
-  font-weight: bold;
-}
-
-.formulario-correccion input, 
-.formulario-correccion select, 
-.formulario-correccion textarea {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  width: 100%;
-  font-size: 1rem;
-}
-
-.formulario-correccion button {
-  background-color: #F65100;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(-10px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+/* Mini checador - mini reloj */
 
 /* minireloj */
-/* Mini reloj */
+
 .mini-reloj { 
   color: #F65100;
   background-color: #fff;
@@ -493,4 +208,101 @@ button:hover,
   margin: 0;
   margin-top: -7px;
 
+}
+
+/* ----------------------------------------------------- MODULOS ----------------------------------------------------- */ 
+
+/* COTIZADOR */
+
+
+label{
+  flex: 1;
+  margin-bottom: 5px;
+  margin-left: 5.5px;	
+  margin-right: 1.25rem;
+}
+
+input, select {
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.formularios-contenedor{
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px; /* Ajusta el ancho máximo */
+  align-items:center;
+  margin: 0 auto;
+  width: 40%;
+}
+
+.formulario-izquierda, .formulario-derecha{
+  margin: 20px 0;
+  width: 180%;
+}
+.formulario-izquierda{
+  order: 1;
+}
+.formulario-derecha {
+  order: 2;
+}
+
+.formulario{
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.fila {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.fila div {
+  flex: 1;
+  margin-right: 22px;
+}
+
+.fila div:last-child {
+  margin-right: 0;
+}
+.switch-button{
+    display: inline-block;
+  }
+  
+.switch-button .switch-button__checkbox { 
+    display: none;
+  }
+  .switch-button .switch-button__label {
+    background-color: #F65100;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 3rem;
+    display: inline-block;
+    position: relative;
+}
+.switch-button .switch-button__label:before {
+    transition: .2s;
+    display: block;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: #fdffff;
+    content: '';
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 0px 1px #000;
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label {
+    background-color: #F65100;
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label:before {
+    transform: translateX(2rem);
 }

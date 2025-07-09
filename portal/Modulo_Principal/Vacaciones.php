@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel vacaciones</title>
+    <title>Vacaciones</title>
     <link rel="stylesheet" href="css/style.css">
+	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
+
 </head>
 
 <body>
@@ -80,7 +82,7 @@
 				</div>
 
 				<a href="menu.php">
-					<img src="img/home.png" class="img-perfil">
+					<img src="../img/Principales/home.png" class="img-perfil">
 				</a>
 
 				<?php
@@ -96,8 +98,8 @@
 
 
 		<!-- Módulo de Vacaciones -->
-		<div class="modulo-vacaciones">
-    		<h1 class="titulo-vacaciones">Vacaciones</h1>
+		<div class="modulo-titulo">
+    		<h1 class="titulo-modulo">Vacaciones</h1>
 
 		    <div class="contenido-vacaciones">
     		    <!-- Panel Izquierdo -->
