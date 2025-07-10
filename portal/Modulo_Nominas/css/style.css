@@ -215,73 +215,138 @@ button:hover,
 /* COTIZADOR */
 
 
-label{
-  flex: 1;
-  margin-bottom: 5px;
-  margin-left: 5.5px;	
-  margin-right: 1.25rem;
+
+.formularios-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 40%;
+    max-width: 1200px;
+    padding-top: 26px;
+}
+
+.formulario-izquierda, .formulario-derecha {
+    width: 180%;
+    margin: 20px 0;
+}
+
+.formulario {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.fila {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    margin-left: 5.5px;
 }
 
 input, select {
     padding: 10px;
-    box-sizing: border-box;
     width: 100%;
+    box-sizing: border-box;
 }
 
-.formularios-contenedor{
-  display: flex;
-  flex-direction: column;
-  max-width: 1200px; /* Ajusta el ancho máximo */
-  align-items:center;
-  margin: 0 auto;
-  width: 40%;
+#adicion {
+    margin-left: 2rem;
 }
 
-.formulario-izquierda, .formulario-derecha{
-  margin: 20px 0;
-  width: 180%;
-}
-.formulario-izquierda{
-  order: 1;
-}
-.formulario-derecha {
-  order: 2;
+.ad {
+    width: 40%;
 }
 
-.formulario{
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.titulo {
-  text-align: center;
-  margin-bottom: 20px;
+.boton {
+    background-color: #F65100;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
 }
 
-.fila {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+#b1 {
+    margin-right: 2px;
 }
 
-.fila div {
-  flex: 1;
-  margin-right: 22px;
+#b2 {
+    margin-left: 2px;
 }
 
-.fila div:last-child {
-  margin-right: 0;
+.input-button-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-.switch-button{
+
+.toggle-button {
+    padding: 5px 10px;
+    background-color: #F65100;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.tooltip {
+    position: relative;
     display: inline-block;
-  }
-  
-.switch-button .switch-button__checkbox { 
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 13%;
+    left: 75%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Switch Button */
+.switch-button {
+    display: inline-block;
+}
+
+.switch-button .switch-button__checkbox {
     display: none;
-  }
-  .switch-button .switch-button__label {
+}
+
+.switch-button .switch-button__label {
     background-color: #F65100;
     width: 4rem;
     height: 2rem;
@@ -289,20 +354,24 @@ input, select {
     display: inline-block;
     position: relative;
 }
+
 .switch-button .switch-button__label:before {
-    transition: .2s;
-    display: block;
+    content: '';
     position: absolute;
     width: 2rem;
     height: 2rem;
     background-color: #fdffff;
-    content: '';
     border-radius: 50%;
     box-shadow: inset 0px 0px 0px 1px #000;
+    transition: 0.2s;
 }
-.switch-button .switch-button__checkbox:checked + .switch-button__label {
-    background-color: #F65100;
-}
+
 .switch-button .switch-button__checkbox:checked + .switch-button__label:before {
     transform: translateX(2rem);
+}
+
+button:hover,
+.toggle-button button:hover {
+  background-color: #F65100;
+  color: white;
 }

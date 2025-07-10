@@ -56,14 +56,14 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle">Nóminas</a>
 						<ul class="submenu">
-							<li><a id="submenu" href="nominas/nomina.php">Cotizador</a></li>
-							<li><a id="submenu" href="nominas/validacion.php">Validación de cuentas</a></li>
+							<li><a id="submenu" href="../Modulo_Nominas/nomina.php">Cotizador</a></li>
+							<li><a id="submenu" href="../Modulo_Nominas/validacion.php">Validación de cuentas</a></li>
 						</ul>
 					</li>
 				</ul>
 			
 				<ul class="menu">
-					<li><a href="legal/legal.php">Legal</a></li>
+					<li><a href="../Modulo_Legal/legal.php">Legal</a></li>
 				</ul>
 			</div>
         

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Principal</title>
+    <title>Nóminas</title>   																		 <!--CAMBIAR TITULO -->
 	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -42,28 +42,28 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle">Checador</a>
 						<ul class="submenu">
-							<li><a id="submenu" href="checador.php">Ver Checador</a></li>
-							<li><a id="submenu" href="vacaciones.php">Vacaciones</a></li>
+							<li><a id="submenu" href="../Modulo_Principal/checador.php">Ver Checador</a></li>
+							<li><a id="submenu" href="../Modulo_Principal/vacaciones.php">Vacaciones</a></li>
 						</ul>
 					</li>
 				</ul>
 			
 				<ul class="menu">
-					<li><a href="notificaciones.php">Notificaciones</a></li>
+					<li><a href="../Modulo_Principal/notificaciones.php">Notificaciones</a></li>
 				</ul>
 
 				<ul class="menu">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle">Nóminas</a>
 						<ul class="submenu">
-							<li><a id="submenu" href="nominas/nomina.php">Cotizador</a></li>
-							<li><a id="submenu" href="nominas/validacion.php">Validación de cuentas</a></li>
+							<li><a id="submenu" href="nomina.php">Cotizador</a></li>
+							<li><a id="submenu" href="validacion.php">Validación de cuentas</a></li>
 						</ul>
 					</li>
 				</ul>
 			
 				<ul class="menu">
-					<li><a href="legal/legal.php">Legal</a></li>
+					<li><a href="../Modulo_Legal/legal.php">Legal</a></li>
 				</ul>
 			</div>
         
@@ -80,7 +80,7 @@
   					</div>
 				</div>
 
-				<a href="menu.php">
+				<a href="../Modulo_Principal/menu.php">
 					<img src="../img/Principales/home.png" class="img-perfil">
 				</a>
 
