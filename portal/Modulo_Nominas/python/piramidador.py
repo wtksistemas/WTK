@@ -1,7 +1,5 @@
 import math
 
-
-
 def bruto_neto(bruto, riesgo, periodicidad, sub, mecanica):
 
     salario_ingresado = bruto
@@ -83,17 +81,17 @@ def bruto_neto(bruto, riesgo, periodicidad, sub, mecanica):
     subsidio_isr = [475.00, 0.0]
 
     # Variables Globales estaticas
-    FACTOR_INTEGRACION = 1.0493  # Factor de integracion para 2025
-    UMA = 113.14  # Valor de UMA 2025
-    ISN_PORCENTAJE = 4.00 / 100  # Porcentaje de ISN CDMX 2025
+    FACTOR_INTEGRACION = 1.0493   # Factor de integracion para 2025
+    UMA = 113.14   # Valor de UMA 2025
+    ISN_PORCENTAJE = 4.00 / 100   # Porcentaje de ISN CDMX 2025
     TOPE_UMAS_IMSS = UMA * 25
 
     if mecanica == "PROYECTADA":
-        sbc = salario_ingresado * FACTOR_INTEGRACION  # Calculo de Salario Base de Cotizacion
+        sbc = salario_ingresado * FACTOR_INTEGRACION   # Calculo de Salario Base de Cotizacion
     elif mecanica == "FIJA":
-        sbc = salario * FACTOR_INTEGRACION  # Calculo de Salario Base de Cotizacion
+        sbc = salario * FACTOR_INTEGRACION   # Calculo de Salario Base de Cotizacion
 
-    sdi = sbc / dias  # Calculo de Salario diario integrado
+    sdi = sbc / dias   # Calculo de Salario diario integrado
 
     if sdi > TOPE_UMAS_IMSS:
         sdi = TOPE_UMAS_IMSS
@@ -131,7 +129,7 @@ def bruto_neto(bruto, riesgo, periodicidad, sub, mecanica):
     # Buscamos el salario en la tabla de subsidio para determinar si es acreedor
     limite_inf_subsidio = 0
     limite_sup_subsidio = 0
-    valor_subsidio = float(sub)  # Usamos el valor de subsidio pasado como argumento
+    valor_subsidio = float(sub)   # Usamos el valor de subsidio pasado como argumento
     
     excedente = 0
     porcentaje_excedente = 0
@@ -191,7 +189,7 @@ def bruto_neto(bruto, riesgo, periodicidad, sub, mecanica):
         isr3 = cuota_fija + isr2
         # de la suma entre 30* dias
         isr4 = (isr3 / 30) * dias
-
+    
     # SUBSIDIO PROYECTADO
     sub_proyectado = 0
     if mecanica == "PROYECTADA":
@@ -210,7 +208,7 @@ def bruto_neto(bruto, riesgo, periodicidad, sub, mecanica):
 
     # Segundo bloque: Excedente de cuota fija
     z = UMA * 3
-    if sdi >= (UMA * 3):  # si el sbc supera 3 veces la uma
+    if sdi >= (UMA * 3):   # si el sbc supera 3 veces la uma
         # calculo de excedente patron
         prop_i_ex = sdi - (UMA * 3)
         prop_i_ex = prop_i_ex * dias
@@ -351,16 +349,17 @@ def piramida(neto_objetivo, riesgo, periodicidad, sub, mecanica):
 
     bruto_inicial_para_calculo = neto_objetivo 
     
-    (nuevo_neto, nuevo_bruto, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _) = \
-        bruto_neto(bruto_inicial_para_calculo, riesgo, periodicidad, sub, mecanica)
+    # Usando *resto_de_valores para capturar el resto de los elementos
+    nuevo_neto, nuevo_bruto, *resto_de_valores = bruto_neto(bruto_inicial_para_calculo, riesgo, periodicidad, sub, mecanica)
     
-    centavo = 0.01  
+    centavo = 0.10
     
+    # nuevo_neto ya es un flotante si bruto_neto devuelve flotantes, pero lo mantenemos por seguridad si vienen de otra fuente
     nuevo_neto = float(nuevo_neto)
     
     while True:
-        (nuevo_neto, nuevo_bruto, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _) = \
-            bruto_neto(nuevo_bruto, riesgo, periodicidad, sub, mecanica)
+        # Usando *resto_de_valores de nuevo
+        nuevo_neto, nuevo_bruto, *resto_de_valores = bruto_neto(nuevo_bruto, riesgo, periodicidad, sub, mecanica)
         
         nuevo_bruto += centavo
         
@@ -375,7 +374,7 @@ def piramida(neto_objetivo, riesgo, periodicidad, sub, mecanica):
 
 
 # Ejemplo de uso de piramida
-neto_objetivo_ejemplo = 12000
+neto_objetivo_ejemplo = 9930.81  
 riesgo_piramida = 0.50
 periodicidad_piramida = "vquincenal"
 subsidio_piramida = 0.0
