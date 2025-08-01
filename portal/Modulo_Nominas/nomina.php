@@ -30,7 +30,67 @@
 		</nav>
 	</header>-->
 	   
-	
+<?php 
+header('Content-Type: application/json'); // Indica que la respuesta será JSON
+
+// Verifica si la solicitud es POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Obtén los datos enviados desde JavaScript
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    // Valida que los datos necesarios estén presentes
+    if (isset($data['salario']) && isset($data['priesgo']) && isset($data['periodicidad']) && isset($data['metodo']) && isset($data['subsidioAnual']) && isset($data['mecanica'])) {
+        $salario = $data['salario'];
+        $priesgo = $data['priesgo'];
+        $periodicidad = $data['periodicidad'];
+        $metodo = $data['metodo'];
+        $subsidioAnual = $data['subsidioAnual'];
+        $mecanica = $data['mecanica'];
+
+        // Ruta al script de Python
+        $pythonScript = 'piramidador.py';
+
+        $command = '';
+        if ($metodo === "Bruto a Neto") {
+            // Comando para ejecutar el script Python con los argumentos para bruto_neto
+            // Asegúrate de que los argumentos se pasen en el orden correcto a la función bruto_neto en Python
+            $command = escapeshellcmd("python3 $pythonScript Bruto_a_Neto $salario $priesgo $periodicidad $subsidioAnual $mecanica");
+        } elseif ($metodo === "Neto a Bruto") {
+            // Comando para ejecutar el script Python con los argumentos para piramida
+            $command = escapeshellcmd("python3 $pythonScript Neto_a_Bruto $salario $priesgo $periodicidad $subsidioAnual $mecanica");
+        } else {
+            echo json_encode(['error' => 'Método de piramidación no válido.']);
+            exit;
+        }
+
+        // Ejecuta el script de Python y captura la salida
+        // Se usa `2>&1` para redirigir los errores estándar a la salida estándar,
+        // así podemos capturarlos en caso de que el script de Python falle.
+        $output = shell_exec($command);
+
+        // Intenta decodificar la salida JSON de Python
+        $result = json_decode($output, true);
+
+        if ($result === null && json_last_error() !== JSON_ERROR_NONE) {
+            // Error al decodificar JSON, puede ser que Python no devolvió JSON válido
+            echo json_encode(['error' => 'Error al procesar la respuesta de Python o Python no devolvió JSON. Salida de Python: ' . $output]);
+        } else if (isset($result['error'])) {
+            // Python devolvió un error específico
+            echo json_encode(['error' => $result['error']]);
+        }
+        else {
+            // Envía los resultados de Python de vuelta a JavaScript
+            echo json_encode($result);
+        }
+
+    } else {
+        echo json_encode(['error' => 'Datos incompletos recibidos.']);
+    }
+} else {
+    echo json_encode(['error' => 'Solo se permiten solicitudes POST.']);
+}
+
+?>
     <!-- Contenedor principal -->
     <div class="contenedor-principal">
 		
@@ -98,7 +158,7 @@
         <div class="formularios-contenedor">
 
 			<div class="formulario-izquierda">
-				<script src="js/piramidador.js"></script>
+<!--				<script src="js/piramidador.js"></script> -->
 
 				<form class="formulario">
 					

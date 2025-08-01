@@ -1,5 +1,9 @@
 import math
 
+
+
+
+
 def bruto_neto(bruto, riesgo, periodicidad, sub, mecanica):
 
     salario_ingresado = bruto
