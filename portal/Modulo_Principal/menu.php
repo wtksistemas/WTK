@@ -11,14 +11,12 @@
 <body>
 	
 	<?php
-	//	session_start();
-	  //include "../php/control.php";
-	//if (/$_SESSION['id'] == '888')
-	//	{
-	//	}
-	//	else{
-	//		header("Location:../index.html");
-	//	}	
+		session_start();
+	include "../../php/control.php";
+	if ($_SESSION['id'] == '888'){}
+		else{
+				header("Location:../index.html");
+			}	
 	?>
 
 <!--<header>
@@ -88,7 +86,7 @@
 					//echo "<span style='color: white;'>".$_SESSION['username']."</span>";
 				?>
 
-				<a href="../php/logout.php"><button type="button">Cerrar sesión</button></a>
+				<a href="../../php/logout.php"><button type="button">Cerrar sesión</button></a>
 			</div>
 
 		</div>
