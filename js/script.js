@@ -72,7 +72,7 @@ if(valores != "" )
 		}
 	}
 
-	function no_atras()
+function no_atras()
 {
    window.location.hash="no-back-button";
    window.location.hash="Again-No-back-button"
@@ -80,120 +80,63 @@ if(valores != "" )
 }
 
 
-function validarCampos() {
-	const campo1 = document.getElementById('contrasena1').value;
-	const campo2 = document.getElementById('contrasena2').value;
-	const submit = document.getElementById('btn');
-	submit.disabled=true;
+//function validarCampos() {
+//	const campo1 = document.getElementById('contrasena1').value;
+//	const campo2 = document.getElementById('contrasena2').value;
+//	const submit = document.getElementById('btn');
+//	submit.disabled=true;
   
-	if (campo1 === campo2) {
+//	if (campo1 === campo2) {
 	  // Los campos son iguales, puedes mostrar un mensaje, habilitar un botón, etc.
-	  document.getElementById("mensaje").textContent = "Las contraseñas coinciden";
-	  submit.disabled=false;
+//	  document.getElementById("mensaje").textContent = "Las contraseñas coinciden";
+//	  submit.disabled=false;
 	  
-	} else {
+//	} else {
 	  // Los campos son diferentes, puedes mostrar un mensaje de error.
-	  document.getElementById("mensaje").textContent = "Las contraseñas no coinciden";
-	  submit.disabled=true;
-	}
-  }
+//	  document.getElementById("mensaje").textContent = "Las contraseñas no coinciden";
+//	  submit.disabled=true;
+//	}
+  //}
 
 
-  
+function ValidarRegistro() {
+    // Obtener valores de los inputs
+    const nombre = document.getElementById("nombre").value.trim();
+    const mail = document.getElementById("mail").value.trim();
+    const pass = document.getElementById("pass").value.trim();
+    const idrfc = document.getElementById("idrfc").value.trim();
+    const tel = document.getElementById("tel").value.trim();
+    const idcfpass = document.getElementById("idcfpass").value.trim();
+    const boton = document.getElementById("btn-registrate");
 
+    // Crear o ubicar mensaje de validación para contraseñas
+	let mensaje = document.getElementById("msg-pass");
+	if (!mensaje) {
+		mensaje = document.createElement("p");
+        mensaje.id = "msg-pass";
+        mensaje.style.fontSize = "14px";
+        mensaje.style.marginTop = "5px";
+        document.getElementById("idcfpass").insertAdjacentElement("afterend", mensaje);
+    }
 
+    // Validar contraseñas
+    if (idcfpass.length > 0) {
+        if (pass !== idcfpass) {
+            mensaje.textContent = "❌ No coincide";
+            mensaje.style.color = "red";
+        } else {
+            mensaje.textContent = "✅ Correcto";
+            mensaje.style.color = "green";
+        }
+    } else {
+        mensaje.textContent = "";
+    }
 
+    // Verificar que todos los campos estén llenos y contraseñas coincidan
+    const formularioCompleto = nombre && mail && pass && idrfc && tel && idcfpass;
+    const contrasenasIguales = pass === idcfpass && pass !== "";
 
-  function ValidarRegistro() {
-    // Obtener todos los campos del formulario
-    const nombre = document.getElementById('nombre').value.trim();
-    const empresa = document.getElementById('empresa').value;
-    const division = document.getElementById('division').value.trim();
-    const mail = document.getElementById('mail').value.trim();
-    const pass = document.getElementById('pass').value.trim();
-    const tel = document.getElementById('tel').value.trim();
-
-    // Verificar si todos los campos están llenos y que se haya seleccionado una empresa
-    const isFormComplete = nombre && empresa !== "0" && division && mail && pass && tel;
-
-    // Habilitar o deshabilitar el botón de registro
-    document.getElementById('btn-registrate').disabled = !isFormComplete;
-
-
+    // Habilitar o deshabilitar el botón
+    boton.disabled = !(formularioCompleto && contrasenasIguales);
 }
-
-
-
-
-
-
-
-
-
-
-  
-
-  function netoaobjetivo() {
-	const piramida = document.getElementById("piramida").value;
-	const labelMensual = document.getElementById("vmensual");
-	const labelNeto = document.getElementById("v_net");
-
-	if (piramida === "Bruto a Neto") {
-		labelMensual.innerText = "Bruto Mensual";
-		labelNeto.innerText = "Neto a pagar";
-	} else if (piramida === "Neto a Bruto") {
-		labelMensual.innerText = "Neto Mensual";
-		labelNeto.innerText = "Bruto objetivo";
-	} else {
-		labelMensual.innerText = "Base Mensual";
-		labelNeto.innerText = "Neto a pagar";
-	}
-}
-	function validarform(){
-		const seleccion = document.getElementById("piramida").value;
-		const salario = document.querySelector("input[name='salario']").value;
-
-		if(seleccion === "nada" || salario === ""){
-			alert("Debe seleccionar una opción valida y llenar todos los campos requeridos.");
-			window.location.reload();//recarga la pagina
-			return false;//evita el envio del formulario
-		}
-		return true;//permite envio exitoso
-	}
-
-
-
-	// Función para mostrar u ocultar el submenú
-
-	document.addEventListener('DOMContentLoaded', function() {
-		// Manejar dropdowns
-		const dropdowns = document.querySelectorAll('.dropdown');
-		
-		dropdowns.forEach(dropdown => {
-			const toggle = dropdown.querySelector('.dropdown-toggle');
-			
-			toggle.addEventListener('click', function(e) {
-				e.preventDefault();
-				e.stopPropagation();
-				dropdown.classList.toggle('active');
-				
-				// Cerrar otros dropdowns
-				dropdowns.forEach(other => {
-					if(other !== dropdown) other.classList.remove('active');
-				});
-			});
-		});
-	
-		// Cerrar dropdowns al hacer clic fuera
-		document.addEventListener('click', function(e) {
-			if(!e.target.closest('.dropdown')) {
-				dropdowns.forEach(dropdown => {
-					dropdown.classList.remove('active');
-				});
-			}
-		});
-	});
-
-
-
 	
