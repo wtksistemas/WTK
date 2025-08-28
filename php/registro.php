@@ -2,15 +2,53 @@
 require_once("dbconnect.php");
 
 //Variables de formulario
-$nombre=$_POST['nombre'];
-$pagadadora=$_POST['empresa'];
-$division=$_POST['div'];
-$mail=$_POST['email'];
-$contrasena=$_POST['password'];
-$telefono=$_POST['fon'];
-$espacio=" ";
+$nombre     = trim($_POST['nombre'] ?? '');
+$pagadadora = trim($_POST['empresa'] ?? '');
+$division   = trim($_POST['div'] ?? '');
+$mail       = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+$contrasena = $_POST['password'] ?? '';
+$telefono   = trim($_POST['fon'] ?? '');
 
-//echo "pagadora: ".$pagadadora."";
+
+$espacio=" ";
+// verificamos todos los campos, si alguno esta vacio regresamos al formulario
+
+if (!$nombre || !$pagadadora || !$division || !$mail || !$contrasena) {
+    header("Location:../index.html?v=22"); // Datos incompletos
+    exit;
+}
+
+// verificamos si el usuario ya existe en la BD
+
+$stmt = $conn->prepare("SELECT c_usuario FROM tb_usuarios WHERE c_usuario = ?");
+$stmt->bind_param("s", $mail);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    $stmt->close();
+    header("Location:../index.html?v=20"); // Usuario ya existe
+    exit;
+}
+$stmt->close();
+
+
+// Hash de la contraseña
+$hash = password_hash($contrasena, PASSWORD_DEFAULT);
+
+
+// Insertar nuevo usuario
+$stmt = $conn->prepare("INSERT INTO tb_usuarios (c_empresa, c_nombre, c_usuario, c_password, c_telefono, c_division) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssss", $pagadadora, $nombre, $mail, $hash, $telefono, $division);
+
+if ($stmt->execute()) {
+    header("Location:../index.html?v=21"); // Registro exitoso
+} else {
+    header("Location:../index.html?v=23"); // Error en el registro
+}
+$stmt->close();
+$conn->close();
+?>
 
 
 // Seccion de consultas e inserciones 	
