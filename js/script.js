@@ -13,7 +13,11 @@ const mensajes = {
   "20": "Usuario ya registrado en esta plataforma, favor de verificar.",
   "21": "Registro Exitoso :))",
   "22": "Proceso inválido, repite el proceso.",
-  "23": "Proceso inválido, solo se admiten números."
+  "23": "Proceso inválido, solo se admiten números.",
+  "24": "Usuario ya registrado en esta plataforma, favor de verificar, RFC Duplicado.",    
+  "25": "Usuario ya registrado en esta plataforma, favor de verificar, Nombre Duplicado.",
+  "26": "Usuario ya registrado en esta plataforma, favor de verificar, Correo Electrónico Duplicado.",
+  "27": "Usuario ya registrado en esta plataforma, favor de verificar, Teléfono Duplicado.",
 };
 
 // Mostrar alerta si existe mensaje para ese código

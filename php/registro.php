@@ -28,7 +28,7 @@ $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
     $stmt->close();
-    header("Location:../index.html?v=20"); // rfc ya existe
+    header("Location:../index.html?v=24"); // rfc ya existe
     exit;
 }
 
@@ -39,7 +39,7 @@ $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
     $stmt->close();
-    header("Location:../index.html?v=20"); // nombre ya existe
+    header("Location:../index.html?v=25"); // nombre ya existe
     exit;
 }
 
@@ -50,7 +50,7 @@ $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
     $stmt->close();
-    header("Location:../index.html?v=20"); // mail ya existe
+    header("Location:../index.html?v=26"); // mail ya existe
     exit;
 }
 
@@ -62,7 +62,7 @@ $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
     $stmt->close();
-    header("Location:../index.html?v=20"); // telefono ya existe
+    header("Location:../index.html?v=27"); // telefono ya existe
     exit;
 }
 
