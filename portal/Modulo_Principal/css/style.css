@@ -488,7 +488,7 @@ button:hover,
 .formulario-correccion input, 
 .formulario-correccion select, 
 .formulario-correccion textarea {
-  padding: 8px;
+  padding-bottom: 16px;
   border-radius: 6px;
   border: 1px solid #ccc;
   width: 100%;
