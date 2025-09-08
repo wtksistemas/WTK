@@ -88,7 +88,7 @@
 					//echo "<span style='color: white;'>".$_SESSION['username']."</span>";
 				?>
 
-				<a href="../php/logout.php"><button type="button">Cerrar sesión</button></a>
+				<a href="../../php/logout.php"><button type="button">Cerrar sesión</button></a>
 			</div>
 
 		</div>
