@@ -137,14 +137,33 @@
             
             </div>
 
-        <div class="registro-horas" id="registro-horas">
-            <p>Hora de entrada: --:--</p>
-            <p>Entrada de comida: --:--</p>
-            <p>Salida de comida: --:--</p>
-            <p>Hora de salida: --:--</p>
-        </div>
+            <div class="contenedor-registros" id="contenedor-registros">
+                <div class="registro-horas">
+                    <h3>Hora de entrada</h3>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                </div>
 
-    </div>
+                <div class="registro-horas">
+                    <h3>Hora de salida</h3>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                </div>
+
+                <div class="registro-horas">
+                    <h3>Tiempo transcurrido</h3>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                    <p>--:--</p>
+                </div>
+            </div>
+
+        </div>
 
 <script src="js/checador.js"></script>
 </body>
