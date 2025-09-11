@@ -25,51 +25,53 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 	$espacio=" ";
 	$tipo_token1="URL";
 	$tipo_token2="AUTH";
+	$t1=null;
+	$t2=null;
+
 	//Definicion de variables de validacion
 	$r9=NULL;
 	$tkn=NULL;
 	$tkn2=NULL;
-	// Seccion de consultas 
-	$sql = "select ID,c_usuario from tb_usuarios where c_usuario='".$persona."';";
 
-	// buscamos al usuario que solicita la accion 
-	$result = mysqli_query($conn,$sql);
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	$num_rows = mysqli_num_rows($result);
+
+	// Seccion de consultas 
+	$stmt=$conn->prepare("SELECT id, c_usuario FROM tb_usuarios WHERE c_usuario= ?");
+	$stmt->bind_param("s",$persona);
+	$stmt->execute();
+	$result=$stmt->get_result();
+	$row=$result->fetch_assoc();
+
 
 	// Si el numero de filas obtenidas de la consulta es mayor a 0 guardamos el id y usuario obtenido 
-	if($num_rows>0)
+	if($row)
 		{
-			$id_obtenido=$row["ID"];
+			$id_obtenido=$row["id"];
 			$user_msql=$row["c_usuario"];
-		}
-
-	// Si la consulta no arroja ningun resultado..
- 	if($row == false) 
-		{
-			$r9="consulta no valida";
-		}
-	if($num_rows>0 && $persona==$user_msql) // si el numero de filas recibidas por la consulta es mayor a 0 y el usuario es igual al solicitante
-		{
-			// Generamos token
+		// Generamos token
 			$t1=token();
 			$t2=token_2();
 
-			// secccion de inserciones 
-			$query="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','".$id_obtenido."','".$t1."','".$tipo_token1."','".$estado_tkn."')";
-			$query2="insert into tb_token (ID,id_cusuario,c_token,c_tipotoken,c_estado) values('".$espacio."','".$id_obtenido."','".$t2."','".$tipo_token2."','".$estado_tkn."')";
 
-			// insertamos tokens
-			$result_t1=mysqli_query($conn,$query);
-			$result_t2=mysqli_query($conn,$query2);
-			$r9=1;
+			// Insertar tokens
+        $stmt1 = $conn->prepare("INSERT INTO tb_token (id_cusuario, c_token, c_tipotoken, c_estado) VALUES (?, ?, ?, ?)");
+        $stmt1->bind_param("isss", $id_obtenido, $t1, $tipo_token1, $estado_tkn);
+        $stmt1->execute();
+
+        $stmt2 = $conn->prepare("INSERT INTO tb_token (id_cusuario, c_token, c_tipotoken, c_estado) VALUES (?, ?, ?, ?)");
+        $stmt2->bind_param("isss", $id_obtenido, $t2, $tipo_token2, $estado_tkn);
+        $stmt2->execute();
+
+        $stmt1->close();
+        $stmt2->close();
 		}
 	else	//si no se encuentra el usuario asigna mensaje de error
 		{
-			$r9="Usuario no existente"; 
+			$conn->close();
+			return[null,  null];
 		}	
 	
-	mysqli_close($conn);	//cierra la conexion de bd 
+	$stmt->close();	
+	$conn->close(); //cierra la conexion de bd 
 	return [$t1,$t2];	//retorna los 2 tokens generados
 }
 

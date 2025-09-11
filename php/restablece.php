@@ -1,11 +1,10 @@
 <?php
 $user=$_POST['username'];
 /* Envio de mail para reestablecimiento
-/* Mostrar errores PHP (Desactivar en producción)
+/* Mostrar errores PHP (Desactivar en producción) */
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-*/
 // Incluir la libreria PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -24,13 +23,13 @@ try {
     // Configuracion SMTP
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                                // Mostrar salida (Desactivar en producción)
     $mail->isSMTP();                                                         // Activar envio SMTP
-    $mail->Host  = 'smtp.gmail.com';                                         // Servidor SMTP
+    $mail->Host  = 'smtp.zoho.com';                                         // Servidor SMTP
     $mail->SMTPAuth  = true;                                                 // Identificacion SMTP
-    $mail->Username  = 'sistemas@whitakermexico.com';                        // Usuario SMTP
+    $mail->Username  = 'notificaciones_wtk@zohomail.com';                        // Usuario SMTP
     $mail->Password  = 'WTK$cuesta01';	                                     // Contraseña SMTP
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port  = 587;
-    $mail->setFrom('sistemas@whitakermexico.com', 'Restablece tu cuenta');   // Remitente del correo
+    $mail->setFrom('notificaciones_wtk@zohomail.com', 'Restablece tu cuenta');   // Remitente del correo
 
     // Destinatarios
     $mail->addAddress($user, 'Usuario');  									 // Email y nombre del destinatario
@@ -56,9 +55,6 @@ try {
         $mail->send();
 
     }
-
-
-
 
 } catch (Exception $e) {
     echo "El mensaje no se ha enviado. Mailer Error: ".$mail->ErrorInfo."";
