@@ -55,7 +55,6 @@ setInterval(actualizarReloj, 1000);
 actualizarReloj();
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     // registrar horas
     const btnChecar = document.getElementById('boton-checar');
@@ -63,28 +62,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modificar horas
     const btnCorreccion = document.getElementById('modificacion-checada');
     const formularioCorreccion = document.getElementById('formulario-correccion');
+    // despliegue de contenedor registro
+    const contenedorRegistro = document.getElementById('contenedor-registros');
 
 
   btnChecar.addEventListener('click', () => {
     const hora = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
     registros.innerHTML = `
-      <p>Hora de entrada: ${hora}</p>
-      <p>Entrada de comida: --:--</p>
-      <p>Salida de comida: --:--</p>
-      <p>Hora de salida: --:--</p>
+      <p>--:--${hora}</p>
     `;
     alert(`¡Entrada/Salida registrada a las ${hora}!`);    
   });
 
-    btnCorreccion.addEventListener('click', () => {
+  btnCorreccion.addEventListener('click', () => {
     const isVisible = formularioCorreccion.style.display === 'flex';
+    // Muestra/oculta el formulario
     formularioCorreccion.style.display = isVisible ? 'none' : 'flex';
+    // Agrega/elimina la clase para animar el contenedor de registros
+    contenedorRegistro.classList.toggle('desplazar-abajo');
   });
 
 });
-
-
-
 
 
 
