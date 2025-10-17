@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
+
+
 // MINI RELOJ
 
 function actualizarReloj() {
@@ -148,6 +150,11 @@ function actualizarBadges() {  //busca elementos con id badge-area y le asigna e
         }
     }
 }
+
+
+
+
+
 
 
 // Ejecutar al cargar la página

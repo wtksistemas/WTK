@@ -81,17 +81,19 @@
 			</div>
 
 		</div>
-<!--	---------------------------------------------- BODY ----------------------------------------------	 -->
+            
+        <!------------------------------------------------ BODY ----------------------------------------------	 -->
 		
         <div class="grid-checador">
 
             <div class="lado-izquierdo">
                     
-                <div class="area-tarjeta">
-                    <img src="../img/modulo_checador/vacaciones.png" alt="Vacaciones">
-                    <p>Vacaciones</p>
-                </div>
-                
+										
+				<button class="area-tarjeta" id="btn-abrir-modal">
+					<img src="../img/modulo_checador/vacaciones.png" alt="Solicitar Vacaciones">
+					<span>Vacaciones</span>
+				</button>
+
                 <div class="area-tarjeta">
                     <img src="../img/modulo_checador/permisos.png" alt="Permisos">
                     <p>Permisos y Justificaciones</p>
@@ -140,30 +142,140 @@
             <div class="contenedor-registros" id="contenedor-registros">
                 <div class="registro-horas">
                     <h3>Hora de entrada</h3>
-                    <p>--:--</p>
-                    <p>--:--</p>
-                    <p>--:--</p>
-                    <p>--:--</p>
                 </div>
 
                 <div class="registro-horas">
                     <h3>Hora de salida</h3>
-                    <p>--:--</p>
-                    <p>--:--</p>
-                    <p>--:--</p>
-                    <p>--:--</p>
                 </div>
 
                 <div class="registro-horas">
                     <h3>Tiempo transcurrido</h3>
-                    <p>--:--</p>
-                    <p>--:--</p>
-                    <p>--:--</p>
-                    <p>--:--</p>
                 </div>
             </div>
 
+		</div>
+			<!--	---------------------------------------------- modal permisos y justificaciones ----------------------------------------------	 -->
+
+		<div id="modal-formulario" class="modal-overlay oculto">
+        	<div class="modal-contenido">
+                <button class="modal-cerrar">&times;</button>
+
+            <div class="mod-carga">
+            	<button class="carga-link active" data-tab="tab-permisos">Permisos</button>
+            	<button class="carga-link" data-tab="tab-justificaciones">Justificaciones</button>
+        	</div>            
+            
+            <div id="tab-permisos" class="tab-content active">
+
+                <div class="form-header">
+                    <h2>Registro de Permisos</h2>
+                    <p>Introduce la información para solicitar un permiso</p>
+                </div>
+                
+                <form id="form-permisos">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipo-permiso">Tipo de Permiso</label>
+                            <select id="tipo-permiso" name="tipo-permiso" required>
+                                <option value="">Seleccione una opcion</option>
+                                <option value="con-goce">Con Goce de Sueldo</option>
+                                <option value="sin-goce">Sin Goce de Sueldo</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="motivo-permiso">Motivo</label>
+                            <select id="motivo-permiso" name="motivo-permiso" required>
+                                <option value="">Seleccione un Motivo</option>
+                                <option value="cita-medica">Cita Médica</option>
+                                <option value="asuntos-personales">Asuntos Personales</option>
+                                <option value="falla-transporte">Falla de Transporte</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row" id="otro-motivo-permiso-container" style="display: none;">
+                        <div class="form-group full-width">
+                            <label for="otro-motivo-permiso">Especifique el motivo</label>
+                            <input type="text" id="otro-motivo-permiso" name="otro-motivo-permiso">
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="fecha-inicio-permiso">Fecha de Incio del Permiso</label>
+                            <input type="date" id="fecha-inicio-permiso" name="fecha-inicio-permiso" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fecha-fin-permiso">Fecha de Fin del Permiso</label>
+                            <input type="date" id="fecha-fin-permiso" name="fecha-fin-permiso" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="comentarios-permiso">Comentarios Adicionales</label>
+                            <textarea id="comentarios-permiso" name="comentarios-permiso" rows="4" placeholder="Añade comentarios adicionales..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-acciones">
+                        <button type="button" class="btn-secundario btn-cerrar-modal">Cancelar</button>
+                        <button type="submit" class="btn-primario">Solicitar Permiso</button>       
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="tab-justificaciones" class="tab-content">
+                <div class="form-header">
+                    <h2>Registro de Justificaciones</h2>
+                    <p>Justifica una falta o retardo</p>
+                </div>
+                
+                <form id="form-justificaciones">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipo-justificacion">Tipo de Justificación</label>
+                            <select id="tipo-justificacion" name="tipo-justificacion" required>
+                                <option value="">Seleccione una opcion</option>
+                                <option value="falta">Falta</option>
+                                <option value="retardo">Retardo</option>
+                            </select>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="fecha-incidencia">Fecha de la Incidencia</label>
+                            <input type="date" id="fecha-incidencia" name="fecha-incidencia" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="motivo-justificacion">Motivo de la Justificación</label>
+                            <textarea id="motivo-justificacion" name="motivo-justificacion" rows="4" placeholder="Describe brevemente el motivo..." required></textarea>
+                        </div>
+                    </div> 
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="archivo-justificacion">Adjuntar Comprobante (opcional)</label>
+                            <input type="file" id="archivo-justificacion" name="archivo-justificacion" class="input-file" accept=".pdf,.jpg,.png"> <!-- Acepta archivos PDF e imágenes?? -->
+                        </div>
+                    </div> 
+
+                    <div class="form-acciones">
+                        <button type="button" class="btn-secundario btn-cerrar-modal">Cancelar</button>
+                        <button type="submit" class="btn-primario">Enviar Justificación</button>       
+                    </div>
+                </form>
+            </div>
         </div>
+    </div>
 
 <script src="js/checador.js"></script>
 </body>
