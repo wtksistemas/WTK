@@ -94,10 +94,15 @@
 					<span>Vacaciones</span>
 				</button>
 
+                <button class="area-tarjeta" id="btn-abrir-modal">
+                    <img src="../img/modulo_checador/permisos.png" alt="Permisos">
+                    <p>Permisos y justificaciones</p>
+                </button>
+<!--
                 <div class="area-tarjeta">
                     <img src="../img/modulo_checador/permisos.png" alt="Permisos">
                     <p>Permisos y Justificaciones</p>
-                </div>
+                </div>-->
 
             </div>
 
