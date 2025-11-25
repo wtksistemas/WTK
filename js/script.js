@@ -5,6 +5,7 @@ const validacion = urlParams.get("v");
 // Diccionario de mensajes
 const mensajes = {
   "0": "Error: Registro no exitoso, vuelva a intentarlo. Si el problema persiste comunícate a: sistemas@whitakermexico.com",
+  "1": "Error: Porfavor, llena todos los campos.",
   "3": "Contraseña y/o Usuario incorrecto, verifica tus datos.",
   "4": "Revisa tu bandeja de correo",
   "9": "Usuario no registrado, favor de verificar.",

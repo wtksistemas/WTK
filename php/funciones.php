@@ -80,57 +80,76 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 
 function login_user($user1,$password1) // Funcion para inicio de sesion 
 {
-	require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
+require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
+
+// Validar entrada de datos
+if(empty($user1) || empty($password1))
+{
+	Header("Location: ../index.html?v=1"); // si algun campo esta vacio regresa al index
+	exit();
+}
+
+// preparacion de consulta para buscar usuario
+$sql="SELECT c_nombre, c_usuario, CAST(AES_DECRYPT(c_password, ?) as char)as c_password FROM tb_usuarios WHERE c_usuario=?";
 
 
-	// Variables de validacion
-	$w=$user1;
-	// Seccion de consultas
-	$sql = "select c_nombre,c_usuario,cast(aes_decrypt(c_password,'".$llave."')as char) from tb_usuarios where c_usuario='".$user1."';";
+$stmt = $conn->prepare($sql);
+// Si la consulta no se prepara correctamente
+if(!$stmt)
+{
+	header("Location: ../index.html?v=0");
+	exit();
+}
 
+$stmt->bind_param("ss",$llave,$user1);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+
+
+if(!$row)
+{
+$stmt->close();
+$conn->close();
+header("Location: ../index.html?v=9");
+exit();
+}
+ // Guardamos los datos del usuario
+
+ $user_nombre=$row['c_nombre'];
+ $user_msql=$row['c_usuario'];
+ $pass_msql=$row['c_password'];
+
+
+
+
+ // comparamos contraseñas
+ if($user_msql === $user1 && $pass_msql === $password1)
+ {
+	// Iniciamos variables globales de sesion PHP
+
+	session_start();
+	$_SESSION['username']=$user_nombre;
+	$_SESSION['mail']=$user_msql;
+	$_SESSION['id']='888';
 	
-	$result = mysqli_query($conn,$sql);
-	$row = mysqli_fetch_array($result, MYSQLI_NUM);// almacena la consulta en un arreglo
-	
-	if($row == false)//si no encuentra al usuario te regresa al incio 
-		{
-			
-			header("Location: ../index.html?v=9");
+	$stmt->close();
+	$conn->close();
+	 header("Location: /portal/Modulo_Principal/menu.php");
+        exit();
+ }
+ // si el usuario o la contraseña no coincide
+ else
+{
 
-		}
-
-	$user_nombre=$row[0];// Guardamos el nombre del usuario obtenido por la consulta
-	$user_msql=$row[1]; //Guardamos usuario obtenido por consulta
-	$pass_msql=$row[2]; //Guardamos contraseña obtenida por consulta
-
-
-	$num_rows = mysqli_num_rows($result); //Comprobacion de la fila del usuario
-	echo $num_rows."\n";
+	$stmt->close ();
+	$conn->close();
+	header("Location: ../index.html?v=3");
+		exit();
+}
 
 
-	if($user1<>'' || $pass_msql <>'')//si el usuario ingresado esta vacio o la contraseña vacio 
-		{
-			if($user_msql==$user1) //si el usuario ingresado es identico a la bd 
-				{
-					if($pass_msql==$password1) //si la contraña ingresada es identica a la bd
-						{
-							session_start();	//inicia sesion
-							$_SESSION['id']='888';	//asigna un valor de id a la sesion
-							$_SESSION['username']=$user_nombre;
-							$_SESSION['mail']=$user_msql;
-							header("Location: ../portal/Modulo_Principal/menu.php");	//envia al menú
-						}
-					else	//si es contraseña es incorrcto envia al index valor 3
-						{
-	    					/*    session_destroy(); */
-							header("Location: ../index.html?v=3"); 
-						}
-				}
-			else	//si el usuario es incorrecto envia al index con valor 9
-				{
-					header("Location: ../index.html?v=9");  
-				}
-		}
+
 }
 
 
