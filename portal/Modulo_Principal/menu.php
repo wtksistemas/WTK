@@ -7,18 +7,24 @@
 	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-	
+
 	<?php
 		session_start();
-	include "../../php/control.php";
-	if ($_SESSION['id'] == '888'){}
-		else{
-				header("Location:../index.html");
-			}	
-	?>
 
+		if(!isset($_SESSION['logeado']) || $_SESSION['logeado'] !== true)
+			{
+				session_unset();
+    			session_destroy();
+				header("Location: ../../index.html");
+				exit;
+			}
+	include "../../php/control.php";
+	include "../../php/dbconnect.php";
+
+$mail=$_SESSION['username'];
+$id=$_SESSION['user_id'];
+?>
 <!--<header>
 		<nav class="top-nav">
 			<div class="perfil">

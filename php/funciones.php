@@ -17,7 +17,8 @@ function token_2(){
     return $token2;
 }
 
-function verifica_usuario($persona) // funcion para determinar si el usuario que solicita cambio de contraseña esta dentro de la bd 
+// funcion para determinar si el usuario que solicita cambio de contraseña esta dentro de la bd
+function verifica_usuario($persona)  
 {
 	include_once("dbconnect.php");	
 	// estatus de token
@@ -80,76 +81,61 @@ function verifica_usuario($persona) // funcion para determinar si el usuario que
 
 function login_user($user1,$password1) // Funcion para inicio de sesion 
 {
-require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
-
-// Validar entrada de datos
-if(empty($user1) || empty($password1))
-{
-	Header("Location: ../index.html?v=1"); // si algun campo esta vacio regresa al index
-	exit();
-}
-
-// preparacion de consulta para buscar usuario
-$sql="SELECT c_nombre, c_usuario, CAST(AES_DECRYPT(c_password, ?) as char)as c_password FROM tb_usuarios WHERE c_usuario=?";
-
-
-$stmt = $conn->prepare($sql);
-// Si la consulta no se prepara correctamente
-if(!$stmt)
-{
-	header("Location: ../index.html?v=0");
-	exit();
-}
-
-$stmt->bind_param("ss",$llave,$user1);
-$stmt->execute();
-$result = $stmt->get_result();
-$row = $result->fetch_assoc();
-
-
-if(!$row)
-{
-$stmt->close();
-$conn->close();
-header("Location: ../index.html?v=9");
-exit();
-}
- // Guardamos los datos del usuario
-
- $user_nombre=$row['c_nombre'];
- $user_msql=$row['c_usuario'];
- $pass_msql=$row['c_password'];
-
-
-
-
- // comparamos contraseñas
- if($user_msql === $user1 && $pass_msql === $password1)
- {
-	// Iniciamos variables globales de sesion PHP
-
-	session_start();
-	$_SESSION['username']=$user_nombre;
-	$_SESSION['mail']=$user_msql;
-	$_SESSION['id']='888';
-	
-	$stmt->close();
-	$conn->close();
-	 header("Location: /portal/Modulo_Principal/menu.php");
-        exit();
- }
- // si el usuario o la contraseña no coincide
- else
-{
-
-	$stmt->close ();
-	$conn->close();
-	header("Location: ../index.html?v=3");
+	require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
+	// Validar entrada de datos
+	if(empty($user1) || empty($password1))
+	{
+		Header("Location: ../index.html?v=1"); // si algun campo esta vacio regresa al index
 		exit();
-}
+	}
+	// preparacion de consulta para buscar usuario
+	$sql="SELECT ID, c_usuario, CAST(AES_DECRYPT(c_password, ?) as char)as c_password FROM tb_usuarios WHERE c_usuario=?";
+	$stmt = $conn->prepare($sql);
+	// Si la consulta no se prepara correctamente
+	if(!$stmt)
+	{
+		header("Location: ../index.html?v=0");
+		exit();
+	}
+	$stmt->bind_param("ss",$llave,$user1);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
+	if(!$row)
+	{
+		$stmt->close();
+		$conn->close();
+		header("Location: ../index.html?v=9");
+		exit();
+	}
+ 	// Guardamos los datos del usuario
+ 	$id=$row['ID'];
+ 	$user_msql=$row['c_usuario'];
+	$pass_msql=$row['c_password'];
+ 	// comparamos contraseñas
+ 	if($user_msql === $user1 && $pass_msql === $password1)
+ 	{
+		// Iniciamos variables globales de sesion PHP
+		session_start();
+		session_regenerate_id(true);
+		$_SESSION['logeado'] = true;
+    	$_SESSION['user_id'] = $id;
+    	$_SESSION['username'] = $user_msql;
 
 
-
+		$stmt->close();
+		$conn->close();
+		header("Location: /portal/Modulo_Principal/menu.php");
+        exit();
+ 	}
+ 	// si el usuario o la contraseña no coincide
+ 	else
+	{
+		$stmt->close ();
+		$conn->close();
+		header("Location: ../index.html?v=3");
+		exit();
+	}
 }
 
 
