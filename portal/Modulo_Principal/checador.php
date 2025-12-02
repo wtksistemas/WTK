@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
 </head>
-
 <body>	
 	<?php
 		session_start();
@@ -15,14 +14,12 @@
 			{
 				session_unset();
     			session_destroy();
-				header("Location: ../../index.html");
+				header("Location: ../../index.html?v=28");
 				exit;
 			}
-	include "../../php/control.php";
-	include "../../php/dbconnect.php";
-
-$mail=$_SESSION['username'];
-$id=$_SESSION['user_id'];
+	    include "../../php/dbconnect.php";
+        $mail=$_SESSION['username'];
+        $id=$_SESSION['user_id'];
 ?>
 
 <!--<header>

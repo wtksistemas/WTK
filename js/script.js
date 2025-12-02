@@ -19,6 +19,7 @@ const mensajes = {
   "25": "Usuario ya registrado en esta plataforma, favor de verificar, Nombre Duplicado.",
   "26": "Usuario ya registrado en esta plataforma, favor de verificar, Correo Electrónico Duplicado.",
   "27": "Usuario ya registrado en esta plataforma, favor de verificar, Teléfono Duplicado.",
+  "28": "Sesion caducada o invalida, por favor inicia sesión nuevamente.",
 };
 
 // Mostrar alerta si existe mensaje para ese código

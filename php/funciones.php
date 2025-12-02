@@ -236,4 +236,36 @@ function cmb_pass($token_url,$newpass)
 
 }
 
+
+
+registra_checada($id_usuario) // Funcion para registrar checada
+{
+	require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
+
+	$fecha_actual = date("Y-m-d H:i:s"); // obtenemos fecha y hora actual
+
+	// preparacion de consulta para insertar checada
+	$sql="INSERT INTO tb_checador (c_idusuario, c_fecha,c_horaregistro,c_tipoingreso) VALUES (?, ?)";
+	$stmt = $conn->prepare($sql);
+	// Si la consulta no se prepara correctamente
+	if(!$stmt)
+	{
+		header("Location: ../../index.html?v=0");
+		exit();
+	}
+	$stmt->bind_param("is",$id_usuario, $fecha_actual);
+	if($stmt->execute())
+	{
+				header("Location: /portal/Modulo_Principal/menu.phpv?v=21");
+	}
+	else
+	{
+				header("Location: /portal/Modulo_Principal/menu.phpv?v=0");
+
+	}
+
+	$stmt->close();
+	$conn->close();
+}
+
 ?>
