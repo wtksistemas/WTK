@@ -121,8 +121,6 @@ function login_user($user1,$password1) // Funcion para inicio de sesion
 		$_SESSION['logeado'] = true;
     	$_SESSION['user_id'] = $id;
     	$_SESSION['username'] = $user_msql;
-
-
 		$stmt->close();
 		$conn->close();
 		header("Location: /portal/Modulo_Principal/menu.php");
@@ -238,9 +236,9 @@ function cmb_pass($token_url,$newpass)
 
 
 
-registra_checada($id_usuario) // Funcion para registrar checada
+function registra_checada($id_usuario) // Funcion para registrar checada
 {
-	require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
+require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
 
 	$fecha_actual = date("Y-m-d H:i:s"); // obtenemos fecha y hora actual
 
@@ -266,6 +264,7 @@ registra_checada($id_usuario) // Funcion para registrar checada
 
 	$stmt->close();
 	$conn->close();
-}
 
+}
+	
 ?>
