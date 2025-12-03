@@ -20,6 +20,9 @@
 	    include "../../php/dbconnect.php";
         $mail=$_SESSION['username'];
         $id=$_SESSION['user_id'];
+        $hoy=date("Y-m-d");
+        $sql="SELECT c_fecha, c_horaregistro, c_tiporegistro FROM tb_checador WHERE c_idusuario=? and c_fecha=? ORDER BY c_fecha DESC, c_horaregistro DESC LIMIT 30";
+
 ?>
 
 <!--<header>
