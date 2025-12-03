@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const registrosDeTiempo = []; // Lista para guardar los registros
 
         // Limpiamos los contenedores al iniciar
-        entradasContainer.innerHTML = '<h3>Hora de entrada</h3>';
-        salidasContainer.innerHTML = '<h3>Hora de salida</h3>';
-        tiemposContainer.innerHTML = '<h3>Tiempo transcurrido</h3>';
+    //    entradasContainer.innerHTML = '<h3>Hora de entrada</h3>';
+      //  salidasContainer.innerHTML = '<h3>Hora de salida</h3>';
+        //tiemposContainer.innerHTML = '<h3>Tiempo transcurrido</h3>';
 
         function formatearMilisegundos(ms) {
             if (isNaN(ms) || ms < 0) return "--:--";
@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btnsCerrarModal.forEach(btn => btn.addEventListener('click', cerrarModal));
         
         // Cierra el modal si se hace clic en el fondo oscuro
+
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 cerrarModal();
