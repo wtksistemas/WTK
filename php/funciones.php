@@ -238,12 +238,19 @@ function cmb_pass($token_url,$newpass)
 
 function registra_checada($id_usuario) // Funcion para registrar checada
 {
+	date_default_timezone_set('america/Mexico_City'); // Zona horaria de Mexico City
 	require(__DIR__ . '/dbconnect.php'); // cargamos archivo para conectarnos a BD
 	$fecha_actual = date("Y-m-d"); // obtenemos fecha actual
 	$hora_actual = date("H:i:s"); // obtenemos hora actual
+
+
+	echo "Fecha: " . $fecha_actual . " Hora: " . $hora_actual;
+
+	$entrada="entrada";
+	$salida="salida";
+	$id_ejemplo=16;
 	// preparacion de consulta para insertar checada
-	$sql="INSERT INTO tb_checador (c_idusuario, c_fecha,c_horaregistro,c_tipoingreso) VALUES (?, ?, ?)";
-	
+	$sql="INSERT INTO tb_checador (c_idusuario, c_fecha,c_horaregistro,c_tiporegistro) VALUES (?,?, ?, ?)";
 	$stmt = $conn->prepare($sql);
 	// Si la consulta no se prepara correctamente
 	if(!$stmt)
@@ -251,8 +258,11 @@ function registra_checada($id_usuario) // Funcion para registrar checada
 		header("Location: ../../index.html?v=0");
 		exit();
 	}
-	$stmt->bind_param("is",$id_usuario, $fecha_actual,$hora_actual);
-	if($stmt->execute())
+	$stmt->bind_param("isss",$id_usuario,$fecha_actual,$hora_actual, $entrada);
+	$stmt->execute();
+	
+	//header("Location: /portal/Modulo_Principal/checador.php");
+	/*if($stmt->execute())
 	{
 		header("Location: /portal/Modulo_Principal/menu.phpv?v=21");
 	}
@@ -261,6 +271,7 @@ function registra_checada($id_usuario) // Funcion para registrar checada
 		header("Location: /portal/Modulo_Principal/menu.phpv?v=0");
 
 	}
+		*/
 	$stmt->close();
 	$conn->close();
 }
