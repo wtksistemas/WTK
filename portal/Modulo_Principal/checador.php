@@ -117,8 +117,12 @@
 
                 <div class="contenedor-boton-horas">
                     
-                    <button class="boton-checar" id="boton-checar">Registrar Entrada/Salida</button>
-                  
+                <form action="php/registro_checada.php" method="post">
+                    <button class="boton-checar" id="boton-checar" type="submit">Registrar Entrada/Salida</button>
+                </form>  
+
+
+
                     <button class="boton-correccion" id="modificacion-checada">¿Deseas realizar una corrección de checada?</button>
 
                     <form class="formulario-correccion" id="formulario-correccion">
@@ -148,14 +152,23 @@
             <div class="contenedor-registros" id="contenedor-registros">
                 <div class="registro-horas">
                     <h3>Hora de entrada</h3>
+                    <p>--:-- --</p>
+                    <p>--:-- --</p>
+                    <p>--:-- --</p>
                 </div>
 
                 <div class="registro-horas">
                     <h3>Hora de salida</h3>
+                    <p name="">--:-- --</p>
+                    <p>--:-- --</p>
+                    <p>--:-- --</p>
                 </div>
 
                 <div class="registro-horas">
                     <h3>Tiempo transcurrido</h3>
+                    <p>--:-- --</p>
+                    <p>--:-- --</p>
+                    <p>--:-- --</p>
                 </div>
             </div>
 
@@ -178,7 +191,7 @@
                     <p>Introduce la información para solicitar un permiso</p>
                 </div>
                 
-                <form id="form-permisos">
+                <form  id="form-permisos">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="tipo-permiso">Tipo de Permiso</label>
