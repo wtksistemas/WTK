@@ -11,7 +11,7 @@ session_start();
         include "../../../php/funciones.php";
         $mail=$_SESSION['username'];
         $id=$_SESSION['user_id'];
-        registra_checada(16);
+        registra_checada($id);
 
 /*
 session_start();

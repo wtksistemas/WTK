@@ -21,7 +21,24 @@
         $mail=$_SESSION['username'];
         $id=$_SESSION['user_id'];
         $hoy=date("Y-m-d");
-        $sql="SELECT c_fecha, c_horaregistro, c_tiporegistro FROM tb_checador WHERE c_idusuario=? and c_fecha=? ORDER BY c_fecha DESC, c_horaregistro DESC LIMIT 30";
+        $sql="SELECT c_fecha, c_horaregistro, c_tiporegistro FROM tb_checador WHERE c_idusuario=? and c_fecha>=? ORDER BY c_fecha ASC, c_horaregistro ASC LIMIT 10";
+
+        $stmt = $conn->prepare($sql);
+	    // Si la consulta no se prepara correctamente
+	    if(!$stmt)
+	{
+		header("Location: ../index.html?v=0");
+		exit();
+	}
+	$stmt->bind_param("is",$id,$hoy);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
+    // Guardamos los datos del usuario
+ 	$hora_registro=$row['c_horaregistro'];
+ 	$tipo_registro=$row['c_tiporegistro '];
+
+	
 
 ?>
 
@@ -152,7 +169,7 @@
             <div class="contenedor-registros" id="contenedor-registros">
                 <div class="registro-horas">
                     <h3>Hora de entrada</h3>
-                    <p>--:-- --</p>
+                    <?php echo "<p> ".$hora_registro."</p>" ?><p>--:-- --</p>
                     <p>--:-- --</p>
                     <p>--:-- --</p>
                 </div>
