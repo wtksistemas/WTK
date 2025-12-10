@@ -243,6 +243,7 @@ function registra_checada($id_usuario) // Funcion para registrar checada
 	$fecha_actual->setTimezone(new DateTimeZone('UTC')); // establecemos zona horaria UTC
 	$fecha_para_mysql_utc = $fecha_actual->format('Y-m-d'); // formateamos fecha para mysql
 
+
 	$hora_actual = new DateTime(); // obtenemos hora actual
 	$hora_actual->setTimezone(new DateTimeZone('america/Mexico_City')); // establecemos zona horaria UTC
 	$hora_para_mysql_utc = $hora_actual->format('H:i:s'); // formateamos hora para mysql
@@ -258,7 +259,7 @@ function registra_checada($id_usuario) // Funcion para registrar checada
 		header("Location: ../../index.html?v=0");
 		exit();
 	}
-	$stmt->bind_param("isss",$id_usuario,$fecha_para_mysql_utc,$hora_para_mysql_utc, $entrada);
+	$stmt->bind_param("isss",$id_usuario,$fecha_para_mysql_utc,$hora_para_mysql_utc, $salida);
 	$stmt->execute();
 	
 	$stmt->close();
