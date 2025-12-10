@@ -1,6 +1,9 @@
 // Espera a que todo el contenido de la página se cargue
 document.addEventListener('DOMContentLoaded', function() {
 
+    const userData = window.AppConfig;
+
+  
     // --- LÓGICA PARA MANEJAR MENÚS DESPLEGABLES ---
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {

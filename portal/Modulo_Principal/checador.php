@@ -34,14 +34,25 @@
 	$stmt->execute();
 	$result = $stmt->get_result();
 	$row = $result->fetch_assoc();
+
+    $i=0;
+    $registros_entradas=array();
+    $registros_salidas=array();
     // Guardamos los datos del usuario
- 	$hora_registro=$row['c_horaregistro'];
- 	$tipo_registro=$row['c_tiporegistro '];
+    while($row=$result->fetch_assoc()){
+        $registros_checador[] = $row["c_tiporegistro"]."/".$row["c_horaregistro"];
+           $i=$i+1;
 
-	
-
+    }
+ 	$arreglo_entradas=json_encode($registros_checador);
 ?>
-
+<script>
+        // Creamos un objeto global (ej: en el objeto window) para guardar los datos.
+        // Esto se ejecuta ANTES de cargar mi_archivo.js
+        window.AppConfig = <?php echo $arreglo_entradas?>;
+        
+        console.log("Datos inyectados en la página: ", window.AppConfig);
+    </script>
 <!--<header>
 		<nav class="top-nav">
 			<div class="perfil">
@@ -169,7 +180,7 @@
             <div class="contenedor-registros" id="contenedor-registros">
                 <div class="registro-horas">
                     <h3>Hora de entrada</h3>
-                    <?php echo "<p> ".$hora_registro."</p>" ?><p>--:-- --</p>
+                    <p>--:-- --</p>
                     <p>--:-- --</p>
                     <p>--:-- --</p>
                 </div>
