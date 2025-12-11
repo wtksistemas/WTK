@@ -21,7 +21,7 @@
         $mail=$_SESSION['username'];
         $id=$_SESSION['user_id'];
         $hoy=date("Y-m-d");
-        $sql="SELECT c_fecha, c_horaregistro, c_tiporegistro FROM tb_checador WHERE c_idusuario=? and c_fecha>=? ORDER BY c_fecha ASC, c_horaregistro ASC LIMIT 1";
+        $sql="SELECT c_fecha, c_horaregistro, c_tiporegistro FROM tb_checador WHERE c_idusuario=? and c_fecha>=? ORDER BY c_fecha ASC, c_horaregistro ASC LIMIT 10";
 
         $stmt = $conn->prepare($sql);
 	    // Si la consulta no se prepara correctamente
@@ -180,6 +180,7 @@
             <div class="contenedor-registros" id="contenedor-registros">
                 <div class="registro-horas">
                     <h3>Hora de entrada</h3>
+
                     <p>--:-- --</p>
                     <p>--:-- --</p>
                     <p>--:-- --</p>
@@ -241,6 +242,7 @@
                             </select>
                         </div>
                     </div>
+                    
 
                     <div class="form-row" id="otro-motivo-permiso-container" style="display: none;">
                         <div class="form-group full-width">
@@ -322,19 +324,194 @@
                 </form>
             </div>
         </div>
+			<!--	---------------------------------------------- modal vacaciones ----------------------------------------------	 
+
+		<div id="modal-vacaciones" class="modal-overlay oculto">
+        	<div class="modal-contenido">
+                <button class="modal-cerrar">&times;</button>
+
+            <div class="mod-carga">
+            	<button class="carga-link active" data-tab="tab-pervacaciones">Solicitud de Vacaciones</button>
+            	<button class="carga-link" data-tab="tab-infovacaciones">Info de Vacaciones</button>
+        	</div>            
+            
+            <div id="tab-pervacaciones" class="tab-content active">
+
+                <div class="form-header">
+                    <h2>Registro de Vacaciones</h2>
+                    <p>Introduce la información para solicitar vacaciones</p>
+                </div>
+                
+                <form  id="form-permisos">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="fecha-inicio-vacaciones">Fecha de Incio de Vacaciones</label>
+                            <input type="date" id="fecha-inicio-vacaciones" name="fecha-inicio-vacaciones" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fecha-fin-vacaciones">Fecha de Fin de Vacaciones</label>
+                            <input type="date" id="fecha-fin-vacaciones" name="fecha-fin-vacaciones" required>
+                        </div>
+                    </div>
 
 
-        <div>
-        
-        
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="comentarios-vacaciones">Comentarios Adicionales</label>
+                            <textarea id="comentarios-vacaciones" name="comentarios-vacaciones" rows="4" placeholder="Añade comentarios adicionales..."></textarea>
+                        </div>
+                    </div>
 
+                    <div class="form-acciones">
+                        <button type="button" class="btn-secundario btn-cerrar-modal">Cancelar</button>
+                        <button type="submit" class="btn-primario">Solicitar Permiso</button>       
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="tab-infovacaciones" class="tab-content">
+                <div class="form-header">
+                    <h2>información de vacaciones</h2>
+                    <p>Historial de vacaciones</p>
+                </div>
+                
+                <form id="form-justificaciones">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipo-justificacion">Tipo de Justificación</label>
+                            <select id="tipo-justificacion" name="tipo-justificacion" required>
+                                <option value="">Seleccione una opcion</option>
+                                <option value="falta">Falta</option>
+                                <option value="retardo">Retardo</option>
+                            </select>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="fecha-incidencia">Fecha de la Incidencia</label>
+                            <input type="date" id="fecha-incidencia" name="fecha-incidencia" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="motivo-justificacion">Motivo de la Justificación</label>
+                            <textarea id="motivo-justificacion" name="motivo-justificacion" rows="4" placeholder="Describe brevemente el motivo..." required></textarea>
+                        </div>
+                    </div> 
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="archivo-justificacion">Adjuntar Comprobante (opcional)</label>
+                            <input type="file" id="archivo-justificacion" name="archivo-justificacion" class="input-file" accept=".pdf,.jpg,.png">
+                        </div>
+                    </div> 
+
+                    <div class="form-acciones">
+                        <button type="button" class="btn-secundario btn-cerrar-modal">Cancelar</button>
+                        <button type="submit" class="btn-primario">Enviar Justificación</button>       
+                    </div>
+                </form>
+            </div>
+        </div>-->
+
+			<!--	---------------------------------------------- modal modificaciones de  ----------------------------------------------	 
+
+
+
+
+
+		<div id="modal-vacaciones" class="modal-overlay oculto">
+        	<div class="modal-contenido">
+                <button class="modal-cerrar">&times;</button>
+
+            <div class="mod-carga">
+            	<button class="carga-link active" data-tab="tab-pervacaciones">Solicitud de Modificacion de checadas</button>
+            	<button class="carga-link" data-tab="tab-infovacaciones">Info de Vacaciones</button>
+        	</div>            
+            
+            <div id="tab-pervacaciones" class="tab-content active">
+
+                <div class="form-header">
+                    <h2>Registro de Vacaciones</h2>
+                    <p>Introduce la información para solicitar vacaciones</p>
+                </div>
+                
+                <form  id="form-permisos">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="fecha-inicio-vacaciones">Fecha de Incio de Vacaciones</label>
+                            <input type="date" id="fecha-inicio-vacaciones" name="fecha-inicio-vacaciones" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="fecha-fin-vacaciones">Fecha de Fin de Vacaciones</label>
+                            <input type="date" id="fecha-fin-vacaciones" name="fecha-fin-vacaciones" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="comentarios-vacaciones">Comentarios Adicionales</label>
+                            <textarea id="comentarios-vacaciones" name="comentarios-vacaciones" rows="4" placeholder="Añade comentarios adicionales..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-acciones">
+                        <button type="button" class="btn-secundario btn-cerrar-modal">Cancelar</button>
+                        <button type="submit" class="btn-primario">Solicitar Permiso</button>       
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="tab-infovacaciones" class="tab-content">
+                <div class="form-header">
+                    <h2>información de vacaciones</h2>
+                    <p>Historial de vacaciones</p>
+                </div>
+                
+                <form id="form-justificaciones">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipo-justificacion">Tipo de Justificación</label>
+                            <select id="tipo-justificacion" name="tipo-justificacion" required>
+                                <option value="">Seleccione una opcion</option>
+                                <option value="falta">Falta</option>
+                                <option value="retardo">Retardo</option>
+                            </select>
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="fecha-incidencia">Fecha de la Incidencia</label>
+                            <input type="date" id="fecha-incidencia" name="fecha-incidencia" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="motivo-justificacion">Motivo de la Justificación</label>
+                            <textarea id="motivo-justificacion" name="motivo-justificacion" rows="4" placeholder="Describe brevemente el motivo..." required></textarea>
+                        </div>
+                    </div> 
+
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="archivo-justificacion">Adjuntar Comprobante (opcional)</label>
+                            <input type="file" id="archivo-justificacion" name="archivo-justificacion" class="input-file" accept=".pdf,.jpg,.png"> 
+                        </div>
+                    </div> 
+
+                    <div class="form-acciones">
+                        <button type="button" class="btn-secundario btn-cerrar-modal">Cancelar</button>
+                        <button type="submit" class="btn-primario">Enviar Justificación</button>       
+                    </div>
+                </form>
+            </div>
         </div>
-
-
-
-
-
-
+-->
 
 
     </div>

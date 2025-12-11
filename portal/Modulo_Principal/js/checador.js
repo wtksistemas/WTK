@@ -1,9 +1,116 @@
 // Espera a que todo el contenido de la página se cargue
 document.addEventListener('DOMContentLoaded', function() {
 
-    const userData = window.AppConfig;
 
-  
+
+//         ------------------------------------   VACIADO DE CHECADAS EN TABLAS  -------------------------------------            //
+    // --- Vaciado de horas
+    const userData = window.AppConfig;
+    console.log('Datos del usuario cargados desde AppConfig:', userData);
+
+
+    const contenedorEntradas = document.querySelector('.contenedor-registros .registro-horas:nth-child(1)');
+    const contenedorSalidas  = document.querySelector('.contenedor-registros .registro-horas:nth-child(2)');
+    const contenedorTiempos  = document.querySelector('.contenedor-registros .registro-horas:nth-child(3)');
+
+    // Función para limpiar 
+    function limpiarTablas() {
+        contenedorEntradas.innerHTML = '<h3>Hora de entrada</h3>';
+        contenedorSalidas.innerHTML  = '<h3>Hora de salida</h3>';
+        contenedorTiempos.innerHTML  = '<h3>Tiempo transcurrido</h3>';
+    }
+
+    // Función quitar segundos
+    function formatearHora(horaString) {
+        if (!horaString) return "--:--";
+        // Si viene como 09:00:00, cortamos los últimos 3 caracteres
+        return horaString.length > 5 ? horaString.substring(0, 5) : horaString;
+    }
+
+    // Función Calcular diferencia de tiempo
+    function calcularDiferencia(horaInicio, horaFin) {
+        // Creamos fechas dummy con la hora para poder restar
+        const d1 = new Date("2000-01-01T" + horaInicio);
+        const d2 = new Date("2000-01-01T" + horaFin);
+        
+        let diff = d2 - d1; 
+        if (diff < 0) return "--:--"; // Validación por si eerror de dato
+
+        const totalMinutos = Math.floor(diff / 60000);
+        const horas = Math.floor(totalMinutos / 60);
+        const minutos = totalMinutos % 60;
+        
+        // Formato 00:00
+        return `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
+    }
+
+    // 2. Ejecutamos la lógica si hay datos
+    if (userData && Array.isArray(userData)) {
+        console.log("Procesando registros de BD...", userData);
+        limpiarTablas(); // Borramos los guiones estáticos
+
+        // Variables temporales para alinear filas
+        let ultimaEntrada = null; 
+
+        userData.forEach(registro => {
+            // Division de /
+            const partes = registro.split('/');
+            
+            // Validamos que funcionó
+            if (partes.length < 2) return; 
+
+            // Convertimos a minúsculas para "ENTRADA" o "Entrada"
+            const tipo = partes[0].toLowerCase().trim(); 
+            const hora = partes[1];
+
+            // 
+            const p = document.createElement('p');
+            p.textContent = formatearHora(hora);
+
+            // vaceado de entradas y salidas
+            if (tipo.includes('entrada') || tipo == '1') { 
+
+                contenedorEntradas.appendChild(p);
+                ultimaEntrada = hora; // Guardamos esta hora para calcular tiempo cuando llegue la salida
+                
+
+            } else if (tipo.includes('salida') || tipo == '2') {
+                
+                contenedorSalidas.appendChild(p);
+
+                // Calcular tiempo transcurrido si tenemos una entrada previa
+                const pTiempo = document.createElement('p');
+                if (ultimaEntrada) {
+                    pTiempo.textContent = calcularDiferencia(ultimaEntrada, hora);
+                    ultimaEntrada = null; // Reseteamos para el siguiente par
+                } else {
+                    pTiempo.textContent = "--:--"; // Salida sin entrada registrada
+                }
+                contenedorTiempos.appendChild(pTiempo);
+            }
+        });
+        
+        // Si el usuario marcó entrada pero TODAVÍA NO marca salida, la columna de salidas
+        // tendrá un elemento menos agregamos un placeholder para que se vea 
+        const numEntradas = contenedorEntradas.querySelectorAll('p').length;
+        const numSalidas = contenedorSalidas.querySelectorAll('p').length;
+
+        if (numEntradas > numSalidas) {
+            const pPendiente = document.createElement('p');
+            pPendiente.textContent = "--:--"; // O puedes poner "En turno"
+            pPendiente.style.color = "#aaa"; // Opcional: color gris
+            contenedorSalidas.appendChild(pPendiente);
+
+            const pTiempoPendiente = document.createElement('p');
+            pTiempoPendiente.textContent = "Contando...";
+            contenedorTiempos.appendChild(pTiempoPendiente);
+        }
+    }
+
+// ------------------------------------------- TERMINACION DE FUNCIONES PARA VACEADO DE CHECADAS ----------------------------- ------ //
+
+
+
     // --- LÓGICA PARA MANEJAR MENÚS DESPLEGABLES ---
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
