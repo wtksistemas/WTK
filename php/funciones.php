@@ -248,8 +248,25 @@ function registra_checada($id_usuario) // Funcion para registrar checada
 	$hora_actual->setTimezone(new DateTimeZone('america/Mexico_City')); // establecemos zona horaria UTC
 	$hora_para_mysql_utc = $hora_actual->format('H:i:s'); // formateamos hora para mysql
 
-	$entrada="entrada";
-	$salida="salida";
+ 	// Verificamos si la última checada fue de entrada o salida
+	$sql_verifica="SELECT c_tiporegistro FROM tb_checador WHERE c_idusuario=? ORDER BY c_fecha DESC, c_horaregistro DESC LIMIT 1";
+	$stmt_verifica = $conn->prepare($sql_verifica);
+	$stmt_verifica->bind_param("i",$id_usuario);
+	$stmt_verifica->execute();
+	$result_verifica = $stmt_verifica->get_result();
+	$row_verifica = $result_verifica->fetch_assoc();
+	$tipo_ultima_checada = $row_verifica['c_tiporegistro'];
+	$stmt_verifica->close();
+	// Determinamos el tipo de checada a registrar
+	if ($tipo_ultima_checada === "entrada") {
+	    $tipo_registro = "salida";
+	} else {
+	    $tipo_registro = "entrada";
+	}
+
+
+
+
 	// preparacion de consulta para insertar checada
 	$sql="INSERT INTO tb_checador (c_idusuario, c_fecha,c_horaregistro,c_tiporegistro) VALUES (?,?, ?, ?)";
 	$stmt = $conn->prepare($sql);
@@ -259,7 +276,7 @@ function registra_checada($id_usuario) // Funcion para registrar checada
 		header("Location: ../../index.html?v=0");
 		exit();
 	}
-	$stmt->bind_param("isss",$id_usuario,$fecha_para_mysql_utc,$hora_para_mysql_utc, $salida);
+	$stmt->bind_param("isss",$id_usuario,$fecha_para_mysql_utc,$hora_para_mysql_utc, $tipo_registro);
 	$stmt->execute();
 	
 	$stmt->close();

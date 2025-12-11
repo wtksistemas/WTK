@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const userData = window.AppConfig;
 
+
   
     // --- LÓGICA PARA MANEJAR MENÚS DESPLEGABLES ---
     const dropdowns = document.querySelectorAll('.dropdown');
