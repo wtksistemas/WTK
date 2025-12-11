@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<<<<<<< HEAD
 //         ------------------------------------   VACIADO DE CHECADAS EN TABLAS  -------------------------------------            //
     // --- Vaciado de horas
     const userData = window.AppConfig;
@@ -111,6 +112,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+=======
+  
+>>>>>>> 90955985dd7fd564d4df85e83cc4c7f4f64e54ce
     // --- LÓGICA PARA MANEJAR MENÚS DESPLEGABLES ---
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
