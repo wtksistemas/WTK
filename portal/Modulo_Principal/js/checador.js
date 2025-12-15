@@ -1,10 +1,7 @@
 // Espera a que todo el contenido de la página se cargue
 document.addEventListener('DOMContentLoaded', function() {
 
-
-
-<<<<<<< HEAD
-//         ------------------------------------   VACIADO DE CHECADAS EN TABLAS  -------------------------------------            //
+//         ------------------------------------   VACIADO DE CHECADAS EN TABLAS  -------------------------------------           
     // --- Vaciado de horas
     const userData = window.AppConfig;
     console.log('Datos del usuario cargados desde AppConfig:', userData);
@@ -30,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función Calcular diferencia de tiempo
     function calcularDiferencia(horaInicio, horaFin) {
-        // Creamos fechas dummy con la hora para poder restar
         const d1 = new Date("2000-01-01T" + horaInicio);
         const d2 = new Date("2000-01-01T" + horaFin);
         
@@ -43,9 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Formato 00:00
         return `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
+        
     }
 
-    // 2. Ejecutamos la lógica si hay datos
+// Ejecutamos la lógica si hay datos
     if (userData && Array.isArray(userData)) {
         console.log("Procesando registros de BD...", userData);
         limpiarTablas(); // Borramos los guiones estáticos
@@ -60,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Validamos que funcionó
             if (partes.length < 2) return; 
 
-            // Convertimos a minúsculas para "ENTRADA" o "Entrada"
             const tipo = partes[0].toLowerCase().trim(); 
             const hora = partes[1];
 
@@ -83,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const pTiempo = document.createElement('p');
                 if (ultimaEntrada) {
                     pTiempo.textContent = calcularDiferencia(ultimaEntrada, hora);
-                    ultimaEntrada = null; // Reseteamos para el siguiente par
+                    ultimaEntrada = null; 
                 } else {
                     pTiempo.textContent = "--:--"; // Salida sin entrada registrada
                 }
@@ -91,15 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Si el usuario marcó entrada pero TODAVÍA NO marca salida, la columna de salidas
-        // tendrá un elemento menos agregamos un placeholder para que se vea 
         const numEntradas = contenedorEntradas.querySelectorAll('p').length;
         const numSalidas = contenedorSalidas.querySelectorAll('p').length;
 
         if (numEntradas > numSalidas) {
             const pPendiente = document.createElement('p');
-            pPendiente.textContent = "--:--"; // O puedes poner "En turno"
-            pPendiente.style.color = "#aaa"; // Opcional: color gris
+            pPendiente.textContent = "--:--"; 
+            pPendiente.style.color = "#aaa"; 
             contenedorSalidas.appendChild(pPendiente);
 
             const pTiempoPendiente = document.createElement('p');
@@ -108,13 +102,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-// ------------------------------------------- TERMINACION DE FUNCIONES PARA VACEADO DE CHECADAS ----------------------------- ------ //
+// ------------------------------------------- TERMINACION DE FUNCIONES PARA VACEADO DE CHECADAS ----------------------------- ---
 
 
 
-=======
-  
->>>>>>> 90955985dd7fd564d4df85e83cc4c7f4f64e54ce
     // --- LÓGICA PARA MANEJAR MENÚS DESPLEGABLES ---
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
@@ -148,67 +139,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const now = new Date();
             horaElemento.textContent = now.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             fechaElemento.textContent = now.toLocaleDateString('es-MX', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            iconoElemento.textContent = (now.getHours() >= 6 && now.getHours() < 18) ? '☀️' : '🌙';
+            iconoElemento.textContent = (now.getHours() >= 6 && now.getHours() < 18) ? '☀' : '🌙';
         }
     }
     setInterval(actualizarReloj, 1000);
     actualizarReloj();
 
-    // --- LÓGICA PARA REGISTRAR ENTRADAS/SALIDAS ---
-    const btnChecar = document.getElementById('boton-checar');
-    if (btnChecar) {
-        const entradasContainer = document.querySelector('.contenedor-registros .registro-horas:nth-child(1)');
-        const salidasContainer = document.querySelector('.contenedor-registros .registro-horas:nth-child(2)');
-        const tiemposContainer = document.querySelector('.contenedor-registros .registro-horas:nth-child(3)');
-        const registrosDeTiempo = []; // Lista para guardar los registros
-
-        // Limpiamos los contenedores al iniciar
-    //    entradasContainer.innerHTML = '<h3>Hora de entrada</h3>';
-      //  salidasContainer.innerHTML = '<h3>Hora de salida</h3>';
-        //tiemposContainer.innerHTML = '<h3>Tiempo transcurrido</h3>';
-
-        function formatearMilisegundos(ms) {
-            if (isNaN(ms) || ms < 0) return "--:--";
-            const totalMinutos = Math.floor(ms / 60000);
-            const horas = Math.floor(totalMinutos / 60);
-            const minutos = totalMinutos % 60;
-            return `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}`;
-        }
-
-        btnChecar.addEventListener('click', () => {
-            const ahora = new Date();
-            const horaFormateada = ahora.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
-            registrosDeTiempo.push(ahora);
-
-            if (registrosDeTiempo.length % 2 !== 0) { // Es una entrada (impar)
-                const nuevaEntradaP = document.createElement('p');
-                nuevaEntradaP.textContent = horaFormateada;
-                entradasContainer.appendChild(nuevaEntradaP);
-
-                const nuevaSalidaP = document.createElement('p');
-                nuevaSalidaP.textContent = '--:--';
-                salidasContainer.appendChild(nuevaSalidaP);
-
-                const nuevoTiempoP = document.createElement('p');
-                nuevoTiempoP.textContent = '--:--';
-                tiemposContainer.appendChild(nuevoTiempoP);
-
-                alert(`Entrada registrada a las ${horaFormateada}!`);
-            } else { // Es una salida (par)
-                const ultimaSalidaP = salidasContainer.querySelector('p:last-child');
-                if (ultimaSalidaP) ultimaSalidaP.textContent = horaFormateada;
-
-                const tiempoSalidaActual = registrosDeTiempo[registrosDeTiempo.length - 1];
-                const tiempoEntradaPrevia = registrosDeTiempo[registrosDeTiempo.length - 2];
-                const diff = tiempoSalidaActual - tiempoEntradaPrevia;
-
-                const ultimoTiempoP = tiemposContainer.querySelector('p:last-child');
-                if (ultimoTiempoP) ultimoTiempoP.textContent = formatearMilisegundos(diff);
-
-                alert(`Salida registrada a las ${horaFormateada}!`);
-            }
-        });
-    }
+   
     
     // --- LÓGICA PARA CORRECCIÓN DE CHECADA ---
     const btnCorreccion = document.getElementById('modificacion-checada');
