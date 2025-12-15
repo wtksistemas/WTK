@@ -258,7 +258,7 @@ function registra_checada($id_usuario) // Funcion para registrar checada
 	$tipo_ultima_checada = $row_verifica['c_tiporegistro'];
 	$stmt_verifica->close();
 	// Determinamos el tipo de checada a registrar
-	if ($tipo_ultima_checada === "salida" || $tipo_ultima_checada === null) {
+	if ($tipo_ultima_checada === "salida" || $tipo_ultima_checada === null || $tipo_ultima_checada === "") {
 	    $tipo_registro = "entrada";
 	} else {
 	    $tipo_registro = "salida";
