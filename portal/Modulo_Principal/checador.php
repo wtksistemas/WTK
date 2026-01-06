@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +9,8 @@
 	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
 </head>
 <body>	
+=======
+>>>>>>> 1d498f97f2950bd63e41f9504e189ac09aab3d1f
 
 	<?php
 		session_start();
@@ -22,11 +25,12 @@
         $mail=$_SESSION['username'];
         $id=$_SESSION['user_id'];
         $hoy=date("Y-m-d");
-        $sql="SELECT c_fecha, c_horaregistro, c_tiporegistro FROM tb_checador WHERE c_idusuario=? and c_fecha>=? ORDER BY c_fecha ASC, c_horaregistro ASC LIMIT 10";
+        $sql="SELECT c_fecha, c_horaregistro, c_tiporegistro FROM tb_checador WHERE c_idusuario=? and c_fecha>=? ORDER BY c_fecha desc, c_horaregistro desc LIMIT 10";
 
         $stmt = $conn->prepare($sql);
 	    // Si la consulta no se prepara correctamente
 	    if(!$stmt)
+<<<<<<< HEAD
             {
                 header("Location: ../index.html?v=0");
                 exit();
@@ -396,3 +400,32 @@
 <script src="js/checador.js"></script>
 </body>
 </html>
+=======
+	{
+		header("Location: ../index.html?v=0");
+		exit();
+	}
+	$stmt->bind_param("is",$id,$hoy);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
+    $num_rows = $result->num_rows;
+
+    $i=0;
+    //$registros_checador=[];
+    // Guardamos los datos del usuario
+    
+    while($row = $result->fetch_assoc()){
+       $registros_checador[] = $row["c_tiporegistro"]."/".$row["c_horaregistro"];
+
+        
+        echo $registros_checador[$i]."<br>";
+        $i=$i+1;
+    }
+
+ 	$arreglo_entradas=json_encode($registros_checador);
+
+
+
+?>
+>>>>>>> 1d498f97f2950bd63e41f9504e189ac09aab3d1f
