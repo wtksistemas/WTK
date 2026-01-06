@@ -215,21 +215,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 4. Lógica de "Corrección": Cargar checadas al cambiar fecha
     if (inputFechaBusqueda) {
         inputFechaBusqueda.addEventListener('change', (e) => {
             const fechaSeleccionada = e.target.value;
             if(!fechaSeleccionada) return;
 
-            // UI: Mostrar "Cargando..."
             contenedorLista.innerHTML = '<p style="text-align:center; color:#F65100;">Buscando registros...</p>';
 
-            // SIMULACIÓN DE FETCH AL BACKEND (Esto luego se reemplaza por fetch real)
-            // Simular retardo de red
             setTimeout(() => {
-                // Aquí iría: fetch(`php/obtener_checadas.php?fecha=${fechaSeleccionada}`)
                 
-                // Datos dummy para probar el diseño
                 const mockChecadas = [
                     { id: 101, tipo: 'Entrada', hora: '09:05:00' },
                     { id: 102, tipo: 'Salida Comida', hora: '14:10:00' },
@@ -268,18 +262,15 @@ document.addEventListener('DOMContentLoaded', function() {
         contenedorLista.innerHTML = html;
     }
 
-    // Función global (necesaria porque la llamamos desde el HTML generado dinámicamente)
     window.seleccionarChecadaEditar = function(input) {
         const id = input.getAttribute('data-id');
         const nuevaHora = input.value;
         
-        // Asignamos al input oculto que se enviará al backend
         document.getElementById('id-checada-editar').value = id;
         
-        // Visual: Desmarcar otros inputs (opcional, para UX)
         document.querySelectorAll('.input-correccion-tiempo').forEach(i => {
             if(i !== input) i.style.borderColor = '#ccc';
-            else i.style.borderColor = '#F65100'; // Resaltar el editado
+            else i.style.borderColor = '#F65100'; 
         });
 
         console.log(`Listo para enviar corrección: ID ${id} -> Nueva Hora ${nuevaHora}`);
