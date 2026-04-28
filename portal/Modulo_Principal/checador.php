@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checador</title>
     <link rel="stylesheet" href="css/style.css">
 	<link rel="shortcut icon" href="../img/Principales/favicon.ico">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
+
+
 <body>	
 
 <?php
@@ -113,10 +119,10 @@
 
             <div class="lado-izquierdo">
                     							
-				<button class="area-tarjeta" id="btn-abrir-modl">
-					<img src="../img/modulo_checador/vacaciones.png" alt="Solicitar Vacaciones">
-					<p>Vacaciones</p>
-				</button>
+                <button class="area-tarjeta" id="btn-abrir-vacaciones">
+                    <img src="../img/modulo_checador/vacaciones.png" alt="Solicitar Vacaciones">
+                    <p>Vacaciones</p>
+                </button>
 
                 <button class="area-tarjeta" id="btn-abrir-modal">
                     <img src="../img/modulo_checador/permisos.png" alt="Permisos">
@@ -256,17 +262,142 @@
                 </div>
             </div>
 
-            <div class="modavacaciones" id="modavacaciones">
-                <div class="modalvacaciones-contenido">
-                    <button class="modalvacaciones-cerrar">&times;</button>
-                    <h2>Solicitud de Vacaciones</h2>
-                    <form id="form-vacaciones" method="POST" action="#">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="fecha-inicio-vacaciones">Fecha de Inicio</label>
-                                <input type="date" id="fecha-inicio-vacaciones" name="fecha_inicio_vacaciones" required>
+            <div id="modal-vacaciones" class="modal-overlay oculto">
+                <div class="modal-contenido">
+                    <button class="modal-cerrar" id="cerrar-vacaciones">&times;</button>
+                
+                    <h2>Gestión de Vacaciones</h2>
+                
+                    <div class="tabs-modal">
+                        <button type="button" class="tab-btn active" data-tab="view-solicitud-vac">Solicitar</button>
+                        <button type="button" class="tab-btn" data-tab="view-historial-vac">Historial</button>
+                    </div>
+
+                    <div id="view-solicitud-vac" class="tab-contenido active">
+                        
+                        <div class="vac-header-info">
+                            <div class="badge-antiguedad">
+                                Días por antigüedad: <strong id="val-antiguedad">12 días</strong>
+                            </div>
+                        </div>
 
 
+
+                        <form id="form-vacaciones" method="POST" action="#">
+                            <div class="cards-resumen">
+                                <div class="card-dato">
+                                    <span>Días Disponibles</span>
+                                    <strong class="texto-naranja" id="dias-disponibles">10</strong>
+                                </div>
+                                <div class="card-dato">
+                                    <span>Descontar</span>
+                                    <strong class="texto-gris" id="dias-solicitados">0</strong>
+                                </div>
+                                <div class="card-dato">
+                                    <span>Saldo final</span>
+                                    <strong class="texto-verde" id="saldo-restante">10</strong>
+                                </div>
+                            </div>
+
+                            <div class="vac-layout-container">
+                                
+                                <div class="vac-col-calendario">
+                                    <label>Selecciona tus días en el calendario:</label>
+                                    <div id="vac-calendar-inline"></div>
+                                    <input type="hidden" id="vac-fechas-hidden" name="vac_fechas">
+                                </div>
+
+                                <div class="vac-col-detalles">
+                                    <div class="form-group">
+                                        <label for="vac-comentarios">Observaciones / Pendientes</label>
+                                        <textarea id="vac-comentarios" name="vac_comentarios" rows="8" placeholder="Escribe aquí tus pendientes o notas..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-acciones">
+                                <button type="button" class="btn-secundario" id="btn-cancelar-vac">Cancelar</button>
+                                <button type="submit" class="btn-primario">Enviar Solicitud</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="view-historial-vac" class="tab-contenido">
+                        
+                        <div style="margin-bottom: 30px;">
+                            <p class="subtitulo-modal" style="color: #F65100; font-weight: bold;">Trámites Recientes</p>
+                            <div class="contenedor-tabla-historial">
+                                <table class="tabla-historial">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha de Solicitud</th>
+                                            <th>Fechas Seleccionadas</th>
+                                            <th>Total Días</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="lista-solicitudes-recientes">
+                                        <tr>
+                                            <td>2026-05-12</td>
+                                            <td><small>2026-05-12, 2026-05-13</small></td>
+                                            <td>2</td>
+                                            <td><span class="badge-estado badge-pendiente">Pendiente</span></td>
+                                            <td>
+                                                <button class="btn-secundario" style="padding: 4px 8px; font-size: 0.75rem; background-color: #ffcccc; color: #cc0000; border: none;">Cancelar</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2026-04-12</td>
+                                            <td><small>2026-04-10, 2026-04-11</small></td>
+                                            <td>2</td>
+                                            <td><span class="badge-estado badge-aprobado">Aprobado</span></td>
+                                            <td>
+                                                <button class="btn-secundario" style="padding: 4px 8px; font-size: 0.75rem;">Recordar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="subtitulo-modal" style="color: #28a745; font-weight: bold;">Histórico de Vacaciones Disfrutadas</p>
+                            <div cl|ass="contenedor-tabla-historial">
+                                <table class="tabla-historial">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha de Solicitud</th>
+                                            <th>Ciclo Afectado</th>
+                                            <th>Días Consumidos</th>
+                                            <th>Autorizó</th>
+                                            <th>Acuse</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="lista-vacaciones-historico">
+                                        <tr>
+                                            <td>2026-05-12</td>
+                                            <td>2024-2025</td>
+                                            <td>6</td>
+                                            <td>Liliana Escalante</td>
+                                            <td>
+                                                <button class="btn-secundario" style="padding: 4px 8px; font-size: 0.75rem;">VER</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2026-04-12</td>
+                                            <td>2023-2024</td>
+                                            <td>12</td>
+                                            <td>Tania Guzman</td>
+                                            <td>
+                                                <button class="btn-secundario" style="padding: 4px 8px; font-size: 0.75rem;">VER</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         
 
@@ -395,6 +526,9 @@
 
             </div>
         </div>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
 <script src="js/checador.js"></script>
 </body>
 </html>

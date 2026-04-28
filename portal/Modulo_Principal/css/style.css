@@ -88,7 +88,7 @@ body {
 .contenedor-principal {
   display: flex;
   flex-direction: column;
-  padding-top: 70px;
+ /* padding-top: 70px;*/
 }
 
 /* Perfil y botones */
@@ -217,6 +217,164 @@ button:hover,
 /* ----------------------------------------------------- MODULOS ----------------------------------------------------- */ 
 
 /* -------------------------- VACACIONES --------------------------*/
+
+/* Diseño de las tarjetas de números */
+.cards-resumen {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Sombra suave para dar profundidad */
+}
+
+.card-dato {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+/* Línea divisoria entre los números */
+.card-dato:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -7.5px;
+    top: 15%;
+    height: 70%;
+    width: 1px;
+    background-color: #ddd;
+}
+
+.card-dato span {
+    display: block;
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.card-dato strong {
+    font-size: 2rem;
+    display: block;
+    line-height: 1;
+}
+
+/* Colores dinámicos que cambias con JS */
+.texto-naranja { color: #F65100; }
+.texto-gris { color: #343a40; }
+.texto-verde { color: #28a745; }
+.texto-rojo { color: #dc3545; }
+
+.texto-ayuda {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 4px;
+    display: block;
+}
+
+/* --- TABLA HISTORIAL DE VACACIONES --- */
+.contenedor-tabla-historial {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.tabla-historial {
+    width: 100%;
+    border-collapse: collapse;
+    
+    background-color: #fff;
+}
+
+.tabla-historial thead {
+    background-color: #f1f1f1;
+    position: sticky; /* Deja los títulos fijos al hacer scroll */
+    top: 0;
+    z-index: 1;
+}
+
+.tabla-historial th, 
+.tabla-historial td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.tabla-historial th {
+    font-weight: bold;
+    color: #555;
+}
+
+/* --- FIX: Z-INDEX PARA EL CALENDARIO --- */
+/* Asegura que el calendario salte por encima de la pantalla negra (overlay) */
+.flatpickr-calendar {
+    z-index: 99999 !important;
+}
+
+.vac-header-info {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+.badge-antiguedad {
+    background: #fdf2e9;
+    border: 1px solid #F65100;
+    color: #F65100;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.vac-layout-container {
+    display: flex;
+    gap: 25px;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+.vac-col-calendario {
+    flex: 0 0 auto; /* No se estira, mantiene el ancho de Flatpickr */
+}
+
+.vac-col-detalles {
+    flex: 1; /* Ocupa el resto del espacio */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Ajuste para que Flatpickr inline se vea bien */
+.flatpickr-calendar.inline {
+    box-shadow: none;
+    border: 1px solid #eee;
+    margin-top: 12px;
+}
+
+.vac-lista-fechas {
+    max-height: 120px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* Ocultamos el campo de regreso si es necesario */
+#vac-regreso { display: none; }
+
+
+
+
+
+
+
 .contenido-vacaciones {
   display: flex;
   gap: 40px;
@@ -366,6 +524,7 @@ button:hover,
   align-items: start; 
   justify-items: center;
   row-gap: 0px !important; 
+  padding-top: 25px;
 }
 
 
@@ -618,7 +777,7 @@ button:hover,
 
 .form-group label {
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   color: #555;
   text-align: left;
 }

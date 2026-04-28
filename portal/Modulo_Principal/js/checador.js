@@ -42,15 +42,53 @@ document.addEventListener('DOMContentLoaded', function() {
         
     }
 
+    function iniciarContadorEnVivo(horaInicioStr, elementoDestino) {
+        // Obtenemos la fecha del dia para armar un objeto Date válido (YYYY-MM-DD)
+        const hoy = new Date();
+        const yyyy = hoy.getFullYear();
+        const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+        const dd = String(hoy.getDate()).padStart(2, '0');
+        
+        // Armamos la hora de inicio (ej. "2026-04-27T09:05:00")
+        const startTime = new Date(`${yyyy}-${mm}-${dd}T${horaInicioStr}`);
+
+        function actualizarRelojEnVivo() {
+            const ahora = new Date();
+            let diffMs = ahora - startTime;
+
+            if (diffMs < 0) diffMs = 0; // Previene errores si la hora del servidor y la local difieren un poco
+
+            const totalSegundos = Math.floor(diffMs / 1000);
+            const horas = Math.floor(totalSegundos / 3600);
+            const minutos = Math.floor((totalSegundos % 3600) / 60);
+            const segundos = totalSegundos % 60;
+
+            // Formateamos para que siempre tenga dos dígitos (00:00:00)
+            elementoDestino.textContent = 
+                `${String(horas).padStart(2, '0')}:${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+        }
+
+        actualizarRelojEnVivo(); // Primera llamada inmediata para evitar el parpadeo de 1 segundo
+        setInterval(actualizarRelojEnVivo, 1000); // Actualiza cada 1000 milisegundos (1 segundo)
+    }
+
+
+
+
+
+
+
 // Ejecutamos la lógica si hay datos
-    if (userData && Array.isArray(userData)) {
+if (userData && Array.isArray(userData)) {
         console.log("Procesando registros de BD...", userData);
         limpiarTablas(); // Borramos los guiones estáticos
+
+        const registrosCronologicos = [...userData].reverse();
 
         // Variables temporales para alinear filas
         let ultimaEntrada = null; 
 
-        userData.forEach(registro => {
+        registrosCronologicos.forEach(registro => {
             // Division de /
             const partes = registro.split('/');
             
@@ -68,9 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (tipo.includes('entrada') || tipo == '1') { 
 
                 contenedorEntradas.appendChild(p);
-                ultimaEntrada = hora; // Guardamos esta hora para calcular tiempo cuando llegue la salida
+                // Guardamos esta hora para calcular tiempo cuando llegue la salida
+                ultimaEntrada = hora; 
                 
-
             } else if (tipo.includes('salida') || tipo == '2') {
                 
                 contenedorSalidas.appendChild(p);
@@ -79,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const pTiempo = document.createElement('p');
                 if (ultimaEntrada) {
                     pTiempo.textContent = calcularDiferencia(ultimaEntrada, hora);
+                    // Reseteamos la entrada porque ya se cerró el ciclo de este renglón
                     ultimaEntrada = null; 
                 } else {
                     pTiempo.textContent = "--:--"; // Salida sin entrada registrada
@@ -90,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const numEntradas = contenedorEntradas.querySelectorAll('p').length;
         const numSalidas = contenedorSalidas.querySelectorAll('p').length;
 
+        // Si tenemos más entradas que salidas, significa que el usuario está "En turno"
         if (numEntradas > numSalidas) {
             const pPendiente = document.createElement('p');
             pPendiente.textContent = "--:--"; 
@@ -97,8 +137,12 @@ document.addEventListener('DOMContentLoaded', function() {
             contenedorSalidas.appendChild(pPendiente);
 
             const pTiempoPendiente = document.createElement('p');
-            pTiempoPendiente.textContent = "Contando...";
+            pTiempoPendiente.style.color = "#F65100"; 
+            pTiempoPendiente.style.fontWeight = "bold";
             contenedorTiempos.appendChild(pTiempoPendiente);
+
+            // Iniciamos el contador en vivo usando la "ultimaEntrada" que quedó pendiente
+            iniciarContadorEnVivo(ultimaEntrada, pTiempoPendiente);
         }
     }
 
@@ -325,9 +369,106 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    const modalVacaciones = document.getElementById('modal-vacaciones');
+        const btnAbrirVacaciones = document.getElementById('btn-abrir-vacaciones');
+        const btnsCerrarVacaciones = document.querySelectorAll('#cerrar-vacaciones, #btn-cancelar-vac');
 
+        // 1. Función para ABRIR
+        if (btnAbrirVacaciones && modalVacaciones) {
+            btnAbrirVacaciones.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita que la página recargue si el botón actúa como link
+                modalVacaciones.classList.remove('oculto');
+            });
+        }
 
+        // 2. Función para CERRAR
+        const cerrarModalVac = () => {
+            if(modalVacaciones) {
+                modalVacaciones.classList.add('oculto');
+            }
+        };
 
+        if (btnsCerrarVacaciones) {
+            btnsCerrarVacaciones.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    cerrarModalVac();
+                });
+            });
+        }
+// ---  LÓGICA DE FLATPICKR PARA VACACIONES ---
+    const calendarContainer = document.getElementById('vac-calendar-inline');
 
+if (calendarContainer) {
+    flatpickr(calendarContainer, {
+        inline: true, // Esto hace que el calendario sea fijo/siempre visible
+        mode: "multiple",
+        dateFormat: "Y-m-d",
+        locale: "es",
+        disable: [
+            function(date) {
+                return (date.getDay() === 0 || date.getDay() === 6); // Desactiva fines de semana
+            }
+        ],
+        onChange: function(selectedDates, dateStr, instance) {
+            // Actualizar el input oculto para el formulario
+            document.getElementById('vac-fechas-hidden').value = dateStr;
+            
+            const diasSeleccionados = selectedDates.length;
+            
+            // 1. Actualizar contador visual
+            document.getElementById('dias-solicitados').textContent = diasSeleccionados;
+
+            // 2. Calcular Saldo Final
+            const disponibles = parseInt(document.getElementById('dias-disponibles').textContent) || 0;
+            const saldoFinal = disponibles - diasSeleccionados;
+            const spanSaldo = document.getElementById('saldo-restante');
+            
+            spanSaldo.textContent = saldoFinal;
+            
+            // Lógica de colores del saldo
+            if (saldoFinal < 0) {
+                spanSaldo.className = "texto-rojo";
+            } else {
+                spanSaldo.className = "texto-verde";
+            }
+
+            // 3. Mostrar lista simple de fechas seleccionadas (opcional)
+            const listaContenedor = document.getElementById('contenedor-lista-fechas');
+            if (listaContenedor) {
+                listaContenedor.innerHTML = diasSeleccionados > 0 
+                    ? '<strong>Días elegidos:</strong> ' + dateStr.split(', ').join(', ') 
+                    : '';
+            }
+        }
+    });
+}
+
+    const contenedorTabsVacaciones = document.getElementById('modal-vacaciones');
+
+    if (contenedorTabsVacaciones) {
+        // Seleccionamos solo los botones y contenidos dentro del modal de vacaciones
+        const botonesTabsVac = contenedorTabsVacaciones.querySelectorAll('.tab-btn');
+        const contenidosTabsVac = contenedorTabsVacaciones.querySelectorAll('.tab-contenido');
+
+        botonesTabsVac.forEach(boton => {
+            boton.addEventListener('click', () => {
+                // 1. Limpiamos la clase active de todos los botones y contenidos
+                botonesTabsVac.forEach(b => b.classList.remove('active'));
+                contenidosTabsVac.forEach(c => c.classList.remove('active'));
+
+                // 2. Le ponemos active al botón que el usuario clickeó
+                boton.classList.add('active');
+
+                // 3. Buscamos el ID del contenido que debemos mostrar y lo activamos
+                const idContenidoObjetivo = boton.getAttribute('data-tab');
+                const contenidoObjetivo = document.getElementById(idContenidoObjetivo);
+                
+                if (contenidoObjetivo) {
+                    contenidoObjetivo.classList.add('active');
+                }
+            });
+        });
+    }
     
 });
