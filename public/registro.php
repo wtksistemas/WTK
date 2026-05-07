@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Registro</title>
+	<link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<script src="assets/js/script.js"></script>
+</head>
+<body>
+	<div id="registro-login-container" class="container-1">
+		<!--	<h1 id="registro-titulo">Registro para el Portal de administración</h1>-->
+    	<div id="registro-sub"class="login-container">
+			<img class="logo" src="assets/img/registrate.png" alt="Logo">
+			<h2>Regístrate</h2>
+			<label id="a">Llena todo el siguiente formulario porfavor</label>
+        	<form action="../src/auth/registro_process.php" method="post" id="registro">
+				<div class="form-derecho">
+					<input id="nombre" type="text" name="nombre" placeholder="Escribe tu nombre" oninput="ValidarRegistro()">
+					<input id="idapellido" type="text" name="apellido" placeholder="Escribe tu apellido paterno" oninput="ValidarRegistro()">
+					<input id="idrfc" type="text" name="rfc" placeholder="Escribe tu RFC" oninput="ValidarRegistro()">
+					<input id="mail" type="email" name="email" placeholder="Correo Electronico" oninput="ValidarRegistro()">
+				</div>
+				<div class="form-izquierdo">
+					<input id="tel" type="tel" name="fon" placeholder="Telefono de contacto" oninput="ValidarRegistro()">
+					<input id="pass" type="password" name="password" placeholder="Contraseña" oninput="ValidarRegistro()">
+					<input id="idcfpass" type="password" name="cfpassword" placeholder="Confirmar Contraseña" oninput="ValidarRegistro()">
+				</div>
+				<div class="button-container">
+					<button id="btn-registrate" type="submit" disabled>Regístrarte</button>
+					<button id="btn-regresar" type="button" onclick="window.location.href='index.php'">Regresar a menu principal</button>
+				</div>
+		    </form>
+          </div>
+	</div>
+<!--<a href="javascript:history.go(-1)">volver atras</a>-->
+</body>
+</html>
