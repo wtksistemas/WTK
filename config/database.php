@@ -6,8 +6,8 @@
 // 1. Definición de credenciales
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'whitaker_usuarios'); // Nombre de la base de datos
-define('DB_USER', 'root');             // Usuario de MySQL
-define('DB_PASS', '');                 //Contraseña de MySQL
+define('DB_USER', 'whitaker_sistemas');             // Usuario de MySQL
+define('DB_PASS', 'WTK$cuesta01');                 //Contraseña de MySQL
 define('DB_CHARSET', 'utf8mb4');       // Codificación para soporte de acentos y emojis
 try 
 {
