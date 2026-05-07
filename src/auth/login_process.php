@@ -9,7 +9,7 @@ require_once __DIR__ . '/../../config/database.php'; // Traemos la conexión $co
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        echo "enregando datos..."; // Debug: Ver que se reciben los datos
+        //echo "enregando datos..."; // Debug: Ver que se reciben los datos
         // 1. Limpieza básica de entradas
         $user_input = trim($_POST['username'] ?? '');
         $pass_input = trim($_POST['password'] ?? '');
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
                     // Error de credenciales
                     //echo "Usuario o contraseña incorrectos.";
-                    header("Location: ../../public/login.php?v=login_fallido");
+                  header("Location: ../../public/index.php?v=login_fallido");
                     exit;
                 }
             }
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                     // Error de base de datos
                     error_log("Error en login: " . $e->getMessage()); // Guardamos el error en un log oculto
                     //echo "Ocurrió un error técnico. Intenta de nuevo más tarde.";
-                    header("Location: ../../public/login.php?v=error_tecnico");
+                    header("Location: ../../public/index.php?v=error_tecnico");
                     exit;
                 }
     }

@@ -62,13 +62,7 @@ catch (PDOException $e)
 		<div class="menu-superior">
 			<div class="opciones">
 				<ul class="menu">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle">Checador</a>
-						<ul class="submenu">
-							<li><a id="submenu" href="checador.php">Ver Checador</a></li>
-							<li><a id="submenu" href="vacaciones.php">Vacaciones</a></li>
-						</ul>
-					</li>
+                    <li><a href="checador.php">Checador</a></li>
 				</ul>
 			
 				<ul class="menu">
@@ -88,6 +82,10 @@ catch (PDOException $e)
 				<ul class="menu">
 					<li><a href="../Modulo_Legal/legal.php">Legal</a></li>
 				</ul>
+
+                <ul class="menu">
+                    <li><a>Clientes</a>
+                </ul>
 			</div>
         
 			<div class="perfil">
@@ -113,10 +111,6 @@ catch (PDOException $e)
                     							
                 <button class="area-tarjeta" id="btn-abrir-vacaciones">
                     <img src="assets/img/checador/vacaciones.png" alt="Solicitar Vacaciones">
-                    <p>Vacaciones</p>
-                </button>
-                <button class="area-tarjeta" id="btn-abrir-vacaciones">
-                    <img src="../img/modulo_checador/vacaciones.png" alt="Solicitar Vacaciones">
                     <p>Vacaciones</p>
                 </button>
 

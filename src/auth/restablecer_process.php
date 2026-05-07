@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $mail->Host  = 'smtp.zoho.com';                                         // Servidor SMTP
             $mail->SMTPAuth  = true;                                                 // Identificacion SMTP
             $mail->Username  = 'notificaciones_wtk@zohomail.com';                        // Usuario SMTP
-            $mail->Password  = 'WTK$cuesta01';	                                     // Contraseña SMTP
+            $mail->Password  = '%%%GtzzSHhat&s5';	                                     // Contraseña SMTP
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port  = 587;
             $mail->setFrom('notificaciones_wtk@zohomail.com', 'Restablece tu cuenta');   // Remitente del correo
@@ -59,7 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         }
         catch (Exception $e)
         {
-            Header("Location: ../../public/index.php?v=error_mail");
+           //echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
+            header("Location: ../../public/index.php?v=error_mail");
         }        
     }
     else

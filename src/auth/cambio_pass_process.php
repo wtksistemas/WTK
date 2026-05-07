@@ -43,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $delete->execute([$token]);
             $conexion->commit();
             // Éxito: Mandamos al usuario al login
-            header("Location: ../../public/login.php?v=pass_cambiada");
+            header("Location: ../../public/index.php?v=pass_cambiada");
             exit;
         }
         else
         {
             // Token inválido o expirado
-            header("Location: ../../public/login.php?v=token_invalido");
+            header("Location: ../../public/index.php?v=token_invalido");
             exit;
         }
     }
