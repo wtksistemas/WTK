@@ -44,6 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $mail->Password  = '%%%GtzzSHhat&s5';	                                     // Contraseña SMTP
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port  = 587;
+
+            $mail->SMTPOptions = array(
+            'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+            ));
+
             $mail->setFrom('notificaciones_wtk@zohomail.com', 'Restablece tu cuenta');   // Remitente del correo
             // Destinatarios
             $mail->addAddress($user_input, 'Usuario');  									 // Email y nombre del destinatario
