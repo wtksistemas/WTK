@@ -15,8 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 // 3. Opcional: Validaciones rápidas (campos vacíos)
-if (empty($_POST['username']) || empty($_POST['password'])) {
-    header("Location: ../../index.php?v=campos_vacios");
+if (empty($_POST['username'])) 
+{
+    //header("Location: ../../index.php?v=campos_vacios");
+    echo "Error: Campos vacíos. Por favor, completa todos los campos.";
     exit;
 }
 

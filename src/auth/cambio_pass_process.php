@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $nueva_pass = $_POST['pass1'] ?? '';
     $confirmar_pass = $_POST['pass2'] ?? '';
     // 2. Validaciones de seguridad
-    if (empty($nueva_pass) || $nueva_pass !== $confirmar_pass)
+    if (empty($nueva_pass) || $nueva_pass !== $confirmar_pass || empty($token))
     {
         header("Location: ../../index.php?v=pass_no_coincide");
         exit;
