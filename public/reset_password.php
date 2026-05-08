@@ -12,7 +12,7 @@
 		<div class="login-container">		
 			<img class="logo" src="assets/img/contraseña.png" alt="Logo">
 			<h2>Contraseña</h2>
-			<form action="../src/auth/cambio_pass_process.php" method="post">
+			<form action="actions/auth/puente_cambio_pass.php" method="post">
 				<input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['tkn'] ?? ''); ?>">
 				<script src="assets/js/script.js"></script>
 				<input type="password" name="pass1" id="contrasena1" placeholder="Nueva contraseña">

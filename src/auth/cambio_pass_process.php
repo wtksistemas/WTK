@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     // 2. Validaciones de seguridad
     if (empty($nueva_pass) || $nueva_pass !== $confirmar_pass)
     {
-        header("Location: ../../public/index.php?v=pass_no_coincide");
+        header("Location: ../../index.php?v=pass_no_coincide");
         exit;
     }
     if (strlen($nueva_pass) < 8)
     {
-        header("Location: ../../public/reset_password.php?v=pass_invalido");
+        header("Location: ../../reset_password.php?v=pass_invalido");
         exit;
     }
     try
@@ -43,13 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $delete->execute([$token]);
             $conexion->commit();
             // Éxito: Mandamos al usuario al login
-            header("Location: ../../public/index.php?v=pass_cambiada");
+            header("Location: ../../index.php?v=pass_cambiada");
             exit;
         }
         else
         {
             // Token inválido o expirado
-            header("Location: ../../public/index.php?v=token_invalido");
+            header("Location: ../../index.php?v=token_invalido");
             exit;
         }
     }
@@ -59,13 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $conexion->rollBack();
         }
-        header("Location: ../../public/index.php?v=error_tecnico");
+        header("Location: ../../index.php?v=error_tecnico");
     }
 }
 else
 {
     // Si alguien intenta entrar a este archivo por URL sin POST, lo mandamos al login
-    header("Location: ../../public/index.php?v=no_autorizado");
+    header("Location: ../../index.php?v=no_autorizado");
     exit;
 }
 ?>

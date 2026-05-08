@@ -50,30 +50,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             // Contenido del correo
             $mail->isHTML(true);
             $mail->Subject = 'Solicitud de restablecimiento de cuenta';
-            $link="http://localhost:3000/public/reset_password.php?tkn=$token";
+            $link="http://adm.whitakermexico.com/reset_password.php?tkn=$token";
             $mail->Body  = "<br>Entra al siguiente <a href='$link'>enlace</a> <br>
             <p>Este codigo es valido por 5 minutos.</p>";
             $mail->send();
-            header("Location: ../../public/index.php?v=correo_enviado");
+            header("Location: ../../index.php?v=correo_enviado");
             //echo 'El mensaje se ha enviado. Revisa tu correo para restablecer tu cuenta.';
         }
         catch (Exception $e)
         {
            //echo "No se pudo enviar el correo. Error: {$mail->ErrorInfo}";
-            header("Location: ../../public/index.php?v=error_mail");
+            header("Location: ../../index.php?v=error_mail");
         }        
     }
     else
     {  
         echo "Usuario no encontrado. Por favor, verifica tu entrada.";
-        header("Location: ../public/index.php?error=UsuarioNoEncontrado");
+        header("Location: ../../index.php?error=UsuarioNoEncontrado");
         exit;
     }
 }
 else
 {
     // Si alguien intenta entrar a este archivo por URL sin POST, lo mandamos al login
-    header("Location: ../../public/index.php?v=No_autorizado");
+    header("Location: ../../index.php?v=No_autorizado");
     exit;
 }
 ?>

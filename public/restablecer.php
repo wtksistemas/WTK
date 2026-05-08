@@ -13,7 +13,7 @@
     	<div class="login-container">
 			<img class="logo" src="assets/img/recuperar_cuenta.png" alt="Logo">
 			<h2>Recupera tu cuenta</h2>
-            <form action="../src/auth/restablecer_process.php" method="post">
+            <form action="actions/auth/puente_restablecer.php" method="post">
 				<label name="correo">Ingresa tu correo electrónico</label>
 				<input type="email" name="username" placeholder="Correo electrónico">
                 <button type="submit">Restablecer mi contraseña</button>
