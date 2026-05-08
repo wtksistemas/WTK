@@ -6,17 +6,17 @@
 
 // 1. Configuración de entorno
 date_default_timezone_set('America/Mexico_City');
-session_start();
+//session_start();
 
 // 2. Seguridad: Solo permitir peticiones POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header("Location: ../../login.php?v=no_autorizado");
+    header("Location: ../../index.php?v=no_autorizado");
     exit;
 }
 
 // 3. Opcional: Validaciones rápidas (campos vacíos)
 if (empty($_POST['username']) || empty($_POST['password'])) {
-    header("Location: ../../login.php?v=campos_vacios");
+    header("Location: ../../index.php?v=campos_vacios");
     exit;
 }
 

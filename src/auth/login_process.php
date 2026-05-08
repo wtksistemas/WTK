@@ -39,14 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                         $_SESSION['logged_in'] = true;
                         //echo "Usuario autenticado correctamente.";
                         // Redirigimos al área privada
-                        header("Location: ../../public/dashboard.php");
+                        header("Location: ../../dashboard.php");
                         exit;
                     }
                 else
                 {
                     // Error de credenciales
-                    //echo "Usuario o contraseña incorrectos.";
-                  header("Location: ../../public/index.php?v=login_fallido");
+                  echo "Usuario o contraseña incorrectos.";
+                  header("Location: ../../index.php?v=login_fallido");
                     exit;
                 }
             }
@@ -55,7 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                     // Error de base de datos
                     error_log("Error en login: " . $e->getMessage()); // Guardamos el error en un log oculto
                     //echo "Ocurrió un error técnico. Intenta de nuevo más tarde.";
-                    header("Location: ../../public/index.php?v=error_tecnico");
+                    echo $e->getMessage();
+                    //header("Location: ../../index.php?v=error_tecnico");
                     exit;
                 }
     }
@@ -63,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             // Si alguien intenta entrar a este archivo por URL sin POST, lo mandamos al login
             //echo "Acceso no autorizado.";
-            header("Location: ../../public/login.php?v=no_autorizado");
+            header("Location: ../../index.php?v=no_autorizado");
             exit;
         }
 ?>
