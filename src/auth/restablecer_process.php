@@ -35,13 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $mail = new PHPMailer(true);
         try
         {
+            $cuenta_mail = 'notificaciones_wtk@zohomail.com';
             // Configuracion SMTP
             // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                                // Mostrar salida (Desactivar en producción)
             $mail->isSMTP();                                                         // Activar envio SMTP
             $mail->Host  = 'smtp.zoho.com';                                         // Servidor SMTP
             $mail->SMTPAuth  = true;                                                 // Identificacion SMTP
-            $mail->Username  = 'notificaciones_wtk@zohomail.com';                        // Usuario SMTP
-            $mail->Password  = '%%%GtzzSHhat&s5';	                                     // Contraseña SMTP
+            $mail->Username  = $cuenta_mail;                       // Usuario SMTP
+            $mail->Password  = 'yG0mGFmh8yWf';	                                     // Contraseña SMTP
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port  = 587;
 
@@ -52,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             'allow_self_signed' => true
             ));
 
-            $mail->setFrom('notificaciones_wtk@zohomail.com', 'Restablece tu cuenta');   // Remitente del correo
+            $mail->setFrom($cuenta_mail, 'Restablece tu cuenta');   // Remitente del correo
             // Destinatarios
             $mail->addAddress($user_input, 'Usuario');  									 // Email y nombre del destinatario
             // Contenido del correo
