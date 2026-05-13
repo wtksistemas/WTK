@@ -15,7 +15,7 @@
 			<img class="logo" src="assets/img/registrate.png" alt="Logo">
 			<h2>Regístrate</h2>
 			<label id="a">Llena todo el siguiente formulario porfavor</label>
-        	<form action="../src/auth/registro_process.php" method="post" id="registro">
+        	<form action="actions/auth/puente_registro.php" method="post" id="registro">
 				<div class="form-derecho">
 					<input id="nombre" type="text" name="nombre" placeholder="Escribe tu nombre" oninput="ValidarRegistro()">
 					<input id="idapellido" type="text" name="apellido" placeholder="Escribe tu apellido paterno" oninput="ValidarRegistro()">
