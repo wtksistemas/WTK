@@ -36,21 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         if ($stmt->execute([$nombre_completo, $user_rfc, $user_email, $user_telefono, $password_segura]))
         {
             // Registro exitoso, lo enviamos al login
-            header("Location: ../../public/index.php?v=registro_exitoso");
+            header("Location: ../../index.php?v=registro_exitoso");
             exit;
         }
     }
     catch (PDOException $e)
     {
         error_log("Error en registro: " . $e->getMessage());
-       header("Location: ../../public/registro.php?v=error_tecnico");
+       header("Location: ../../registro.php?v=error_tecnico");
         exit;
     }
 }
 else
 {
     // Si alguien intenta entrar a este archivo por URL sin POST, lo mandamos al registro
-    header("Location: ../../public/registro.php?v=no_autorizado");
+    header("Location: ../../registro.php?v=no_autorizado");
     exit;
 }
 ?>
