@@ -8,7 +8,7 @@ date_default_timezone_set('America/Mexico_City');
 session_start();
 // Control de acceso rápido antes de procesar nada
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: ../../public/index.php?v=sesion_invalida");
+    header("Location: ../../index.php?v=sesion_invalida");
     exit;
 }
 
@@ -21,7 +21,7 @@ $hora_ahora = date('H:i:s');
 
 
 if ($id_usuario === 0) {
-    header("Location: ../../public/index.php?error=usuario_invalido");
+    header("Location: ../../index.php?error=usuario_invalido");
     exit;
 }
 
@@ -46,17 +46,13 @@ try {
     $stmt_insert->execute([$id_usuario, $fecha_hoy, $hora_ahora, $tipo_checada, 'WEB', 'PISO 12']);
 
     // Éxito: Redirigimos de vuelta al cehcador con un mensaje de éxito y el tipo de checada
-    header("Location: ../../public/checador.php?status=success&tipo=" . $tipo_checada);
+    header("Location: ../../checador.php?status=success&tipo=" . $tipo_checada);
     exit;
 
 } catch (PDOException $e) {
     echo "Error al registrar checada: " . $e->getMessage();
-    header("Location: ../../public/checador.php?status=error");
+    header("Location: ../../checador.php?status=error");
     exit;
 }
-
-
-
-
 
 ?>

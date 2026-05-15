@@ -49,7 +49,6 @@ catch (PDOException $e)
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
-    <script src="assets/js/checador.js"></script>
 </head>
 <body>	
 <script>
@@ -178,7 +177,7 @@ catch (PDOException $e)
 		        </div>
             </div>    
             <div class="lado-derecho">
-                <form action="../src/checador/registro_asistencia.php" method="post">
+                <form action="actions/checador/puente_checada.php" method="post">
                     <button class="area-tarjeta" id="boton-checar" type="submit">
                         <img src="assets/img/checador/reloj.png" alt="Permisos">
                         <p>Registrar Entrada/Salida</p>
