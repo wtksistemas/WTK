@@ -13,7 +13,7 @@
        		<div class="login-container">
 				<img class="logo" src="assets/img/inicio_sesion.png" alt="Logo">
 					<h2>Inicia Sesión</h2>
-                <form action="actions/auth/login.php" method="post">
+                <form action="actions/auth/puente_login.php" method="post">
 					<input type="email" name="username" placeholder="Correo electrónico">
 					<input type="password" name="password" placeholder="Contraseña">
 				<div class="links">
