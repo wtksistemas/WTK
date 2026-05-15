@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $mail->isSMTP();                                                         // Activar envio SMTP
             $mail->Host  = 'smtp.zoho.com';                                         // Servidor SMTP
             $mail->SMTPAuth  = true;                                                 // Identificacion SMTP
-            $mail->Username  = $cuenta_mail;                       // Usuario SMTP
+            $mail->Username  = 'notificaciones_wtk@zohomail.com';                       // Usuario SMTP
             $mail->Password  = 'yG0mGFmh8yWf';	                                     // Contraseña SMTP
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port  = 587;
